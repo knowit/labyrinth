@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg viewBox="896 736 305 490" preserveAspectRatio="xMinYMin meet" version="1.1" xmlns="http://www.w3.org/2000/svg">
+<g class="4001 Quad 2-input NOR gate">
+<rect x="1040" y="880" width="96" height="224" fill="#FFFFFF" fill-opacity="0.831372549019608" stroke="none" />
+<line x1="1024" y1="896" x2="1040" y2="896" stroke="#000000" stroke-opacity="1" stroke-width="3" stroke-linecap="round" fill="none" />
+<text x="1044" y="901" font-family="sans-serif" font-size="15">1A</text>
+<line x1="1024" y1="928" x2="1040" y2="928" stroke="#000000" stroke-opacity="1" stroke-width="3" stroke-linecap="round" fill="none" />
+<text x="1044" y="933" font-family="sans-serif" font-size="15">1B</text>
+<line x1="1024" y1="960" x2="1040" y2="960" stroke="#000000" stroke-opacity="1" stroke-width="3" stroke-linecap="round" fill="none" />
+<text x="1044" y="965" font-family="sans-serif" font-size="15">1Y</text>
+<line x1="1024" y1="992" x2="1040" y2="992" stroke="#000000" stroke-opacity="1" stroke-width="3" stroke-linecap="round" fill="none" />
+<text x="1044" y="997" font-family="sans-serif" font-size="15">2Y</text>
+<line x1="1024" y1="1024" x2="1040" y2="1024" stroke="#000000" stroke-opacity="1" stroke-width="3" stroke-linecap="round" fill="none" />
+<text x="1044" y="1029" font-family="sans-serif" font-size="15">2A</text>
+<line x1="1024" y1="1056" x2="1040" y2="1056" stroke="#000000" stroke-opacity="1" stroke-width="3" stroke-linecap="round" fill="none" />
+<text x="1044" y="1061" font-family="sans-serif" font-size="15">2B</text>
+<line x1="1024" y1="1088" x2="1040" y2="1088" stroke="#000000" stroke-opacity="1" stroke-width="3" stroke-linecap="round" fill="none" />
+<text x="1044" y="1093" font-family="sans-serif" font-size="15">VSS</text>
+<line x1="1152" y1="1088" x2="1136" y2="1088" stroke="#000000" stroke-opacity="1" stroke-width="3" stroke-linecap="round" fill="none" />
+<text x="1112" y="1093" font-family="sans-serif" font-size="15">3A</text>
+<line x1="1152" y1="1056" x2="1136" y2="1056" stroke="#000000" stroke-opacity="1" stroke-width="3" stroke-linecap="round" fill="none" />
+<text x="1112" y="1061" font-family="sans-serif" font-size="15">3B</text>
+<line x1="1152" y1="1024" x2="1136" y2="1024" stroke="#000000" stroke-opacity="1" stroke-width="3" stroke-linecap="round" fill="none" />
+<text x="1112" y="1029" font-family="sans-serif" font-size="15">3Y</text>
+<line x1="1152" y1="992" x2="1136" y2="992" stroke="#000000" stroke-opacity="1" stroke-width="3" stroke-linecap="round" fill="none" />
+<text x="1112" y="997" font-family="sans-serif" font-size="15">4Y</text>
+<line x1="1152" y1="960" x2="1136" y2="960" stroke="#000000" stroke-opacity="1" stroke-width="3" stroke-linecap="round" fill="none" />
+<text x="1112" y="965" font-family="sans-serif" font-size="15">4A</text>
+<line x1="1152" y1="928" x2="1136" y2="928" stroke="#000000" stroke-opacity="1" stroke-width="3" stroke-linecap="round" fill="none" />
+<text x="1112" y="933" font-family="sans-serif" font-size="15">4B</text>
+<line x1="1152" y1="896" x2="1136" y2="896" stroke="#000000" stroke-opacity="1" stroke-width="3" stroke-linecap="round" fill="none" />
+<text x="1102" y="901" font-family="sans-serif" font-size="15">VDD</text>
+<rect x="1040" y="880" width="96" height="224" stroke="#000000" stroke-opacity="1" stroke-width="3" fill="none" />
+<ellipse cx="1152" cy="1088" rx="4" ry="4" stroke="#000000" stroke-opacity="1" stroke-width="1" fill="none" />
+<ellipse cx="1152" cy="1056" rx="4" ry="4" stroke="#000000" stroke-opacity="1" stroke-width="1" fill="none" />
+<ellipse cx="1152" cy="1024" rx="4" ry="4" stroke="#000000" stroke-opacity="1" stroke-width="1" fill="none" />
+<ellipse cx="1152" cy="992" rx="4" ry="4" stroke="#000000" stroke-opacity="1" stroke-width="1" fill="none" />
+<ellipse cx="1152" cy="960" rx="4" ry="4" stroke="#000000" stroke-opacity="1" stroke-width="1" fill="none" />
+<ellipse cx="1152" cy="928" rx="4" ry="4" stroke="#000000" stroke-opacity="1" stroke-width="1" fill="none" />
+</g>
+<g class="Wire">
+<line x1="1024" y1="960" x2="992" y2="960" stroke="#000000" stroke-opacity="1" stroke-width="1.5" stroke-linecap="round" fill="none" />
+</g>
+<g class="Wire">
+<line x1="992" y1="960" x2="992" y2="1024" stroke="#000000" stroke-opacity="1" stroke-width="1.5" stroke-linecap="round" fill="none" />
+</g>
+<g class="Wire">
+<line x1="992" y1="1024" x2="1024" y2="1024" stroke="#000000" stroke-opacity="1" stroke-width="1.5" stroke-linecap="round" fill="none" />
+</g>
+<g class="Wire">
+<line x1="1024" y1="1088" x2="992" y2="1088" stroke="#000000" stroke-opacity="1" stroke-width="1.5" stroke-linecap="round" fill="none" />
+<ellipse cx="992" cy="1088" rx="4" ry="4" fill="#000000" fill-opacity="1" stroke="none" />
+</g>
+<g class="Wire">
+<line x1="1024" y1="1056" x2="992" y2="1056" stroke="#000000" stroke-opacity="1" stroke-width="1.5" stroke-linecap="round" fill="none" />
+</g>
+<g class="Wire">
+<line x1="992" y1="1056" x2="992" y2="1088" stroke="#000000" stroke-opacity="1" stroke-width="1.5" stroke-linecap="round" fill="none" />
+<ellipse cx="992" cy="1088" rx="4" ry="4" fill="#000000" fill-opacity="1" stroke="none" />
+</g>
+<g class="Wire">
+<line x1="1024" y1="992" x2="928" y2="992" stroke="#000000" stroke-opacity="1" stroke-width="1.5" stroke-linecap="round" fill="none" />
+<ellipse cx="928" cy="992" rx="4" ry="4" stroke="#000000" stroke-opacity="1" stroke-width="1" fill="none" />
+</g>
+<g class="Ground">
+<line x1="992" y1="1120" x2="992" y2="1184" stroke="#000000" stroke-opacity="1" stroke-width="3" stroke-linecap="round" fill="none" />
+<line x1="1002" y1="1184" x2="982" y2="1184" stroke="#000000" stroke-opacity="1" stroke-width="3" stroke-linecap="round" fill="none" />
+<line x1="998" y1="1189" x2="986" y2="1189" stroke="#000000" stroke-opacity="1" stroke-width="3" stroke-linecap="round" fill="none" />
+<line x1="994" y1="1194" x2="990" y2="1194" stroke="#000000" stroke-opacity="1" stroke-width="3" stroke-linecap="round" fill="none" />
+</g>
+<g class="Wire">
+<line x1="992" y1="1120" x2="992" y2="1088" stroke="#000000" stroke-opacity="1" stroke-width="1.5" stroke-linecap="round" fill="none" />
+<ellipse cx="992" cy="1088" rx="4" ry="4" fill="#000000" fill-opacity="1" stroke="none" />
+</g>
+<g class="DC Rail">
+<line x1="1142" y1="785" x2="1162" y2="785" stroke="#000000" stroke-opacity="1" stroke-width="3" stroke-linecap="round" fill="none" />
+<line x1="1152" y1="832" x2="1152" y2="785" stroke="#000000" stroke-opacity="1" stroke-width="3" stroke-linecap="round" fill="none" />
+<text x="1137" y="781" font-family="sans-serif" font-size="15">+5V</text>
+</g>
+<g class="Wire">
+<line x1="1152" y1="832" x2="1152" y2="896" stroke="#000000" stroke-opacity="1" stroke-width="1.5" stroke-linecap="round" fill="none" />
+</g>
+<g class="Wire">
+<line x1="928" y1="928" x2="1024" y2="928" stroke="#000000" stroke-opacity="1" stroke-width="1.5" stroke-linecap="round" fill="none" />
+<rect x="924" y="924" width="8" height="8" stroke="#000000" stroke-opacity="1" stroke-width="1" fill="none" />
+</g>
+<g class="Wire">
+<line x1="928" y1="896" x2="1024" y2="896" stroke="#000000" stroke-opacity="1" stroke-width="1.5" stroke-linecap="round" fill="none" />
+<rect x="924" y="892" width="8" height="8" stroke="#000000" stroke-opacity="1" stroke-width="1" fill="none" />
+</g>
+</svg>

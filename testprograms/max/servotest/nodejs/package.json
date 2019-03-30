@@ -1,0 +1,14 @@
+{
+  "name": "nodefirmata",
+  "version": "1.0.0",
+  "description": "Firmata node test",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "firmata": "^2.0.0"
+  }
+}
