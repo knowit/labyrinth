@@ -2,7 +2,7 @@
 	"name" : "servotest",
 	"version" : 1,
 	"creationdate" : 3634990414,
-	"modificationdate" : 3636814761,
+	"modificationdate" : 3636815212,
 	"viewrect" : [ 410.0, 294.0, 300.0, 500.0 ],
 	"autoorganize" : 0,
 	"hideprojectwindow" : 0,
@@ -59,6 +59,11 @@
 					"projectrelativepath" : "../../../../maxfirmata/patchers"
 				}
 
+			}
+,
+			"step.maxpat" : 			{
+				"kind" : "patcher",
+				"local" : 1
 			}
 
 		}
