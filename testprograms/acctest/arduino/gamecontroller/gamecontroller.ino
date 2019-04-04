@@ -1,7 +1,7 @@
 
 #include <SoftwareSerial.h>
 
-SoftwareSerial mySerial(10, 11); // RX, TX
+SoftwareSerial logSerial(10, 11); // RX, TX
 
 void setup() {
 
@@ -10,15 +10,17 @@ void setup() {
     ; // wait for serial port to connect. Needed for native USB port only
   }
 
-  mySerial.begin(9600);
+  logSerial.begin(9600);
+
+  logSerial.println("--SETUP--");
+
+
+  logSerial.println("--SETUP DONE --");
+  
 }
 
-void loop() { // run over and over
-  if (mySerial.available()) {
-    Serial.write(mySerial.read());
-  }
-  if (Serial.available()) {
-    mySerial.write(Serial.read());
-  }
+void loop() { 
+
+  
 
 }
