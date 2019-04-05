@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0b0a6bd4-8219-40b3-b15e-16682e701314" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../acctest/js/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../acctest/arduino/gamecontroller/gamecontroller.ino" beforeDir="false" afterPath="$PROJECT_DIR$/../../acctest/arduino/gamecontroller/gamecontroller.ino" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../acctest/js/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../acctest/js/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../acctest/js/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../acctest/js/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../acctest/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../acctest/js/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -136,18 +135,17 @@
       <option name="presentableId" value="Default" />
       <updated>1554309596098</updated>
       <workItem from="1554309597263" duration="2973000" />
-      <workItem from="1554397746175" duration="585000" />
+      <workItem from="1554397746175" duration="587000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3558000" />
+    <option name="totallyTimeSpent" value="3560000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="960" height="1138" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.38779956" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.38779956" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />

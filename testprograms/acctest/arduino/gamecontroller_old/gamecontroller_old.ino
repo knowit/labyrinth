@@ -713,6 +713,12 @@ void sysexCallback(byte command, byte argc, byte *argv)
       logSerial.print(", setAngleY=");
       logSerial.print(setAngleY);
       logSerial.println("");
+
+      Firmata.write(START_SYSEX);
+      Firmata.write(SET_ANGLE);
+      Firmata.write(setAngleX);
+      Firmata.write(setAngleY);
+      Firmata.write(END_SYSEX);
       break;
 
     case SERIAL_MESSAGE:

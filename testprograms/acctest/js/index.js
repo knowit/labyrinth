@@ -1,23 +1,24 @@
-const Board = require("firmata");
+const SerialPort = require('serialport')
+const serialport = new SerialPort('/dev/cu.usbmodem142241')
 
-Board.requestPort((error, port) => {
-  if (error) {
-    console.log(error);
-    return;
-  }
 
-  //const board = new Board(port.comName);
-  const board = new Board('/dev/cu.usbmodem141241');
 
-  board.on("ready", () => {
-    const pin = 13;
-    let state = 1;
 
-    board.pinMode(pin, board.MODES.OUTPUT);
 
-    setInterval(() => {
-      board.digitalWrite(pin, (state ^= 1));
-      board.sysexCommand([0x80,255,100])
-    }, 500);
-  });
+
+
+
+setTimeout(function () {
+  console.log('timeout completed');
+  serialport.write('ROBOT POWER ON'); console.log('wrote');
+}, 5000);
+
+
+// Switches the port into "flowing mode"
+serialport.on('data', function (data) {
+  console.log('data - Data:', data.toString());
+});
+// Read data that is available but keep the stream from entering //"flowing mode"
+serialport.on('readable', function () {
+  console.log('readable - Data:', serialport.read().toString());
 });
