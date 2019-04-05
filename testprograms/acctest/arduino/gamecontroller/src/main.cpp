@@ -18,7 +18,7 @@
 #define OLED_RESET     4 // Reset pin # (or -1 if sharing Arduino reset pin)
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
-SoftwareSerial logSerial(10, 11); // RX, TX
+// SoftwareSerial logSerial(10, 11); // RX, TX
 Adafruit_BNO055 bno = Adafruit_BNO055(55);
 
 String state = "unknow";
@@ -65,37 +65,37 @@ void setTask(const char *newTask) {
 }
 
 void setup() {
-    logSerial.begin(9600);
-    logSerial.println("---- SETUP_START");
+    // logSerial.begin(9600);
+    // logSerial.println("---- SETUP_START");
 
     pinMode(2, INPUT_PULLUP);
 
-    logSerial.print("init display ... ");
+    // logSerial.print("init display ... ");
     if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Address 0x3C for 128x32
         Serial.println(F("SSD1306 allocation failed"));
         for (;;); // Don't proceed, loop forever
     }
     setSystemStateState("init");
-    logSerial.println("OK");
+    // logSerial.println("OK");
 
     setTask("init serial");
-    Serial.begin(9600);
+    Serial.begin(115200);
 
     setTask("init bno");
-    logSerial.print("init bno ... ");
+    // logSerial.print("init bno ... ");
     if (!bno.begin()) {
-        logSerial.println("Ooops, no BNO055 detected ... Check your wiring or I2C ADDR!");
+        // logSerial.println("Ooops, no BNO055 detected ... Check your wiring or I2C ADDR!");
         // while(1);
     }
 
     setTask("init bno ..waiting");
-    logSerial.print("waiting ... ");
+    // logSerial.print("waiting ... ");
     delay(1000);
     bno.setExtCrystalUse(true);
-    logSerial.println("OK");
+    // logSerial.println("OK");
 
 
-    logSerial.println("---- SETUP_DONE");
+    // logSerial.println("---- SETUP_DONE");
     setSystemStateState("Running");
     setTask("");
 }
@@ -106,16 +106,24 @@ void loop() {
     if (Serial.available()) {
         int prefix = Serial.read();
         if (prefix == 0) {
-            logSerial.println("start package");
+            // logSerial.println("start package");
             int cmd = Serial.read();
             if (cmd == 1) {
+                float x = read2byteFloat();
+                if (x != -999) {
+                    setXAngle = x;
+                }
+                float y = read2byteFloat();
+                if (y != -999) {
+                    setYAngle = y;
+                }
+                /*
                 logSerial.print(", setAngle x= ");
-                setXAngle = read2byteFloat();
                 logSerial.print(setXAngle);
                 logSerial.print(", setAngle y= ");
-                setYAngle = read2byteFloat();
                 logSerial.print(setYAngle);
                 logSerial.println();
+                 */
             }
             updateDisplay();
         }
@@ -125,14 +133,20 @@ void loop() {
     sensors_event_t event;
     bno.getEvent(&event);
 
-    bnoX = event.orientation.y;
-    bnoY = event.orientation.z;
+    if (bnoX != event.orientation.y || bnoY != event.orientation.z) {
+        bnoX = event.orientation.y;
+        bnoY = event.orientation.z;
+        updateDisplay();
+    }
 
-    updateDisplay();
 }
 
 float read2byteFloat() {
-    int pseudoValue = (Serial.read() - 64) * 127 + (Serial.read() - 64);
+    int msb = Serial.read();
+    if (msb < 64) return -999;
+    int lsb = Serial.read();
+    if (lsb < 64) return -999;
+    int pseudoValue = (msb - 64) * 127 + (lsb - 64);
     return map(pseudoValue, 0, 16000, -9000, 9000) / 100.0;
 }
 

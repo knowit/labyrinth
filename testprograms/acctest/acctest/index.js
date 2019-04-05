@@ -1,7 +1,8 @@
 const SerialPort = require('serialport')
 const port = new SerialPort('/dev/cu.usbmodem142241', {
-  baudRate: 9600
+  baudRate: 115200
 })
+const Max = require('max-api');
 
 function translate(input, inputMinA, inputMaxA, outputMin, outputMax) {
   return outputMin + (outputMax - outputMin) * (input - inputMinA) / (inputMaxA - inputMinA)
@@ -35,3 +36,6 @@ function setAngle(x, y) {
   write2byteFloat(y);
 }
 
+Max.addHandler("setAngle", (x, y) => {
+  setAngle(x,y);
+});

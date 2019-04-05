@@ -3,8 +3,9 @@ testprograms/max/servotest/nodejs/node_modules/
 testprograms/js/firmatatest/node_modules/
 testprograms/acctest/js/node_modules/
 testprograms/js/firmatatest/.idea/workspace.xml
-testprograms/acctest/js/.idea/workspace.xml
 *.iml
 testprograms/acctest/arduino/gamecontroller/cmake-build-debug/
 testprograms/acctest/arduino/gamecontroller/.idea/
 *.xml
+testprograms/acctest/acctest/node_modules/
+testprograms/acctest/js/.idea/
