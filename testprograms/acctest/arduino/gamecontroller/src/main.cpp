@@ -1,29 +1,47 @@
 #include <Arduino.h>
-
 #include <SoftwareSerial.h>
 
 SoftwareSerial logSerial(10, 11); // RX, TX
 
+
+float read2byteFloat();
+
 void setup() {
-    // Open serial communications and wait for port to open:
-    Serial.begin(9600);
-    while (!Serial) {
-        ; // wait for serial port to connect. Needed for native USB port only
-    }
 
+    pinMode(2, INPUT_PULLUP);
 
-    Serial.println("Goodnight moon!");
-
-    // set the data rate for the SoftwareSerial port
     logSerial.begin(9600);
-    logSerial.println("Hello, world?");
+    logSerial.println("SETUP_START");
+
+    Serial.begin(9600);
+
+    logSerial.println("SETUP_DONE");
+
 }
 
-void loop() { // run over and over
-    if (logSerial.available()) {
-        Serial.write(logSerial.read());
-    }
+void loop() {
+
     if (Serial.available()) {
-        logSerial.write(Serial.read());
+        int prefix = Serial.read();
+        if (prefix == 0) {
+            logSerial.println("start package");
+            int cmd = Serial.read();
+            if (cmd == 1) {
+                logSerial.print(", setAngle x= ");
+                logSerial.print(read2byteFloat());
+                logSerial.print(", setAngle y= ");
+                logSerial.print(read2byteFloat());
+                logSerial.println();
+            }
+        }
+
+
     }
+
 }
+
+float read2byteFloat() {
+    int pseudoValue = (Serial.read() - 64) * 127 + (Serial.read() - 64);
+    return map(pseudoValue, 0, 16000, -9000, 9000) / 100.0;
+}
+
