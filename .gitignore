@@ -7,3 +7,4 @@ testprograms/acctest/js/.idea/workspace.xml
 *.iml
 testprograms/acctest/arduino/gamecontroller/cmake-build-debug/
 testprograms/acctest/arduino/gamecontroller/.idea/
+*.xml

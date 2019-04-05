@@ -35,9 +35,3 @@ function setAngle(x, y) {
   write2byteFloat(y);
 }
 
-setTimeout(function () {
-
-  setAngle(0, 0);
-
-}, 2000);
-
