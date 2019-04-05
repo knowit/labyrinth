@@ -7,16 +7,14 @@ SoftwareSerial logSerial(10, 11); // RX, TX
 float read2byteFloat();
 
 void setup() {
+    logSerial.begin(9600);
+    logSerial.println("---- SETUP_START");
 
     pinMode(2, INPUT_PULLUP);
 
-    logSerial.begin(9600);
-    logSerial.println("SETUP_START");
-
     Serial.begin(9600);
 
-    logSerial.println("SETUP_DONE");
-
+    logSerial.println("---- SETUP_DONE");
 }
 
 void loop() {
@@ -34,10 +32,7 @@ void loop() {
                 logSerial.println();
             }
         }
-
-
     }
-
 }
 
 float read2byteFloat() {

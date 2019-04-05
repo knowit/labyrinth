@@ -2,19 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e306825-3116-4b32-bfae-ce03d64685b2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../arduino/gamecontroller/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../arduino/gamecontroller/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../arduino/gamecontroller/updateclion.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../arduino/gamecontroller/upload.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../arduino/gamecontroller/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../arduino/gamecontroller/src/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
     <ignored path="../arduino/gamecontroller/cmake-build-debug/" />
+    <ignored path="../arduino/gamecontroller/.idea/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,8 +25,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="40" column="4" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="4" />
+            <state relative-caret-position="645">
+              <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
             </state>
           </provider>
         </entry>
@@ -133,12 +132,20 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1554477783742</updated>
-      <workItem from="1554477788093" duration="10750000" />
+      <workItem from="1554477788093" duration="11009000" />
     </task>
+    <task id="LOCAL-00001" summary="successful sending of two floats">
+      <created>1554490398113</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1554490398113</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18749000" />
+    <option name="totallyTimeSpent" value="19008000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="2098" extended-state="0" />
@@ -167,6 +174,10 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="successful sending of two floats" />
+    <option name="LAST_COMMIT_MESSAGE" value="successful sending of two floats" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/node_modules/firmata/examples/adxl345.js" />
@@ -231,8 +242,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="40" column="4" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="4" />
+        <state relative-caret-position="645">
+          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
         </state>
       </provider>
     </entry>

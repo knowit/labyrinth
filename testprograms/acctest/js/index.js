@@ -37,8 +37,7 @@ function setAngle(x, y) {
 
 setTimeout(function () {
 
-  setAngle(0.1
-    , 90);
+  setAngle(0.0, 0);
 
 }, 2000);
 
