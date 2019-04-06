@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <SoftwareSerial.h>
 #include <SPI.h>
+#include <Servo.h>
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
@@ -9,7 +10,7 @@
 #include <Adafruit_BNO055.h>
 #include <utility/imumaths.h>
 
-#define BNO055_SAMPLERATE_DELAY_MS (100)
+#define BNO055_SAMPLERATE_DELAY_MS (20)
 
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 32 // OLED display height, in pixels
@@ -24,8 +25,9 @@ Adafruit_BNO055 bno = Adafruit_BNO055(55);
 String state = "unknow";
 String task = "";
 float setXAngle = 0;
-float setYAngle = 0;
 float bnoX = 0;
+Servo xServo;
+float setYAngle = 0;
 float bnoY = 0;
 
 float read2byteFloat();
@@ -85,7 +87,7 @@ void setup() {
     // logSerial.print("init bno ... ");
     if (!bno.begin()) {
         // logSerial.println("Ooops, no BNO055 detected ... Check your wiring or I2C ADDR!");
-        // while(1);
+        while (1);
     }
 
     setTask("init bno ..waiting");
@@ -94,6 +96,8 @@ void setup() {
     bno.setExtCrystalUse(true);
     // logSerial.println("OK");
 
+    xServo.attach(6);
+    xServo.write(90);
 
     // logSerial.println("---- SETUP_DONE");
     setSystemStateState("Running");
@@ -129,7 +133,6 @@ void loop() {
         }
     }
 
-
     sensors_event_t event;
     bno.getEvent(&event);
 
@@ -137,6 +140,20 @@ void loop() {
         bnoX = event.orientation.y;
         bnoY = event.orientation.z;
         updateDisplay();
+    }
+
+    int diff = abs(bnoX - setXAngle);
+    int speed = max(min(diff * 20 ,98),20);
+
+    if (diff > .01 ) {
+        if (bnoX > setXAngle) {
+            xServo.write(90 - speed);
+        } else if (bnoX < setXAngle) {
+            xServo.write(90 + speed);
+        }
+
+    } else {
+        xServo.write(90);
     }
 
 }
