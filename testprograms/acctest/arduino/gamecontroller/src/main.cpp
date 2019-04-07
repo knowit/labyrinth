@@ -19,11 +19,13 @@
 #define OLED_RESET     4 // Reset pin # (or -1 if sharing Arduino reset pin)
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
-// SoftwareSerial logSerial(10, 11); // RX, TX
+SoftwareSerial logSerial(10, 11); // RX, TX
 Adafruit_BNO055 bno = Adafruit_BNO055(55);
 
 String state = "unknow";
 String task = "";
+bool showTaskParam = false;
+float taskParam = 0;
 float setXAngle = 0;
 float bnoX = 0;
 Servo xServo;
@@ -32,27 +34,48 @@ float bnoY = 0;
 
 float read2byteFloat();
 
+float xThreshold = .1;
+float xSpeedFactor = 5;
+int xMaxSpeed = 69;
+int xMinSpeed = 18;
+
+int xSpeed = 0;
+
 void setSystemStateState(const char *newState);
 
 void updateDisplay() {
-    int xPosBno = 50;
+    int xPosBno = 38;
+    int xPosSpeed = 80;
     int xPosSet = 5;
     display.clearDisplay();
     display.setTextSize(1);
     display.cp437(true);
     display.setTextColor(WHITE);
+
+
     display.setCursor(0, 0);
     display.println(state);
+
     display.setCursor(0, 8);
     display.println(task);
+    if (showTaskParam) {
+        display.setCursor(75, 8);
+        display.println(taskParam);
+    }
+
+
     display.setCursor(xPosSet, 8 * 2);
     display.println(setXAngle);
-    display.setCursor(xPosSet, 8 * 3);
-    display.println(setYAngle);
     display.setCursor(xPosBno, 8 * 2);
     display.println(bnoX);
+    display.setCursor(xPosSpeed, 8 * 2);
+    display.println(xSpeed);
+
+    display.setCursor(xPosSet, 8 * 3);
+    display.println(setYAngle);
     display.setCursor(xPosBno, 8 * 3);
     display.println(bnoY);
+
     display.display();
 }
 
@@ -67,8 +90,8 @@ void setTask(const char *newTask) {
 }
 
 void setup() {
-    // logSerial.begin(9600);
-    // logSerial.println("---- SETUP_START");
+    logSerial.begin(9600);
+    logSerial.println("---- SETUP_START");
 
     pinMode(2, INPUT_PULLUP);
 
@@ -99,7 +122,7 @@ void setup() {
     xServo.attach(6);
     xServo.write(90);
 
-    // logSerial.println("---- SETUP_DONE");
+    logSerial.println("---- SETUP_DONE");
     setSystemStateState("Running");
     setTask("");
 }
@@ -110,24 +133,52 @@ void loop() {
     if (Serial.available()) {
         int prefix = Serial.read();
         if (prefix == 0) {
-            // logSerial.println("start package");
             int cmd = Serial.read();
-            if (cmd == 1) {
+            if (cmd == 1) { // setAngle
                 float x = read2byteFloat();
                 if (x != -999) {
-                    setXAngle = x;
+                    setXAngle = map(x, 0, 16000, -90 * 100, 90 * 100) / 100.0;
                 }
                 float y = read2byteFloat();
                 if (y != -999) {
-                    setYAngle = y;
+                    setYAngle = map(y, 0, 16000, -90 * 100, 90 * 100) / 100.0;
                 }
-                /*
-                logSerial.print(", setAngle x= ");
-                logSerial.print(setXAngle);
-                logSerial.print(", setAngle y= ");
-                logSerial.print(setYAngle);
-                logSerial.println();
-                 */
+            }
+            if (cmd == 2) { // setXThreshold
+                float t = read2byteFloat();
+                if (t != -999) {
+                    xThreshold = map(t, 0, 16000, 0, 10 * 100) / 100.0;
+                }
+                setTask("x threshold: ");
+                taskParam = xThreshold;
+                showTaskParam = true;
+            }
+            if (cmd == 3) { // setXSpeedFactor
+                float s = read2byteFloat();
+                if (s != -999) {
+                    xSpeedFactor = map(s, 0, 16000, 0, 90 * 100) / 100.0;
+                }
+                setTask("x spd fct: ");
+                taskParam = xSpeedFactor;
+                showTaskParam = true;
+            }
+            if (cmd == 4) { // setXMaxSpeed
+                float s = read2byteFloat();
+                if (s != -999) {
+                    xMaxSpeed = map(s, 0, 16000, 0, 90 * 100) / 100.0;
+                }
+                setTask("x max spd: ");
+                taskParam = xMaxSpeed;
+                showTaskParam = true;
+            }
+            if (cmd == 5) { // setXMinSpeed
+                float s = read2byteFloat();
+                if (s != -999) {
+                    xMinSpeed = map(s, 0, 16000, 0, 90 * 100) / 100.0;
+                }
+                setTask("x min spd: ");
+                taskParam = xMinSpeed;
+                showTaskParam = true;
             }
             updateDisplay();
         }
@@ -142,14 +193,19 @@ void loop() {
         updateDisplay();
     }
 
-    int diff = abs(bnoX - setXAngle);
-    int speed = max(min(diff * 20 ,98),20);
 
-    if (diff > .01 ) {
+    float diff = bnoX - setXAngle;
+    if (diff < 0) {
+        diff = 1 - diff;
+    }
+
+    xSpeed = max(xMinSpeed, min(diff * xSpeedFactor, xMaxSpeed));
+
+    if (diff > xThreshold) {
         if (bnoX > setXAngle) {
-            xServo.write(90 - speed);
+            xServo.write(90 - xSpeed);
         } else if (bnoX < setXAngle) {
-            xServo.write(90 + speed);
+            xServo.write(90 + xSpeed);
         }
 
     } else {
@@ -163,7 +219,6 @@ float read2byteFloat() {
     if (msb < 64) return -999;
     int lsb = Serial.read();
     if (lsb < 64) return -999;
-    int pseudoValue = (msb - 64) * 127 + (lsb - 64);
-    return map(pseudoValue, 0, 16000, -9000, 9000) / 100.0;
+    return (msb - 64) * 127 + (lsb - 64);
 }
 

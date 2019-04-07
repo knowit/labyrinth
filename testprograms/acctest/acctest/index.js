@@ -25,17 +25,53 @@ function lsb(numberToSend) {
   return 64 + numberToSend % 127;
 }
 
-function write2byteFloat(x) {
-  let xPseudoValue = translate(x, -90, 90, 0, 16000);
+function write2byteFloat(xPseudoValue) {
   port.write([msb(xPseudoValue), lsb(xPseudoValue)]);
 }
 
 function setAngle(x, y) {
   port.write([0, 1]);
-  write2byteFloat(x);
-  write2byteFloat(y);
+  write2byteFloat(translate(x, -90, 90, 0, 16000));
+  write2byteFloat(translate(y, -90, 90, 0, 16000));
+}
+
+
+function setXThreshold(t) {
+  port.write([0, 2]);
+  write2byteFloat(translate(t, 0, 10, 0, 16000));
+}
+
+function setXSpeedFactor(s) {
+  port.write([0, 3]);
+  write2byteFloat(translate(s, 0, 90, 0, 16000));
+}
+
+function setXMaxSpeed(s) {
+  port.write([0, 4]);
+  write2byteFloat(translate(s, 0, 90, 0, 16000));
+}
+
+function setXMinSpeed(s) {
+  port.write([0, 5]);
+  write2byteFloat(translate(s, 0, 90, 0, 16000));
 }
 
 Max.addHandler("setAngle", (x, y) => {
   setAngle(x,y);
+});
+
+Max.addHandler("setXThreshold", (t) => {
+  setXThreshold(t);
+});
+
+Max.addHandler("setXSpeedFactor", (s) => {
+  setXSpeedFactor(s);
+});
+
+Max.addHandler("setXMaxSpeed", (s) => {
+  setXMaxSpeed(s);
+});
+
+Max.addHandler("setXMinSpeed", (s) => {
+  setXMinSpeed(s);
 });
