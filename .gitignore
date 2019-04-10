@@ -9,3 +9,4 @@ testprograms/acctest/arduino/gamecontroller/.idea/
 *.xml
 testprograms/acctest/acctest/node_modules/
 testprograms/acctest/js/.idea/
+testprograms/acctest/arduino/gamecontroller/.pioenvs/uno/

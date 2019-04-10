@@ -174,10 +174,9 @@ void loop() {
 }
 
 void readAndParseCommands() {
-    if (Serial.available()) {
-        int prefix = Serial.read();
-        if (prefix == 0) {
-            int cmd = Serial.read();
+    if (Serial.available() >= 3)  {
+        int cmd = Serial.read();
+        if (cmd < 64) {
             if (cmd == 1) { // setAngle
                 float x = read2byteFloat();
                 if (x != -999) {
@@ -234,6 +233,6 @@ float read2byteFloat() {
     if (msb < 64) return -999;
     int lsb = Serial.read();
     if (lsb < 64) return -999;
-    return (msb - 64) * 127 + (lsb - 64);
+    return (msb - 64) * 192 + (lsb - 64);
 }
 

@@ -1,5 +1,5 @@
 const SerialPort = require('serialport')
-const port = new SerialPort('/dev/cu.usbmodem142241', {
+const port = new SerialPort('/dev/cu.usbmodem142141', {
   baudRate: 115200
 })
 const Max = require('max-api');
@@ -17,12 +17,12 @@ parser.on('data', (data) => {
 
 
 function msb(numberToSend) {
-  let msb = 64 + Math.floor(numberToSend / 127);
+  let msb = 64 + Math.floor(numberToSend / 192);
   return msb;
 }
 
 function lsb(numberToSend) {
-  return 64 + numberToSend % 127;
+  return 64 + numberToSend % 192;
 }
 
 function write2byteFloat(xPseudoValue) {
@@ -30,29 +30,29 @@ function write2byteFloat(xPseudoValue) {
 }
 
 function setAngle(x, y) {
-  port.write([0, 1]);
+  port.write([1]);
   write2byteFloat(translate(x, -90, 90, 0, 16000));
   write2byteFloat(translate(y, -90, 90, 0, 16000));
 }
 
 
 function setXThreshold(t) {
-  port.write([0, 2]);
+  port.write([2]);
   write2byteFloat(translate(t, 0, 10, 0, 16000));
 }
 
 function setXSpeedFactor(s) {
-  port.write([0, 3]);
+  port.write([3]);
   write2byteFloat(translate(s, 0, 90, 0, 16000));
 }
 
 function setXMaxSpeed(s) {
-  port.write([0, 4]);
+  port.write([4]);
   write2byteFloat(translate(s, 0, 90, 0, 16000));
 }
 
 function setXMinSpeed(s) {
-  port.write([0, 5]);
+  port.write([5]);
   write2byteFloat(translate(s, 0, 90, 0, 16000));
 }
 
