@@ -9,6 +9,7 @@
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BNO055.h>
 #include <utility/imumaths.h>
+#include <PID_v1.h>
 
 #define BNO055_SAMPLERATE_DELAY_MS (20)
 
@@ -39,9 +40,17 @@ float xSpeedFactor = 5;
 int xMaxSpeed = 69;
 int xMinSpeed = 18;
 
-int xSpeed = 0;
+// PID
+//double Kp = 2, Ki = 5, Kd = 1;
+double Kp = 7, Ki = 4, Kd = .21;
+double Setpoint, Input, Output;
+PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
+
+double xSpeed = 0;
 
 void setSystemStateState(const char *newState);
+
+void readAndParseCommands();
 
 void updateDisplay() {
     int xPosBno = 38;
@@ -122,6 +131,14 @@ void setup() {
     xServo.attach(6);
     xServo.write(90);
 
+
+    Input = 0;
+    Setpoint = 0;
+
+    //turn the PID on
+    myPID.SetOutputLimits(-90,90);
+    myPID.SetMode(AUTOMATIC);
+
     logSerial.println("---- SETUP_DONE");
     setSystemStateState("Running");
     setTask("");
@@ -130,6 +147,33 @@ void setup() {
 
 void loop() {
 
+    readAndParseCommands();
+
+    sensors_event_t event;
+    bno.getEvent(&event);
+
+    if (bnoX != event.orientation.y || bnoY != event.orientation.z) {
+        bnoX = event.orientation.y;
+        bnoY = event.orientation.z;
+
+        Input = bnoX;
+
+        updateDisplay();
+    }
+
+    Setpoint = setXAngle;
+
+    myPID.Compute();
+    xSpeed = Output;
+
+    if( xSpeed < -89 ) xSpeed = -89;
+    if( xSpeed > 89 ) xSpeed = 89;
+
+    xServo.write(90 + xSpeed);
+
+}
+
+void readAndParseCommands() {
     if (Serial.available()) {
         int prefix = Serial.read();
         if (prefix == 0) {
@@ -183,35 +227,6 @@ void loop() {
             updateDisplay();
         }
     }
-
-    sensors_event_t event;
-    bno.getEvent(&event);
-
-    if (bnoX != event.orientation.y || bnoY != event.orientation.z) {
-        bnoX = event.orientation.y;
-        bnoY = event.orientation.z;
-        updateDisplay();
-    }
-
-
-    float diff = bnoX - setXAngle;
-    if (diff < 0) {
-        diff = 1 - diff;
-    }
-
-    xSpeed = max(xMinSpeed, min(diff * xSpeedFactor, xMaxSpeed));
-
-    if (diff > xThreshold) {
-        if (bnoX > setXAngle) {
-            xServo.write(90 - xSpeed);
-        } else if (bnoX < setXAngle) {
-            xServo.write(90 + xSpeed);
-        }
-
-    } else {
-        xServo.write(90);
-    }
-
 }
 
 float read2byteFloat() {
