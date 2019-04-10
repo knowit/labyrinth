@@ -10,6 +10,7 @@
 #include <Adafruit_BNO055.h>
 #include <utility/imumaths.h>
 #include <PID_v1.h>
+#include <TaskScheduler.h>
 
 #define BNO055_SAMPLERATE_DELAY_MS (20)
 
@@ -52,6 +53,10 @@ void setSystemStateState(const char *newState);
 
 void readAndParseCommands();
 
+void addAndEnableTask(Task &task);
+
+Scheduler runner;
+
 void updateDisplay() {
     int xPosBno = 38;
     int xPosSpeed = 80;
@@ -88,15 +93,20 @@ void updateDisplay() {
     display.display();
 }
 
+
+void t1Callback() {
+    updateDisplay();
+}
+Task updateDisplayTask(200, TASK_FOREVER, &t1Callback);
+
 void setSystemStateState(const char *newState) {
     state = newState;
-    updateDisplay();
 }
 
 void setTask(const char *newTask) {
     task = newTask;
-    updateDisplay();
 }
+
 
 void setup() {
     logSerial.begin(9600);
@@ -104,48 +114,62 @@ void setup() {
 
     pinMode(2, INPUT_PULLUP);
 
-    // logSerial.print("init display ... ");
+    logSerial.print("init display ... ");
     if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Address 0x3C for 128x32
-        Serial.println(F("SSD1306 allocation failed"));
+        logSerial.println(F("SSD1306 allocation failed"));
         for (;;); // Don't proceed, loop forever
     }
     setSystemStateState("init");
-    // logSerial.println("OK");
+    updateDisplay();
+    logSerial.println("OK");
 
     setTask("init serial");
+    updateDisplay();
     Serial.begin(115200);
 
     setTask("init bno");
-    // logSerial.print("init bno ... ");
+    updateDisplay();
+    logSerial.print("init bno ... ");
     if (!bno.begin()) {
-        // logSerial.println("Ooops, no BNO055 detected ... Check your wiring or I2C ADDR!");
+        logSerial.println("Ooops, no BNO055 detected ... Check your wiring or I2C ADDR!");
         while (1);
     }
-
-    setTask("init bno ..waiting");
-    // logSerial.print("waiting ... ");
     delay(1000);
     bno.setExtCrystalUse(true);
-    // logSerial.println("OK");
+    setTask("init BNO ..DONE");
+    updateDisplay();
+    logSerial.println("OK");
 
+    logSerial.print("init servos ... ");
     xServo.attach(6);
     xServo.write(90);
+    logSerial.println("OK");
 
-
+    logSerial.print("init PID ... ");
     Input = 0;
     Setpoint = 0;
-
-    //turn the PID on
     myPID.SetOutputLimits(-90,90);
     myPID.SetMode(AUTOMATIC);
+    logSerial.println("OK");
+
+    logSerial.print("init Task Scheduler ... ");
+    runner.init();
+    addAndEnableTask(updateDisplayTask);
+    logSerial.println("OK");
 
     logSerial.println("---- SETUP_DONE");
     setSystemStateState("Running");
     setTask("");
 }
 
+void addAndEnableTask(Task &task) {
+    runner.addTask(task);
+    task.enable();
+}
 
 void loop() {
+
+    runner.execute();
 
     readAndParseCommands();
 
@@ -157,8 +181,6 @@ void loop() {
         bnoY = event.orientation.z;
 
         Input = bnoX;
-
-        updateDisplay();
     }
 
     Setpoint = setXAngle;
@@ -223,7 +245,6 @@ void readAndParseCommands() {
                 taskParam = xMinSpeed;
                 showTaskParam = true;
             }
-            updateDisplay();
         }
     }
 }
