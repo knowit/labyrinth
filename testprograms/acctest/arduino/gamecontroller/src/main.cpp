@@ -36,18 +36,31 @@ float bnoY = 0;
 
 float read2byteFloat();
 
-float xThreshold = .1;
 float xSpeedFactor = 5;
 int xMaxSpeed = 69;
 int xMinSpeed = 18;
 
 // PID
-//double Kp = 2, Ki = 5, Kd = 1;
-double Kp = 7, Ki = 4, Kd = .21;
+double Kp = 7, Ki = 0, Kd = 0;
+// double Kp = 7, Ki = 4, Kd = .21;
 double Setpoint, Input, Output;
 PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
 
 double xSpeed = 0;
+
+byte msb(int numberToSend) {
+    return 64 + numberToSend / 192;
+}
+
+byte lsb(int numberToSend) {
+    return 64 + numberToSend % 192;
+}
+
+byte write2byteFloat(int pseudoValue) {
+    Serial.write(msb(pseudoValue));
+    Serial.write(lsb(pseudoValue));
+}
+
 
 void setSystemStateState(const char *newState);
 
@@ -55,7 +68,13 @@ void readAndParseCommands();
 
 void addAndEnableTask(Task &task);
 
-Scheduler runner;
+void reportXBno() {
+    Serial.write(1);
+    write2byteFloat(map(bnoX * 100, -90 * 100, 90 * 100, 0, 16000));
+}
+
+Task reportXBnoTask(20, TASK_FOREVER, &reportXBno);
+
 
 void updateDisplay() {
     int xPosBno = 38;
@@ -93,11 +112,18 @@ void updateDisplay() {
     display.display();
 }
 
+Task updateDisplayTask(200, TASK_FOREVER, &updateDisplay);
 
-void t1Callback() {
-    updateDisplay();
+Scheduler runner;
+
+void setupTasks() {
+    logSerial.print("init Task Scheduler ... ");
+    runner.init();
+    addAndEnableTask(updateDisplayTask);
+    addAndEnableTask(reportXBnoTask);
+    logSerial.println("OK");
 }
-Task updateDisplayTask(200, TASK_FOREVER, &t1Callback);
+
 
 void setSystemStateState(const char *newState) {
     state = newState;
@@ -106,7 +132,6 @@ void setSystemStateState(const char *newState) {
 void setTask(const char *newTask) {
     task = newTask;
 }
-
 
 void setup() {
     logSerial.begin(9600);
@@ -148,19 +173,18 @@ void setup() {
     logSerial.print("init PID ... ");
     Input = 0;
     Setpoint = 0;
-    myPID.SetOutputLimits(-90,90);
+    myPID.SetOutputLimits(-90, 90);
     myPID.SetMode(AUTOMATIC);
+    myPID.SetSampleTime(200);
     logSerial.println("OK");
 
-    logSerial.print("init Task Scheduler ... ");
-    runner.init();
-    addAndEnableTask(updateDisplayTask);
-    logSerial.println("OK");
+    setupTasks();
 
     logSerial.println("---- SETUP_DONE");
     setSystemStateState("Running");
     setTask("");
 }
+
 
 void addAndEnableTask(Task &task) {
     runner.addTask(task);
@@ -188,15 +212,14 @@ void loop() {
     myPID.Compute();
     xSpeed = Output;
 
-    if( xSpeed < -89 ) xSpeed = -89;
-    if( xSpeed > 89 ) xSpeed = 89;
-
     xServo.write(90 + xSpeed);
+
 
 }
 
+
 void readAndParseCommands() {
-    if (Serial.available() >= 3)  {
+    if (Serial.available() >= 3) {
         int cmd = Serial.read();
         if (cmd < 64) {
             if (cmd == 1) { // setAngle
@@ -209,31 +232,28 @@ void readAndParseCommands() {
                     setYAngle = map(y, 0, 16000, -90 * 100, 90 * 100) / 100.0;
                 }
             }
-            if (cmd == 2) { // setXThreshold
+            if (cmd == 2) { // set X Kp
                 float t = read2byteFloat();
-                if (t != -999) {
-                    xThreshold = map(t, 0, 16000, 0, 10 * 100) / 100.0;
-                }
-                setTask("x threshold: ");
-                taskParam = xThreshold;
+                Kp = map(t, 0, 16000, 0, 100 * 100) / 100.0;
+                setTask("x Kp: ");
+                taskParam = Kp;
+                myPID.SetTunings(Kp,Ki,Kd);
                 showTaskParam = true;
             }
-            if (cmd == 3) { // setXSpeedFactor
-                float s = read2byteFloat();
-                if (s != -999) {
-                    xSpeedFactor = map(s, 0, 16000, 0, 90 * 100) / 100.0;
-                }
-                setTask("x spd fct: ");
-                taskParam = xSpeedFactor;
+            if (cmd == 3) { // set X Ki
+                float t = read2byteFloat();
+                Ki = map(t, 0, 16000, 0, 100 * 100) / 100.0;
+                setTask("x Ki: ");
+                taskParam = Ki;
+                myPID.SetTunings(Kp,Ki,Kd);
                 showTaskParam = true;
             }
             if (cmd == 4) { // setXMaxSpeed
-                float s = read2byteFloat();
-                if (s != -999) {
-                    xMaxSpeed = map(s, 0, 16000, 0, 90 * 100) / 100.0;
-                }
-                setTask("x max spd: ");
-                taskParam = xMaxSpeed;
+                float t = read2byteFloat();
+                Kd = map(t, 0, 16000, 0, 100 * 100) / 100.0;
+                setTask("x Kd: ");
+                taskParam = Kd;
+                myPID.SetTunings(Kp,Ki,Kd);
                 showTaskParam = true;
             }
             if (cmd == 5) { // setXMinSpeed
