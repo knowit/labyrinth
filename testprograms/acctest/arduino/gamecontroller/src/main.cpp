@@ -212,7 +212,7 @@ void loop() {
     myPID.Compute();
     xSpeed = Output;
 
-    xServo.write(90 + xSpeed);
+    xServo.write(90 - xSpeed);
 
 
 }
