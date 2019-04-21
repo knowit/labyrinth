@@ -1,8 +1,13 @@
 const SerialPort = require('serialport')
-const port = new SerialPort('/dev/cu.usbmodem142141', {
+
+
+const port = new SerialPort('/dev/cu.usbmodem142221', {
   baudRate: 115200
 })
 const Max = require('max-api');
+
+
+Max.post('args:' + process.argv[0]);
 
 let serialBuffer = new Uint8Array();
 
@@ -35,6 +40,10 @@ port.on('readable', function () {
       Max.outlet('xbno ' + translate(value, 0, 16000, -90, 90).toFixed(2));
     }
 
+    if (packet[0] === 2) { // xBno
+      Max.outlet('xSpeedAdjusted ' + translate(value, 0, 16000, -90, 90).toFixed(2));
+    }
+
 
     serialBuffer = serialBuffer.slice(3, 9999);
   }
@@ -54,8 +63,8 @@ function write2byteFloat(xPseudoValue) {
 
 function setAngle(x, y) {
   port.write([1]);
-  write2byteFloat(translate(x, -90, 90, 0, 16000));
-  write2byteFloat(translate(y, -90, 90, 0, 16000));
+  write2byteFloat(translate(x + 50, 0, 100, 0, 16000));
+  write2byteFloat(translate(x, 0, 100, 0, 16000));
 }
 
 
@@ -66,17 +75,27 @@ function setXKp(t) {
 
 function setXKi(s) {
   port.write([3]);
-  write2byteFloat(translate(s, 0, 90, 0, 16000));
+  write2byteFloat(translate(s, 0, 100, 0, 16000));
 }
 
 function setXKd(s) {
   port.write([4]);
-  write2byteFloat(translate(s, 0, 90, 0, 16000));
+  write2byteFloat(translate(s, 0, 100, 0, 16000));
+}
+
+function setXPosSpeedFactor(s) {
+  port.write([5]);
+  write2byteFloat(translate(s, 0, 100, 0, 16000));
 }
 
 function setXMinSpeed(s) {
-  port.write([5]);
-  write2byteFloat(translate(s, 0, 90, 0, 16000));
+  port.write([6]);
+  write2byteFloat(translate(s, 0, 100, 0, 16000));
+}
+
+function setXManualSpeed(s) {
+  port.write([7]);
+  write2byteFloat(translate(s, 0, 180, 0, 16000));
 }
 
 Max.addHandler("setAngle", (x, y) => {
@@ -95,6 +114,14 @@ Max.addHandler("setXKd", (s) => {
   setXKd(s);
 });
 
-Max.addHandler("setXMinSpeed", (s) => {
+Max.addHandler("setXPosSpeedFactor", (s) => {
+  setXPosSpeedFactor(s);
+});
+
+Max.addHandler("xMinSpeed", (s) => {
   setXMinSpeed(s);
+});
+
+Max.addHandler("setXManualSpeed", (s) => {
+  setXManualSpeed(s);
 });
