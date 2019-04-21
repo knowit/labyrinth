@@ -7,10 +7,8 @@
 
 
 Axis::Axis(int _servoPort) :
-        myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT) {
+        myPID(&bnoAngle, &xSpeed, &setpointAngle, Kp, Ki, Kd, DIRECT) {
     servoPort = _servoPort;
-    Input = 0;
-    Setpoint = 0;
     myPID.SetOutputLimits(-70, 70);
     myPID.SetMode(AUTOMATIC);
     myPID.SetSampleTime(200);
@@ -24,11 +22,7 @@ void Axis::setup() {
 
 void Axis::update() {
 
-    Input = bnoAngle;
-    Setpoint = setpointAngle;
-
     myPID.Compute();
-    xSpeed = Output;
 
     if ((xSpeed > xThreshold) || (xSpeed < 0 - xThreshold)) {
         if (xSpeed > 0) {
@@ -42,5 +36,31 @@ void Axis::update() {
     }
     xServo.write(90 - xSpeedAdjusted);
 
+}
 
+void Axis::setKp(double v) {
+    Kp = v;
+    myPID.SetTunings(Kp, Ki, Kd);
+}
+
+double Axis::GetKp() {
+    return myPID.GetKp();
+}
+
+void Axis::setKi(double v) {
+    Ki = v;
+    myPID.SetTunings(Kp, Ki, Kd);
+}
+
+double Axis::GetKi() {
+    return myPID.GetKi();
+}
+
+void Axis::setKd(double v) {
+    Kd = v;
+    myPID.SetTunings(Kp, Ki, Kd);
+}
+
+double Axis::GetKd() {
+    return myPID.GetKd();
 }

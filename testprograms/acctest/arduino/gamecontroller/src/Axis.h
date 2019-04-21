@@ -10,23 +10,28 @@ class Axis {
 private:
     Servo xServo;
     int servoPort;
+    double Kp = 0, Ki = 0, Kd = .0;
+    PID myPID;
 
 public:
     Axis(int servoPort);
 
     void update();
     void setup();
-    float setpointAngle = 0;
-    float bnoAngle = 0;
+    double setpointAngle = 0;
+    double bnoAngle = 0;
     double xSpeed = 0;
     double xThreshold = .15;
     double xSpeedAdjusted = 0;
-    float xMinSpeed = 0;
+    double xMinSpeed = 0;
     int xManualSpeed = 90;
-    // PID
-    double Kp = 0, Ki = 0, Kd = .0;
-    double Setpoint, Input, Output;
-    PID myPID;
+
+    void setKp(double v);
+    double GetKp();
+    void setKi(double v);
+    double GetKi();
+    void setKd(double v);
+    double GetKd();
 
 };
 

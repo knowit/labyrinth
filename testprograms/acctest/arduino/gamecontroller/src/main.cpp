@@ -33,12 +33,7 @@ float bnoY = 0;
 
 float read2byteFloat();
 
-float xPosSpeedFactor = 1;
-
-
 Axis xAxis(6);
-//Servo xServo;
-
 
 
 byte msb(int numberToSend) {
@@ -117,12 +112,10 @@ Task updateDisplayTask(200, TASK_FOREVER, &updateDisplay);
 Scheduler runner;
 
 void setupTasks() {
-//    logSerial.print("init Task Scheduler ... ");
     runner.init();
     addAndEnableTask(updateDisplayTask);
     addAndEnableTask(reportXBnoTask);
     addAndEnableTask(reportXSpeedAdjustedTask);
-//    logSerial.println("OK");
 }
 
 
@@ -135,19 +128,15 @@ void setTask(const char *newTask) {
 }
 
 void setup() {
-    // logSerial.begin(9600);
-    // logSerial.println("---- SETUP_START");
 
     pinMode(2, INPUT_PULLUP);
 
-//    logSerial.print("init display ... ");
     if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Address 0x3C for 128x32
-//        logSerial.println(F("SSD1306 allocation failed"));
+        // SSD1306 allocation failed
         for (;;); // Don't proceed, loop forever
     }
     setSystemStateState("init");
     updateDisplay();
-//    logSerial.println("OK");
 
     setTask("init serial");
     updateDisplay();
@@ -155,9 +144,8 @@ void setup() {
 
     setTask("init bno");
     updateDisplay();
-//    logSerial.print("init bno ... ");
     if (!bno.begin()) {
-//        logSerial.println("Ooops, no BNO055 detected ... Check your wiring or I2C ADDR!");
+        // No BNO055 detected ... Check your wiring or I2C ADDR!
         while (1);
     }
     delay(1000);
@@ -166,16 +154,10 @@ void setup() {
     setTask("init BNO ..DONE");
     updateDisplay();
 
-//    xServo.attach(6);
-//    xServo.write(90);
-
     xAxis.setup();
-
-//    logSerial.println("OK");
 
     setupTasks();
 
-    // logSerial.println("---- SETUP_DONE");
     setSystemStateState("Running");
     setTask("");
 }
@@ -218,36 +200,26 @@ void readAndParseCommands() {
             }
             if (cmd == 2) { // set X Kp
                 float t = read2byteFloat();
-                xAxis.Kp = map(t, 0, 16000, 0, 100 * 100) / 100.0;
+                xAxis.setKp(map(t, 0, 16000, 0, 100 * 100) / 100.0);
                 setTask("x Kp: ");
-                xAxis.myPID.SetTunings(xAxis.Kp, xAxis.Ki, xAxis.Kd);
-                taskParam = xAxis.myPID.GetKp();
+                taskParam = xAxis.GetKp();
                 showTaskParam = true;
             }
             if (cmd == 3) { // set X Ki
                 float t = read2byteFloat();
-                xAxis.Ki = map(t, 0, 16000, 0, 100 * 100) / 100.0;
+                xAxis.setKi(map(t, 0, 16000, 0, 100 * 100) / 100.0);
                 setTask("x Ki: ");
-                taskParam = xAxis.Ki;
-                xAxis.myPID.SetTunings(xAxis.Kp, xAxis.Ki, xAxis.Kd);
+                taskParam = xAxis.GetKi();
                 showTaskParam = true;
             }
             if (cmd == 4) { // set X Kd
                 float t = read2byteFloat();
                 if (t >= 0) {
-                    xAxis.Kd = map(t, 0, 16000, 0, 100 * 100) / 100.0;
+                    xAxis.setKd(map(t, 0, 16000, 0, 100 * 100) / 100.0);
                     setTask("x Kd: ");
-                    taskParam = xAxis.Kd;
-                    xAxis.myPID.SetTunings(xAxis.Kp, xAxis.Ki, xAxis.Kd);
+                    taskParam = xAxis.GetKd();
                     showTaskParam = true;
                 }
-            }
-            if (cmd == 5) { // set X pos speed factor
-                float s = read2byteFloat();
-                xPosSpeedFactor = map(s, 0, 16000, 0, 100 * 100) / 100.0;
-                setTask("x pos spd f: ");
-                taskParam = xPosSpeedFactor;
-                showTaskParam = true;
             }
             if (cmd == 6) { // set X minimum speed
                 float f = read2byteFloat();
