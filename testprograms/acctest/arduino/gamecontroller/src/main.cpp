@@ -1,7 +1,6 @@
 #include <Arduino.h>
 // #include <SoftwareSerial.h>
 #include <SPI.h>
-#include <Servo.h>
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
@@ -11,6 +10,7 @@
 #include <utility/imumaths.h>
 #include <PID_v1.h>
 #include <TaskScheduler.h>
+#include "Axis.h"
 
 #define BNO055_SAMPLERATE_DELAY_MS (20)
 
@@ -29,8 +29,7 @@ String task = "";
 bool showTaskParam = false;
 float taskParam = 0;
 float setXAngle = 0;
-float bnoX = 0;
-Servo xServo;
+float xBno = 0;
 float setYAngle = 0;
 float bnoY = 0;
 
@@ -43,6 +42,9 @@ double Kp = 99, Ki = 0, Kd = .0;
 // double Kp = 7, Ki = 4, Kd = .21;
 double Setpoint, Input, Output;
 PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
+
+Axis xAxis(6);
+//Servo xServo;
 
 double xSpeed = 0;
 double xThreshold = .15;
@@ -73,7 +75,7 @@ void addAndEnableTask(Task &task);
 
 void reportXBno() {
     Serial.write(1);
-    write2byteFloat(map(bnoX * 100, -90 * 100, 90 * 100, 0, 16000));
+    write2byteFloat(map(xBno * 100, -90 * 100, 90 * 100, 0, 16000));
 }
 
 Task reportXBnoTask(200, TASK_FOREVER, &reportXBno);
@@ -110,7 +112,7 @@ void updateDisplay() {
     display.setCursor(xPosSet, 8 * 2);
     display.println(setXAngle);
     display.setCursor(xPosBno, 8 * 2);
-    display.println(bnoX);
+    display.println(xBno);
     display.setCursor(xPosSpeed, 8 * 2);
     display.println(xSpeedAdjusted);
 
@@ -175,14 +177,12 @@ void setup() {
 
     setTask("init BNO ..DONE");
     updateDisplay();
-//    logSerial.println("OK");
 
-//    logSerial.print("init servos ... ");
-    xServo.attach(6);
-    xServo.write(90);
-//    logSerial.println("OK");
+//    xServo.attach(6);
+//    xServo.write(90);
 
-//    logSerial.print("init PID ... ");
+    xAxis.setup();
+
     Input = 0;
     Setpoint = 0;
     myPID.SetOutputLimits(-70, 70);
@@ -212,11 +212,11 @@ void loop() {
     sensors_event_t event;
     bno.getEvent(&event);
 
-    if (bnoX != event.orientation.y || bnoY != event.orientation.z) {
-        bnoX = event.orientation.y;
+    if (xBno != event.orientation.y || bnoY != event.orientation.z) {
+        xBno = event.orientation.y;
         bnoY = event.orientation.z;
 
-        Input = bnoX;
+        Input = xBno;
     }
 
     Setpoint = setXAngle;
@@ -234,7 +234,7 @@ void loop() {
     } else {
         xSpeedAdjusted = 0;
     }
-    xServo.write(90 - xSpeedAdjusted);
+    xAxis.update(90 - xSpeedAdjusted);
 }
 
 void readAndParseCommands() {
