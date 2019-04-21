@@ -8,7 +8,6 @@
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BNO055.h>
 #include <utility/imumaths.h>
-#include <PID_v1.h>
 #include <TaskScheduler.h>
 #include "Axis.h"
 
@@ -28,8 +27,7 @@ String state = "unknow";
 String task = "";
 bool showTaskParam = false;
 float taskParam = 0;
-float setXAngle = 0;
-float xBno = 0;
+
 float setYAngle = 0;
 float bnoY = 0;
 
@@ -37,20 +35,10 @@ float read2byteFloat();
 
 float xPosSpeedFactor = 1;
 
-// PID
-double Kp = 99, Ki = 0, Kd = .0;
-// double Kp = 7, Ki = 4, Kd = .21;
-double Setpoint, Input, Output;
-PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
 
 Axis xAxis(6);
 //Servo xServo;
 
-double xSpeed = 0;
-double xThreshold = .15;
-double xSpeedAdjusted = 0;
-float xMinSpeed = 12;
-int xManualSpeed = 90;
 
 
 byte msb(int numberToSend) {
@@ -75,14 +63,14 @@ void addAndEnableTask(Task &task);
 
 void reportXBno() {
     Serial.write(1);
-    write2byteFloat(map(xBno * 100, -90 * 100, 90 * 100, 0, 16000));
+    write2byteFloat(map(xAxis.bnoAngle * 100, -90 * 100, 90 * 100, 0, 16000));
 }
 
 Task reportXBnoTask(200, TASK_FOREVER, &reportXBno);
 
 void reportXSpeedAdjusted() {
     Serial.write(2);
-    write2byteFloat(map(xSpeedAdjusted * 100, -90 * 100, 90 * 100, 0, 16000));
+    write2byteFloat(map(xAxis.xSpeedAdjusted* 100, -90 * 100, 90 * 100, 0, 16000));
 }
 
 Task reportXSpeedAdjustedTask(200, TASK_FOREVER, &reportXSpeedAdjusted);
@@ -110,11 +98,11 @@ void updateDisplay() {
 
 
     display.setCursor(xPosSet, 8 * 2);
-    display.println(setXAngle);
+    display.println(xAxis.setpointAngle);
     display.setCursor(xPosBno, 8 * 2);
-    display.println(xBno);
+    display.println(xAxis.bnoAngle);
     display.setCursor(xPosSpeed, 8 * 2);
-    display.println(xSpeedAdjusted);
+    display.println(xAxis.xSpeedAdjusted);
 
     display.setCursor(xPosSet, 8 * 3);
     display.println(setYAngle);
@@ -183,11 +171,6 @@ void setup() {
 
     xAxis.setup();
 
-    Input = 0;
-    Setpoint = 0;
-    myPID.SetOutputLimits(-70, 70);
-    myPID.SetMode(AUTOMATIC);
-    myPID.SetSampleTime(200);
 //    logSerial.println("OK");
 
     setupTasks();
@@ -212,29 +195,14 @@ void loop() {
     sensors_event_t event;
     bno.getEvent(&event);
 
-    if (xBno != event.orientation.y || bnoY != event.orientation.z) {
-        xBno = event.orientation.y;
+    if (xAxis.bnoAngle != event.orientation.y || bnoY != event.orientation.z) {
+        xAxis.bnoAngle = event.orientation.y;
         bnoY = event.orientation.z;
-
-        Input = xBno;
     }
 
-    Setpoint = setXAngle;
+    xAxis.update();
 
-    myPID.Compute();
-    xSpeed = Output;
 
-    if ( (xSpeed > xThreshold) || (xSpeed  <  0 - xThreshold) )  {
-        if (xSpeed > 0) {
-            xSpeedAdjusted = xSpeed + xMinSpeed;
-        }
-        if (xSpeed < 0) {
-            xSpeedAdjusted = xSpeed - xMinSpeed;
-        }
-    } else {
-        xSpeedAdjusted = 0;
-    }
-    xAxis.update(90 - xSpeedAdjusted);
 }
 
 void readAndParseCommands() {
@@ -242,7 +210,7 @@ void readAndParseCommands() {
         int cmd = Serial.read();
         if (cmd < 64) {
             if (cmd == 1) { // setAngle
-                setXAngle = (map(read2byteFloat(), 0, 16000, 0, 100 * 100) / 100.0) - 50;
+                xAxis.setpointAngle = (map(read2byteFloat(), 0, 16000, 0, 100 * 100) / 100.0) - 50;
                 float y = read2byteFloat();
                 if (y != -999) {
                     setYAngle = map(y, 0, 16000, -90, 90);
@@ -250,27 +218,27 @@ void readAndParseCommands() {
             }
             if (cmd == 2) { // set X Kp
                 float t = read2byteFloat();
-                Kp = map(t, 0, 16000, 0, 100 * 100) / 100.0;
+                xAxis.Kp = map(t, 0, 16000, 0, 100 * 100) / 100.0;
                 setTask("x Kp: ");
-                myPID.SetTunings(Kp, Ki, Kd);
-                taskParam = myPID.GetKp();
+                xAxis.myPID.SetTunings(xAxis.Kp, xAxis.Ki, xAxis.Kd);
+                taskParam = xAxis.myPID.GetKp();
                 showTaskParam = true;
             }
             if (cmd == 3) { // set X Ki
                 float t = read2byteFloat();
-                Ki = map(t, 0, 16000, 0, 100 * 100) / 100.0;
+                xAxis.Ki = map(t, 0, 16000, 0, 100 * 100) / 100.0;
                 setTask("x Ki: ");
-                taskParam = Ki;
-                myPID.SetTunings(Kp, Ki, Kd);
+                taskParam = xAxis.Ki;
+                xAxis.myPID.SetTunings(xAxis.Kp, xAxis.Ki, xAxis.Kd);
                 showTaskParam = true;
             }
             if (cmd == 4) { // set X Kd
                 float t = read2byteFloat();
                 if (t >= 0) {
-                    Kd = map(t, 0, 16000, 0, 100 * 100) / 100.0;
+                    xAxis.Kd = map(t, 0, 16000, 0, 100 * 100) / 100.0;
                     setTask("x Kd: ");
-                    taskParam = Kd;
-                    myPID.SetTunings(Kp, Ki, Kd);
+                    taskParam = xAxis.Kd;
+                    xAxis.myPID.SetTunings(xAxis.Kp, xAxis.Ki, xAxis.Kd);
                     showTaskParam = true;
                 }
             }
@@ -284,18 +252,18 @@ void readAndParseCommands() {
             if (cmd == 6) { // set X minimum speed
                 float f = read2byteFloat();
                 if (f >= 0) {
-                    xMinSpeed = map(f, 0, 16000, 0, 100 * 100) / 100.0;
+                    xAxis.xMinSpeed = map(f, 0, 16000, 0, 100 * 100) / 100.0;
                     setTask("x min spd: ");
-                    taskParam = xMinSpeed;
+                    taskParam = xAxis.xMinSpeed;
                     showTaskParam = true;
                 }
             }
             if (cmd == 7) { // set X manual
                 float f = read2byteFloat();
                 if (f >= 0) {
-                    xManualSpeed = map(f, 0, 16000, 0, 180 * 100) / 100.0;
+                    xAxis.xManualSpeed = map(f, 0, 16000, 0, 180 * 100) / 100.0;
                     setTask("x man spd: ");
-                    taskParam = xManualSpeed;
+                    taskParam = xAxis.xManualSpeed;
                     showTaskParam = true;
                 }
             }
