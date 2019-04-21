@@ -74,11 +74,11 @@
 					"presentation_rect" : [ 129.071426391601562, 111.490364074707031, 44.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_shortname" : "live.numbox",
 							"parameter_type" : 0,
 							"parameter_unitstyle" : 1,
 							"parameter_longname" : "live.numbox[11]",
-							"parameter_mmax" : 90.0,
-							"parameter_shortname" : "live.numbox"
+							"parameter_mmax" : 90.0
 						}
 
 					}
@@ -174,11 +174,11 @@
 					"presentation_rect" : [ 129.071426391601562, 35.341220855712891, 44.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_shortname" : "live.numbox",
 							"parameter_type" : 0,
 							"parameter_unitstyle" : 1,
 							"parameter_longname" : "live.numbox[9]",
-							"parameter_mmax" : 5.0,
-							"parameter_shortname" : "live.numbox"
+							"parameter_mmax" : 5.0
 						}
 
 					}
@@ -225,11 +225,11 @@
 					"presentation_rect" : [ 34.423786163330078, 35.341220855712891, 44.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_shortname" : "live.numbox",
 							"parameter_type" : 0,
 							"parameter_unitstyle" : 1,
 							"parameter_longname" : "live.numbox[8]",
-							"parameter_mmax" : 100.0,
-							"parameter_shortname" : "live.numbox"
+							"parameter_mmax" : 100.0
 						}
 
 					}
@@ -348,11 +348,11 @@
 					"presentation_rect" : [ 129.071426391601562, 83.990364074707031, 44.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_shortname" : "live.numbox",
 							"parameter_type" : 0,
 							"parameter_unitstyle" : 1,
 							"parameter_longname" : "live.numbox[4]",
-							"parameter_mmax" : 10.0,
-							"parameter_shortname" : "live.numbox"
+							"parameter_mmax" : 10.0
 						}
 
 					}
@@ -411,11 +411,11 @@
 					"presentation_rect" : [ 223.719009399414062, 60.915790557861328, 44.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_shortname" : "live.numbox",
 							"parameter_type" : 0,
 							"parameter_unitstyle" : 1,
 							"parameter_longname" : "live.numbox[6]",
-							"parameter_mmax" : 100.0,
-							"parameter_shortname" : "live.numbox"
+							"parameter_mmax" : 100.0
 						}
 
 					}
@@ -460,11 +460,11 @@
 					"presentation_rect" : [ 129.071426391601562, 60.915790557861328, 44.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_shortname" : "live.numbox",
 							"parameter_type" : 0,
 							"parameter_unitstyle" : 1,
 							"parameter_longname" : "live.numbox[7]",
-							"parameter_mmax" : 100.0,
-							"parameter_shortname" : "live.numbox"
+							"parameter_mmax" : 100.0
 						}
 
 					}
@@ -509,11 +509,11 @@
 					"presentation_rect" : [ 34.423786163330078, 60.915790557861328, 44.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_shortname" : "live.numbox",
 							"parameter_type" : 0,
 							"parameter_unitstyle" : 1,
 							"parameter_longname" : "live.numbox[5]",
-							"parameter_mmax" : 100.0,
-							"parameter_shortname" : "live.numbox"
+							"parameter_mmax" : 100.0
 						}
 
 					}

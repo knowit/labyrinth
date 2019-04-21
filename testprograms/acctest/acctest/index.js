@@ -1,13 +1,11 @@
 const SerialPort = require('serialport')
 
 
-const port = new SerialPort('/dev/cu.usbmodem142221', {
+const port = new SerialPort('/dev/cu.usbmodem142111', {
   baudRate: 115200
 })
 const Max = require('max-api');
 
-
-Max.post('args:' + process.argv[0]);
 
 let serialBuffer = new Uint8Array();
 
@@ -59,6 +57,7 @@ function lsb(numberToSend) {
 
 function write2byteFloat(xPseudoValue) {
   port.write([msb(xPseudoValue), lsb(xPseudoValue)]);
+  port.drain();
 }
 
 function setAngle(x, y) {

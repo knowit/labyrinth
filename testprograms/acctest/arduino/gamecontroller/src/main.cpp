@@ -39,7 +39,7 @@ float read2byteFloat();
 float xPosSpeedFactor = 1;
 
 // PID
-double Kp = 0, Ki = 0, Kd = .0;
+double Kp = 99, Ki = 0, Kd = .0;
 // double Kp = 7, Ki = 4, Kd = .21;
 double Setpoint, Input, Output;
 PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
@@ -145,8 +145,8 @@ void setTask(const char *newTask) {
 }
 
 void setup() {
-//    logSerial.begin(9600);
-//    logSerial.println("---- SETUP_START");
+    // logSerial.begin(9600);
+    // logSerial.println("---- SETUP_START");
 
     pinMode(2, INPUT_PULLUP);
 
@@ -192,7 +192,7 @@ void setup() {
 
     setupTasks();
 
-//    logSerial.println("---- SETUP_DONE");
+    // logSerial.println("---- SETUP_DONE");
     setSystemStateState("Running");
     setTask("");
 }
@@ -252,8 +252,8 @@ void readAndParseCommands() {
                 float t = read2byteFloat();
                 Kp = map(t, 0, 16000, 0, 100 * 100) / 100.0;
                 setTask("x Kp: ");
-                taskParam = myPID.GetKp();
                 myPID.SetTunings(Kp, Ki, Kd);
+                taskParam = myPID.GetKp();
                 showTaskParam = true;
             }
             if (cmd == 3) { // set X Ki
