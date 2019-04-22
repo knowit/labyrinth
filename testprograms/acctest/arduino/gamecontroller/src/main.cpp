@@ -35,29 +35,18 @@ float read2byteFloat();
 
 Axis xAxis(6);
 
-
-
-
 void setSystemStateState(const char *newState);
 
 void readAndParseCommands();
 
 void addAndEnableTask(Task &task);
 
-/*
-void reportXBno() {
-    Serial.write(1);
-    write2byteFloat(map(xAxis.bnoAngle * 100, -90 * 100, 90 * 100, 0, 16000));
-}
 
-Task reportXBnoTask(200, TASK_FOREVER, &reportXBno);
- */
-
-void reportXSpeedAdjusted() {
+void xAxisReportState() {
     xAxis.reportState();
 }
 
-Task reportXSpeedAdjustedTask(200, TASK_FOREVER, &reportXSpeedAdjusted);
+Task xAxisReportStateTask(200, TASK_FOREVER, &xAxisReportState);
 
 
 void updateDisplay() {
@@ -103,7 +92,7 @@ Scheduler runner;
 void setupTasks() {
     runner.init();
     addAndEnableTask(updateDisplayTask);
-    addAndEnableTask(reportXSpeedAdjustedTask);
+    addAndEnableTask(xAxisReportStateTask);
 }
 
 
@@ -116,8 +105,6 @@ void setTask(const char *newTask) {
 }
 
 void setup() {
-
-    pinMode(2, INPUT_PULLUP);
 
     if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Address 0x3C for 128x32
         // SSD1306 allocation failed
