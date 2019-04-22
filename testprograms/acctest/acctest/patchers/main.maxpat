@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ -926.0, 1733.0, 892.0, 1087.0 ],
+		"rect" : [ 1579.0, 478.0, 1676.0, 1454.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -38,6 +38,130 @@
 		"style" : "",
 		"subpatcher_template" : "",
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-70",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 1215.0, 819.0, 50.0, 22.0 ],
+					"text" : "124"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-68",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 1205.0, 712.0, 53.0, 22.0 ],
+					"text" : "route 26"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 13.0,
+					"hidden" : 1,
+					"id" : "obj-23",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "bang" ],
+					"patching_rect" : [ 1010.0, 224.0, 64.0, 23.0 ],
+					"text" : "loadbang"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-60",
+					"maxclass" : "button",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "bang" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 1124.0, 283.5, 24.0, 24.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 13.0,
+					"id" : "obj-62",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 1142.0, 315.0, 50.0, 23.0 ],
+					"text" : "poll 10"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontface" : 0,
+					"fontname" : "Arial",
+					"fontsize" : 13.0,
+					"id" : "obj-63",
+					"items" : [ "PLAYSTATION(R)3 Controller", ",", "USB Receiver", ",", "USB Receiver 2", ",", "USB Receiver 3", ",", "Keyboard", ",", "Apple Keyboard", ",", "Apple Keyboard 2", ",", "USB Keyboard           ", ",", "Apple Internal Keyboard / Trackpad", ",", "Apple Internal Keyboard / Trackpad 2", ",", "Apple Internal Keyboard / Trackpad 3", ",", "Apple Internal Keyboard / Trackpad 4", ",", "Apple Internal Keyboard / Trackpad 5", ",", "iBridge ALS", ",", "Headset", ",", "iBridge DFR brightness", ",", "iBridge Display" ],
+					"labelclick" : 1,
+					"maxclass" : "umenu",
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"outlettype" : [ "int", "", "" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 959.0, 373.5, 115.0, 23.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 13.0,
+					"id" : "obj-64",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 1097.0, 254.0, 45.0, 23.0 ],
+					"text" : "menu"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 13.0,
+					"id" : "obj-65",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "list", "" ],
+					"patching_rect" : [ 1081.0, 527.0, 48.0, 23.0 ],
+					"text" : "hi"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 13.0,
+					"id" : "obj-66",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 1024.5, 294.0, 35.0, 23.0 ],
+					"text" : "info"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-53",
 					"maxclass" : "newobj",
@@ -2378,6 +2502,14 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-64", 0 ],
+					"hidden" : 1,
+					"source" : [ "obj-23", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-9", 0 ],
 					"source" : [ "obj-25", 0 ]
 				}
@@ -2535,6 +2667,64 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-65", 0 ],
+					"source" : [ "obj-60", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-65", 0 ],
+					"source" : [ "obj-62", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-65", 0 ],
+					"source" : [ "obj-63", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-65", 0 ],
+					"source" : [ "obj-64", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"color" : [ 1.0, 0.788235, 0.470588, 1.0 ],
+					"destination" : [ "obj-63", 0 ],
+					"midpoints" : [ 1119.5, 557.0, 951.0, 557.0, 951.0, 369.0, 968.5, 369.0 ],
+					"source" : [ "obj-65", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-68", 0 ],
+					"source" : [ "obj-65", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-65", 0 ],
+					"source" : [ "obj-66", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-70", 1 ],
+					"source" : [ "obj-68", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-24", 0 ],
 					"source" : [ "obj-7", 0 ]
 				}
@@ -2584,21 +2774,21 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-76::obj-6" : [ "live.numbox[9]", "live.numbox", 0 ],
 			"obj-76::obj-2" : [ "live.numbox[8]", "live.numbox", 0 ],
-			"obj-3" : [ "live.numbox", "live.numbox", 0 ],
-			"obj-76::obj-44" : [ "live.numbox[6]", "live.numbox", 0 ],
-			"obj-80" : [ "live.text[1]", "live.text", 0 ],
-			"obj-9" : [ "live.numbox[10]", "live.numbox", 0 ],
-			"obj-79" : [ "live.text", "live.text", 0 ],
 			"obj-24" : [ "xBNO", "xBNO", 0 ],
+			"obj-3" : [ "live.numbox", "live.numbox", 0 ],
 			"obj-76::obj-8" : [ "live.numbox[11]", "live.numbox", 0 ],
-			"obj-15" : [ "live.numbox[12]", "live.numbox", 0 ],
-			"obj-76::obj-40" : [ "live.numbox[7]", "live.numbox", 0 ],
+			"obj-80" : [ "live.text[1]", "live.text", 0 ],
 			"obj-18" : [ "xSpeedAdjusted", "xSpeedAdjusted", 0 ],
 			"obj-76::obj-37" : [ "live.numbox[5]", "live.numbox", 0 ],
+			"obj-79" : [ "live.text", "live.text", 0 ],
+			"obj-9" : [ "live.numbox[10]", "live.numbox", 0 ],
 			"obj-76::obj-73" : [ "live.numbox[4]", "live.numbox", 0 ],
+			"obj-15" : [ "live.numbox[12]", "live.numbox", 0 ],
+			"obj-76::obj-40" : [ "live.numbox[7]", "live.numbox", 0 ],
 			"obj-86" : [ "xSetpoint", "xSetpoint", 0 ],
+			"obj-76::obj-44" : [ "live.numbox[6]", "live.numbox", 0 ],
+			"obj-76::obj-6" : [ "live.numbox[9]", "live.numbox", 0 ],
 			"parameterbanks" : 			{
 
 			}

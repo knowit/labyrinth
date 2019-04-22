@@ -11,7 +11,7 @@ Axis::Axis(int _servoPort) :
     servoPort = _servoPort;
     myPID.SetOutputLimits(-70, 70);
     myPID.SetMode(AUTOMATIC);
-    myPID.SetSampleTime(200);
+    myPID.SetSampleTime(100);
 }
 
 
