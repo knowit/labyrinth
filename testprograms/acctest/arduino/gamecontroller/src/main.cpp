@@ -1,6 +1,7 @@
 #include <Arduino.h>
 // #include <SoftwareSerial.h>
 #include <SPI.h>
+#include <TaskScheduler.h>
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
@@ -8,7 +9,6 @@
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BNO055.h>
 #include <utility/imumaths.h>
-#include <TaskScheduler.h>
 #include "Axis.h"
 
 #define BNO055_SAMPLERATE_DELAY_MS (20)
@@ -36,18 +36,6 @@ float read2byteFloat();
 Axis xAxis(6);
 
 
-byte msb(int numberToSend) {
-    return 64 + numberToSend / 192;
-}
-
-byte lsb(int numberToSend) {
-    return 64 + numberToSend % 192;
-}
-
-void write2byteFloat(int pseudoValue) {
-    Serial.write(msb(pseudoValue));
-    Serial.write(lsb(pseudoValue));
-}
 
 
 void setSystemStateState(const char *newState);
@@ -56,16 +44,17 @@ void readAndParseCommands();
 
 void addAndEnableTask(Task &task);
 
+/*
 void reportXBno() {
     Serial.write(1);
     write2byteFloat(map(xAxis.bnoAngle * 100, -90 * 100, 90 * 100, 0, 16000));
 }
 
 Task reportXBnoTask(200, TASK_FOREVER, &reportXBno);
+ */
 
 void reportXSpeedAdjusted() {
-    Serial.write(2);
-    write2byteFloat(map(xAxis.xSpeedAdjusted* 100, -90 * 100, 90 * 100, 0, 16000));
+    xAxis.reportState();
 }
 
 Task reportXSpeedAdjustedTask(200, TASK_FOREVER, &reportXSpeedAdjusted);
@@ -114,7 +103,6 @@ Scheduler runner;
 void setupTasks() {
     runner.init();
     addAndEnableTask(updateDisplayTask);
-    addAndEnableTask(reportXBnoTask);
     addAndEnableTask(reportXSpeedAdjustedTask);
 }
 

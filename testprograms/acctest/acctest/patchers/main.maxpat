@@ -108,7 +108,7 @@
 					"fontname" : "Arial",
 					"fontsize" : 13.0,
 					"id" : "obj-63",
-					"items" : [ "PLAYSTATION(R)3 Controller", ",", "USB Receiver", ",", "USB Receiver 2", ",", "USB Receiver 3", ",", "Keyboard", ",", "Apple Keyboard", ",", "Apple Keyboard 2", ",", "USB Keyboard           ", ",", "Apple Internal Keyboard / Trackpad", ",", "Apple Internal Keyboard / Trackpad 2", ",", "Apple Internal Keyboard / Trackpad 3", ",", "Apple Internal Keyboard / Trackpad 4", ",", "Apple Internal Keyboard / Trackpad 5", ",", "iBridge ALS", ",", "Headset", ",", "iBridge DFR brightness", ",", "iBridge Display" ],
+					"items" : [ "USB Receiver", ",", "USB Receiver 2", ",", "USB Receiver 3", ",", "Keyboard", ",", "Apple Keyboard", ",", "Apple Keyboard 2", ",", "USB Keyboard           ", ",", "Apple Internal Keyboard / Trackpad", ",", "iBridge DFR brightness", ",", "iBridge ALS", ",", "Headset", ",", "iBridge Display", ",", "Apple Internal Keyboard / Trackpad 2", ",", "Apple Internal Keyboard / Trackpad 3", ",", "Apple Internal Keyboard / Trackpad 4", ",", "Apple Internal Keyboard / Trackpad 5" ],
 					"labelclick" : 1,
 					"maxclass" : "umenu",
 					"numinlets" : 1,
@@ -228,12 +228,12 @@
 					"presentation_rect" : [ 16.6666259765625, 125.600021362304688, 44.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_mmax" : 90.0,
 							"parameter_shortname" : "live.numbox",
 							"parameter_type" : 0,
 							"parameter_unitstyle" : 1,
 							"parameter_mmin" : -90.0,
-							"parameter_longname" : "live.numbox[12]",
-							"parameter_mmax" : 90.0
+							"parameter_longname" : "live.numbox[12]"
 						}
 
 					}
@@ -280,12 +280,12 @@
 					"presentation_rect" : [ 56.6666259765625, 119.600021362304688, 282.0, 27.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_mmax" : 90.0,
 							"parameter_shortname" : "xSpeedAdjusted",
 							"parameter_type" : 0,
 							"parameter_unitstyle" : 1,
 							"parameter_mmin" : -90.0,
-							"parameter_longname" : "xSpeedAdjusted",
-							"parameter_mmax" : 90.0
+							"parameter_longname" : "xSpeedAdjusted"
 						}
 
 					}
@@ -322,12 +322,12 @@
 					"presentation_rect" : [ 16.6666259765625, 95.577392578125, 44.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_mmax" : 5.0,
 							"parameter_shortname" : "live.numbox",
 							"parameter_type" : 0,
 							"parameter_unitstyle" : 1,
 							"parameter_mmin" : -5.0,
-							"parameter_longname" : "live.numbox[10]",
-							"parameter_mmax" : 5.0
+							"parameter_longname" : "live.numbox[10]"
 						}
 
 					}
@@ -361,12 +361,12 @@
 					"presentation_rect" : [ 16.6666259765625, 68.0, 44.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_mmax" : 5.0,
 							"parameter_shortname" : "live.numbox",
 							"parameter_type" : 0,
 							"parameter_unitstyle" : 1,
 							"parameter_mmin" : -5.0,
-							"parameter_longname" : "live.numbox",
-							"parameter_mmax" : 5.0
+							"parameter_longname" : "live.numbox"
 						}
 
 					}
@@ -586,12 +586,12 @@
 					"presentation_rect" : [ 56.6666259765625, 62.0, 282.0, 27.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_mmax" : 5.0,
 							"parameter_shortname" : "xSetpoint",
 							"parameter_type" : 0,
 							"parameter_unitstyle" : 1,
 							"parameter_mmin" : -5.0,
-							"parameter_longname" : "xSetpoint",
-							"parameter_mmax" : 5.0
+							"parameter_longname" : "xSetpoint"
 						}
 
 					}
@@ -910,11 +910,11 @@
 					"presentation_rect" : [ 88.6666259765625, 543.4000244140625, 44.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_mmax" : 1.0,
 							"parameter_shortname" : "live.text",
 							"parameter_enum" : [ "val1", "val2" ],
 							"parameter_type" : 2,
-							"parameter_longname" : "live.text[1]",
-							"parameter_mmax" : 1.0
+							"parameter_longname" : "live.text[1]"
 						}
 
 					}
@@ -939,11 +939,11 @@
 					"presentation_rect" : [ 16.6666259765625, 543.4000244140625, 44.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_mmax" : 1.0,
 							"parameter_shortname" : "live.text",
 							"parameter_enum" : [ "val1", "val2" ],
 							"parameter_type" : 2,
-							"parameter_longname" : "live.text",
-							"parameter_mmax" : 1.0
+							"parameter_longname" : "live.text"
 						}
 
 					}
@@ -2232,12 +2232,12 @@
 					"presentation_rect" : [ 56.6666259765625, 89.577392578125, 282.0, 27.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_mmax" : 5.0,
 							"parameter_shortname" : "xBNO",
 							"parameter_type" : 0,
 							"parameter_unitstyle" : 1,
 							"parameter_mmin" : -5.0,
-							"parameter_longname" : "xBNO",
-							"parameter_mmax" : 5.0
+							"parameter_longname" : "xBNO"
 						}
 
 					}
@@ -2282,7 +2282,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 68.666656494140625, 759.33331298828125, 248.0, 22.0 ],
-					"text" : "setAngle -2.165354 0"
+					"text" : "setAngle -2.752796 0"
 				}
 
 			}
@@ -2774,21 +2774,21 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-76::obj-2" : [ "live.numbox[8]", "live.numbox", 0 ],
-			"obj-24" : [ "xBNO", "xBNO", 0 ],
-			"obj-3" : [ "live.numbox", "live.numbox", 0 ],
-			"obj-76::obj-8" : [ "live.numbox[11]", "live.numbox", 0 ],
-			"obj-80" : [ "live.text[1]", "live.text", 0 ],
-			"obj-18" : [ "xSpeedAdjusted", "xSpeedAdjusted", 0 ],
-			"obj-76::obj-37" : [ "live.numbox[5]", "live.numbox", 0 ],
-			"obj-79" : [ "live.text", "live.text", 0 ],
-			"obj-9" : [ "live.numbox[10]", "live.numbox", 0 ],
 			"obj-76::obj-73" : [ "live.numbox[4]", "live.numbox", 0 ],
-			"obj-15" : [ "live.numbox[12]", "live.numbox", 0 ],
-			"obj-76::obj-40" : [ "live.numbox[7]", "live.numbox", 0 ],
-			"obj-86" : [ "xSetpoint", "xSetpoint", 0 ],
-			"obj-76::obj-44" : [ "live.numbox[6]", "live.numbox", 0 ],
+			"obj-24" : [ "xBNO", "xBNO", 0 ],
+			"obj-76::obj-8" : [ "live.numbox[11]", "live.numbox", 0 ],
+			"obj-3" : [ "live.numbox", "live.numbox", 0 ],
 			"obj-76::obj-6" : [ "live.numbox[9]", "live.numbox", 0 ],
+			"obj-76::obj-2" : [ "live.numbox[8]", "live.numbox", 0 ],
+			"obj-80" : [ "live.text[1]", "live.text", 0 ],
+			"obj-76::obj-40" : [ "live.numbox[7]", "live.numbox", 0 ],
+			"obj-79" : [ "live.text", "live.text", 0 ],
+			"obj-18" : [ "xSpeedAdjusted", "xSpeedAdjusted", 0 ],
+			"obj-76::obj-44" : [ "live.numbox[6]", "live.numbox", 0 ],
+			"obj-86" : [ "xSetpoint", "xSetpoint", 0 ],
+			"obj-9" : [ "live.numbox[10]", "live.numbox", 0 ],
+			"obj-15" : [ "live.numbox[12]", "live.numbox", 0 ],
+			"obj-76::obj-37" : [ "live.numbox[5]", "live.numbox", 0 ],
 			"parameterbanks" : 			{
 
 			}

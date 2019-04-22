@@ -33,6 +33,8 @@ public:
     void setKd(double v);
     double GetKd();
 
+    void reportState();
+
 };
 
 

@@ -1,13 +1,10 @@
-//
-// Created by Andreas Rosnes Bade on 2019-04-21.
-//
 
+#include "Util.h"
 #include "Axis.h"
-#include <SoftwareSerial.h>
-
 
 Axis::Axis(int _servoPort) :
         myPID(&bnoAngle, &xSpeed, &setpointAngle, Kp, Ki, Kd, DIRECT) {
+
     servoPort = _servoPort;
     myPID.SetOutputLimits(-70, 70);
     myPID.SetMode(AUTOMATIC);
@@ -63,4 +60,12 @@ void Axis::setKd(double v) {
 
 double Axis::GetKd() {
     return myPID.GetKd();
+}
+
+void Axis::reportState() {
+    Serial.write(2);
+    write2byteFloat(map(xSpeedAdjusted * 100, -90 * 100, 90 * 100, 0, 16000));
+
+    Serial.write(1);
+    write2byteFloat(map(bnoAngle * 100, -90 * 100, 90 * 100, 0, 16000));
 }
