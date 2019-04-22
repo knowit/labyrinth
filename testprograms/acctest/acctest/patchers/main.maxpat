@@ -2282,7 +2282,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 68.666656494140625, 759.33331298828125, 248.0, 22.0 ],
-					"text" : "setAngle -2.752796 0"
+					"text" : "setAngle 2.246912 0"
 				}
 
 			}

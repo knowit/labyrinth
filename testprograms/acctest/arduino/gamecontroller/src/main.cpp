@@ -6,12 +6,10 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #include <Wire.h>
-#include <Adafruit_Sensor.h>
-#include <Adafruit_BNO055.h>
 #include <utility/imumaths.h>
 #include "Axis.h"
+#include "BNOReader.h"
 
-#define BNO055_SAMPLERATE_DELAY_MS (20)
 
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 32 // OLED display height, in pixels
@@ -21,9 +19,9 @@
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 // SoftwareSerial logSerial(10, 11); // RX, TX
-Adafruit_BNO055 bno = Adafruit_BNO055(0X01);
 
-String state = "unknow";
+
+String state = "";
 String task = "";
 bool showTaskParam = false;
 float taskParam = 0;
@@ -34,6 +32,7 @@ float bnoY = 0;
 float read2byteFloat();
 
 Axis xAxis(6);
+BNOReader bnoReader;
 
 void setSystemStateState(const char *newState);
 
@@ -119,17 +118,12 @@ void setup() {
 
     setTask("init bno");
     updateDisplay();
-    if (!bno.begin()) {
-        // No BNO055 detected ... Check your wiring or I2C ADDR!
-        while (1);
-    }
-    delay(1000);
-    bno.setExtCrystalUse(true);
 
     setTask("init BNO ..DONE");
     updateDisplay();
 
     xAxis.setup();
+    bnoReader.setup();
 
     setupTasks();
 
@@ -149,6 +143,7 @@ void loop() {
 
     readAndParseCommands();
 
+    /*
     sensors_event_t event;
     bno.getEvent(&event);
 
@@ -156,7 +151,11 @@ void loop() {
         xAxis.bnoAngle = event.orientation.y;
         bnoY = event.orientation.z;
     }
+     */
 
+    bnoReader.update();
+    xAxis.bnoAngle = bnoReader.xAngle;
+    bnoY = bnoReader.yAngle;
     xAxis.update();
 
 
