@@ -105,10 +105,17 @@ void setTask(const char *newTask) {
 
 void setup() {
 
+    Serial1.begin(115200);
+    Serial1.println("____SETUP_BEGIN____");
+
+    Serial1.println("init SSD1306");
     if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Address 0x3C for 128x32
         // SSD1306 allocation failed
+        Serial1.println("init SSD1306 - ERROR: SSD1306 allocation failed");
         for (;;); // Don't proceed, loop forever
     }
+
+    Serial1.println("init SSD1306 - OK");
     setSystemStateState("init");
     updateDisplay();
 
@@ -116,19 +123,27 @@ void setup() {
     updateDisplay();
     Serial.begin(115200);
 
-    setTask("init bno");
+    setTask("init BNO");
     updateDisplay();
 
-    setTask("init BNO ..DONE");
+    setTask("init BNO");
+    int bnoSetupResult = bnoReader.setup();
+    if (bnoSetupResult != 0) {
+        setTask("init BNO ERROR!");
+        updateDisplay();
+        for (;;);
+    }
+    setTask("init BNO - OK");
     updateDisplay();
 
     xAxis.setup();
-    bnoReader.setup();
 
     setupTasks();
 
     setSystemStateState("Running");
     setTask("");
+
+    Serial1.println("____SETUP_END______");
 }
 
 

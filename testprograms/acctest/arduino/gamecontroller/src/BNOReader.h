@@ -14,7 +14,7 @@ private:
     Adafruit_BNO055 bno = Adafruit_BNO055(0X01);
 
 public:
-    void setup();
+    int setup();
     double xAngle = 0;
     double yAngle = 0;
     void update();
@@ -23,3 +23,4 @@ public:
 
 
 #endif //GAMECONTROLLER_BNOREADER_H
+

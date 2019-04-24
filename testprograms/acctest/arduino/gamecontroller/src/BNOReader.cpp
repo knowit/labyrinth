@@ -4,15 +4,17 @@
 
 #include "BNOReader.h"
 
-void BNOReader::setup() {
+int BNOReader::setup() {
 
     if (!bno.begin()) {
-        // No BNO055 detected ... Check your wiring or I2C ADDR!
-        while (1);
+        Serial1.println("init BNO - ERROR: No BNO055 detected ... Check your wiring or I2C ADDR!");
+        return 1;
     }
+    Serial1.println("init BNO: Waiting 1 sec");
     delay(1000);
     bno.setExtCrystalUse(true);
 
+    return 0;
 }
 
 void BNOReader::update() {

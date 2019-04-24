@@ -1,1 +1,1 @@
- pio init --board uno --ide clion
+ pio init --board megaADK --ide clion
