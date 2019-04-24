@@ -6,6 +6,7 @@
 
 int BNOReader::setup() {
 
+    Serial1.println("init BNO");
     if (!bno.begin()) {
         Serial1.println("init BNO - ERROR: No BNO055 detected ... Check your wiring or I2C ADDR!");
         return 1;
@@ -14,6 +15,7 @@ int BNOReader::setup() {
     delay(1000);
     bno.setExtCrystalUse(true);
 
+    Serial1.println("init BNO: OK");
     return 0;
 }
 

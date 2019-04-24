@@ -3,38 +3,18 @@
 #include <SPI.h>
 #include <TaskScheduler.h>
 #include <Wire.h>
-#include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
 #include <Wire.h>
 #include <utility/imumaths.h>
 #include "Axis.h"
 #include "BNOReader.h"
+#include "SSD1306Display.h"
 
-
-#define SCREEN_WIDTH 128 // OLED display width, in pixels
-#define SCREEN_HEIGHT 32 // OLED display height, in pixels
-
-// Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
-#define OLED_RESET     4 // Reset pin # (or -1 if sharing Arduino reset pin)
-
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
-// SoftwareSerial logSerial(10, 11); // RX, TX
-
-
-String state = "";
-String task = "";
-bool showTaskParam = false;
-float taskParam = 0;
-
-float setYAngle = 0;
-float bnoY = 0;
 
 float read2byteFloat();
 
 Axis xAxis(6);
 BNOReader bnoReader;
-
-void setSystemStateState(const char *newState);
+SSD1306Display display(xAxis);
 
 void readAndParseCommands();
 
@@ -47,41 +27,8 @@ void xAxisReportState() {
 
 Task xAxisReportStateTask(200, TASK_FOREVER, &xAxisReportState);
 
-
 void updateDisplay() {
-    int xPosBno = 38;
-    int xPosSpeed = 80;
-    int xPosSet = 5;
-    display.clearDisplay();
-    display.setTextSize(1);
-    display.cp437(true);
-    display.setTextColor(WHITE);
-
-
-    display.setCursor(0, 0);
-    display.println(state);
-
-    display.setCursor(0, 8);
-    display.println(task);
-    if (showTaskParam) {
-        display.setCursor(75, 8);
-        display.println(taskParam);
-    }
-
-
-    display.setCursor(xPosSet, 8 * 2);
-    display.println(xAxis.setpointAngle);
-    display.setCursor(xPosBno, 8 * 2);
-    display.println(xAxis.bnoAngle);
-    display.setCursor(xPosSpeed, 8 * 2);
-    display.println(xAxis.xSpeedAdjusted);
-
-    display.setCursor(xPosSet, 8 * 3);
-    display.println(setYAngle);
-    display.setCursor(xPosBno, 8 * 3);
-    display.println(bnoY);
-
-    display.display();
+    display.updateDisplay();
 }
 
 Task updateDisplayTask(200, TASK_FOREVER, &updateDisplay);
@@ -95,53 +42,42 @@ void setupTasks() {
 }
 
 
-void setSystemStateState(const char *newState) {
-    state = newState;
-}
-
-void setTask(const char *newTask) {
-    task = newTask;
-}
-
 void setup() {
 
     Serial1.begin(115200);
     Serial1.println("____SETUP_BEGIN____");
 
-    Serial1.println("init SSD1306");
-    if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Address 0x3C for 128x32
-        // SSD1306 allocation failed
-        Serial1.println("init SSD1306 - ERROR: SSD1306 allocation failed");
-        for (;;); // Don't proceed, loop forever
+    int displaySetupResult = display.setup();
+    if( displaySetupResult != 0) {
+        for (;;);
     }
 
-    Serial1.println("init SSD1306 - OK");
-    setSystemStateState("init");
+    display.state = "init";
     updateDisplay();
 
-    setTask("init serial");
+    display.task = "init serial";
     updateDisplay();
     Serial.begin(115200);
 
-    setTask("init BNO");
+    display.task = "init BNO";
     updateDisplay();
 
-    setTask("init BNO");
+    display.task = "init BNO";
     int bnoSetupResult = bnoReader.setup();
     if (bnoSetupResult != 0) {
-        setTask("init BNO ERROR!");
+        display.task = "init BNO ERROR!";
         updateDisplay();
         for (;;);
     }
-    setTask("init BNO - OK");
+    display.task = "init BNO - OK";
     updateDisplay();
 
     xAxis.setup();
 
     setupTasks();
 
-    setSystemStateState("Running");
-    setTask("");
+    display.state = "Running";
+    display.task = "";
 
     Serial1.println("____SETUP_END______");
 }
@@ -158,19 +94,8 @@ void loop() {
 
     readAndParseCommands();
 
-    /*
-    sensors_event_t event;
-    bno.getEvent(&event);
-
-    if (xAxis.bnoAngle != event.orientation.y || bnoY != event.orientation.z) {
-        xAxis.bnoAngle = event.orientation.y;
-        bnoY = event.orientation.z;
-    }
-     */
-
     bnoReader.update();
     xAxis.bnoAngle = bnoReader.xAngle;
-    bnoY = bnoReader.yAngle;
     xAxis.update();
 
 
@@ -190,42 +115,42 @@ void readAndParseCommands() {
             if (cmd == 2) { // set X Kp
                 float t = read2byteFloat();
                 xAxis.setKp(map(t, 0, 16000, 0, 100 * 100) / 100.0);
-                setTask("x Kp: ");
-                taskParam = xAxis.GetKp();
-                showTaskParam = true;
+                display.task = "x Kp: ";
+                display.taskParam = xAxis.GetKp();
+                display.showTaskParam = true;
             }
             if (cmd == 3) { // set X Ki
                 float t = read2byteFloat();
                 xAxis.setKi(map(t, 0, 16000, 0, 100 * 100) / 100.0);
-                setTask("x Ki: ");
-                taskParam = xAxis.GetKi();
-                showTaskParam = true;
+                display.task = "x Ki: ";
+                display.taskParam = xAxis.GetKi();
+                display.showTaskParam = true;
             }
             if (cmd == 4) { // set X Kd
                 float t = read2byteFloat();
                 if (t >= 0) {
                     xAxis.setKd(map(t, 0, 16000, 0, 100 * 100) / 100.0);
-                    setTask("x Kd: ");
-                    taskParam = xAxis.GetKd();
-                    showTaskParam = true;
+                    display.task = "x Kd: ";
+                    display.taskParam = xAxis.GetKd();
+                    display.showTaskParam = true;
                 }
             }
             if (cmd == 6) { // set X minimum speed
                 float f = read2byteFloat();
                 if (f >= 0) {
                     xAxis.xMinSpeed = map(f, 0, 16000, 0, 100 * 100) / 100.0;
-                    setTask("x min spd: ");
-                    taskParam = xAxis.xMinSpeed;
-                    showTaskParam = true;
+                    display.task = "x min spd: ";
+                    display.taskParam = xAxis.xMinSpeed;
+                    display.showTaskParam = true;
                 }
             }
             if (cmd == 7) { // set X manual
                 float f = read2byteFloat();
                 if (f >= 0) {
                     xAxis.xManualSpeed = map(f, 0, 16000, 0, 180 * 100) / 100.0;
-                    setTask("x man spd: ");
-                    taskParam = xAxis.xManualSpeed;
-                    showTaskParam = true;
+                    display.task = "x man spd: ";
+                    display.taskParam = xAxis.xManualSpeed;
+                    display.showTaskParam = true;
                 }
             }
         }
