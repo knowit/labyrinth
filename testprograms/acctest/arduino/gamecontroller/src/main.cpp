@@ -21,6 +21,8 @@ void readAndParseCommands();
 void addAndEnableTask(Task &task);
 
 
+double handle2ByteFloatParameter(const char *parameterName, int minValue, int maxValue);
+
 void xAxisReportState() {
     xAxis.reportState();
 }
@@ -48,7 +50,7 @@ void setup() {
     Serial1.println("____SETUP_BEGIN____");
 
     int displaySetupResult = display.setup();
-    if( displaySetupResult != 0) {
+    if (displaySetupResult != 0) {
         for (;;);
     }
 
@@ -89,16 +91,14 @@ void addAndEnableTask(Task &task) {
 }
 
 void loop() {
-
     runner.execute();
 
     readAndParseCommands();
 
     bnoReader.update();
+
     xAxis.bnoAngle = bnoReader.xAngle;
     xAxis.update();
-
-
 }
 
 void readAndParseCommands() {
@@ -108,53 +108,30 @@ void readAndParseCommands() {
             if (cmd == 1) { // setAngle
                 xAxis.setpointAngle = (map(read2byteFloat(), 0, 16000, 0, 100 * 100) / 100.0) - 50;
                 float y = read2byteFloat();
-                if (y != -999) {
-                    setYAngle = map(y, 0, 16000, -90, 90);
-                }
             }
-            if (cmd == 2) { // set X Kp
-                float t = read2byteFloat();
-                xAxis.setKp(map(t, 0, 16000, 0, 100 * 100) / 100.0);
-                display.task = "x Kp: ";
-                display.taskParam = xAxis.GetKp();
-                display.showTaskParam = true;
+            if (cmd == 2) {
+                xAxis.setKp(handle2ByteFloatParameter("x Kp: ", 0, 100));
             }
-            if (cmd == 3) { // set X Ki
-                float t = read2byteFloat();
-                xAxis.setKi(map(t, 0, 16000, 0, 100 * 100) / 100.0);
-                display.task = "x Ki: ";
-                display.taskParam = xAxis.GetKi();
-                display.showTaskParam = true;
+            if (cmd == 3) {
+                xAxis.setKi(handle2ByteFloatParameter("x Ki: ", 0, 100));
             }
-            if (cmd == 4) { // set X Kd
-                float t = read2byteFloat();
-                if (t >= 0) {
-                    xAxis.setKd(map(t, 0, 16000, 0, 100 * 100) / 100.0);
-                    display.task = "x Kd: ";
-                    display.taskParam = xAxis.GetKd();
-                    display.showTaskParam = true;
-                }
+            if (cmd == 4) {
+                xAxis.setKd(handle2ByteFloatParameter("x Kd: ", 0, 100));
             }
-            if (cmd == 6) { // set X minimum speed
-                float f = read2byteFloat();
-                if (f >= 0) {
-                    xAxis.xMinSpeed = map(f, 0, 16000, 0, 100 * 100) / 100.0;
-                    display.task = "x min spd: ";
-                    display.taskParam = xAxis.xMinSpeed;
-                    display.showTaskParam = true;
-                }
-            }
-            if (cmd == 7) { // set X manual
-                float f = read2byteFloat();
-                if (f >= 0) {
-                    xAxis.xManualSpeed = map(f, 0, 16000, 0, 180 * 100) / 100.0;
-                    display.task = "x man spd: ";
-                    display.taskParam = xAxis.xManualSpeed;
-                    display.showTaskParam = true;
-                }
+            if (cmd == 6) {
+                xAxis.xMinSpeed = handle2ByteFloatParameter("x min spd: ", 0, 100);
             }
         }
     }
+}
+
+double handle2ByteFloatParameter(const char *parameterName, int minValue, int maxValue) {
+    float t = read2byteFloat();
+    double value = map(t, 0, 16000, minValue, maxValue * 100) / 100.0;
+    display.task = parameterName;
+    display.taskParam = value;
+    display.showTaskParam = true;
+    return value;
 }
 
 float read2byteFloat() {

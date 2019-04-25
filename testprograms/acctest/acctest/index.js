@@ -1,7 +1,7 @@
 const SerialPort = require('serialport')
 
 
-const port = new SerialPort('/dev/cu.usbmodem142211', {
+const port = new SerialPort('/dev/cu.wchusbserial1422140', {
   baudRate: 115200
 })
 const Max = require('max-api');
@@ -92,10 +92,6 @@ function setXMinSpeed(s) {
   write2byteFloat(translate(s, 0, 100, 0, 16000));
 }
 
-function setXManualSpeed(s) {
-  port.write([7]);
-  write2byteFloat(translate(s, 0, 180, 0, 16000));
-}
 
 Max.addHandler("setAngle", (x, y) => {
   setAngle(x, y);
@@ -119,8 +115,4 @@ Max.addHandler("setXPosSpeedFactor", (s) => {
 
 Max.addHandler("xMinSpeed", (s) => {
   setXMinSpeed(s);
-});
-
-Max.addHandler("setXManualSpeed", (s) => {
-  setXManualSpeed(s);
 });
