@@ -2,7 +2,7 @@
 	"name" : "acctest",
 	"version" : 1,
 	"creationdate" : 3637345123,
-	"modificationdate" : 3639064930,
+	"modificationdate" : 3639066600,
 	"viewrect" : [ 25.0, 70.0, 300.0, 500.0 ],
 	"autoorganize" : 1,
 	"hideprojectwindow" : 0,
@@ -21,7 +21,7 @@
 
 			}
 ,
-			"xPIDAdjuster.maxpat" : 			{
+			"Axis.maxpat" : 			{
 				"kind" : "patcher",
 				"local" : 1,
 				"singleton" : 				{
@@ -31,7 +31,7 @@
 
 			}
 ,
-			"Axis.maxpat" : 			{
+			"PIDAdjuster.maxpat" : 			{
 				"kind" : "patcher",
 				"local" : 1,
 				"singleton" : 				{

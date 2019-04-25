@@ -82,11 +82,6 @@ function setXKd(s) {
   write2byteFloat(translate(s, 0, 100, 0, 16000));
 }
 
-function setXPosSpeedFactor(s) {
-  port.write([5]);
-  write2byteFloat(translate(s, 0, 100, 0, 16000));
-}
-
 function setXMinSpeed(s) {
   port.write([6]);
   write2byteFloat(translate(s, 0, 100, 0, 16000));
@@ -107,10 +102,6 @@ Max.addHandler("setXKi", (s) => {
 
 Max.addHandler("setXKd", (s) => {
   setXKd(s);
-});
-
-Max.addHandler("setXPosSpeedFactor", (s) => {
-  setXPosSpeedFactor(s);
 });
 
 Max.addHandler("xMinSpeed", (s) => {
