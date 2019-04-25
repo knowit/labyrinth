@@ -18,4 +18,12 @@ void write2byteFloat(int pseudoValue) {
     Serial.write(lsb(pseudoValue));
 }
 
+float read2byteFloat() {
+    int msb = Serial.read();
+    if (msb < 64) return -999;
+    int lsb = Serial.read();
+    if (lsb < 64) return -999;
+    return (msb - 64) * 192 + (lsb - 64);
+}
+
 #endif

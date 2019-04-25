@@ -35,11 +35,11 @@ port.on('readable', function () {
     // Max.post('value:' + value);
 
     if (packet[0] === 1) { // xBno
-      Max.outlet('xbno ' + translate(value, 0, 16000, -90, 90).toFixed(2));
+      Max.outlet('x bno ' + translate(value, 0, 16000, -90, 90).toFixed(2));
     }
 
     if (packet[0] === 2) { // xBno
-      Max.outlet('xSpeedAdjusted ' + translate(value, 0, 16000, -90, 90).toFixed(2));
+      Max.outlet('x speed ' + translate(value, 0, 16000, -90, 90).toFixed(2));
     }
 
 

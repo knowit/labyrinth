@@ -2,7 +2,7 @@
 	"name" : "acctest",
 	"version" : 1,
 	"creationdate" : 3637345123,
-	"modificationdate" : 3638184489,
+	"modificationdate" : 3639064930,
 	"viewrect" : [ 25.0, 70.0, 300.0, 500.0 ],
 	"autoorganize" : 1,
 	"hideprojectwindow" : 0,
@@ -22,6 +22,16 @@
 			}
 ,
 			"xPIDAdjuster.maxpat" : 			{
+				"kind" : "patcher",
+				"local" : 1,
+				"singleton" : 				{
+					"bootpath" : "~/dev/labyrinth/testprograms/acctest/acctest/patchers",
+					"projectrelativepath" : "./patchers"
+				}
+
+			}
+,
+			"Axis.maxpat" : 			{
 				"kind" : "patcher",
 				"local" : 1,
 				"singleton" : 				{

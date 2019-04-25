@@ -6,11 +6,9 @@
 #include <Wire.h>
 #include <utility/imumaths.h>
 #include "Axis.h"
+#include "Util.h"
 #include "BNOReader.h"
 #include "SSD1306Display.h"
-
-
-float read2byteFloat();
 
 Axis xAxis(6);
 BNOReader bnoReader;
@@ -19,7 +17,6 @@ SSD1306Display display(xAxis);
 void readAndParseCommands();
 
 void addAndEnableTask(Task &task);
-
 
 double handle2ByteFloatParameter(const char *parameterName, int minValue, int maxValue);
 
@@ -133,12 +130,3 @@ double handle2ByteFloatParameter(const char *parameterName, int minValue, int ma
     display.showTaskParam = true;
     return value;
 }
-
-float read2byteFloat() {
-    int msb = Serial.read();
-    if (msb < 64) return -999;
-    int lsb = Serial.read();
-    if (lsb < 64) return -999;
-    return (msb - 64) * 192 + (lsb - 64);
-}
-
