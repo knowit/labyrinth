@@ -10,27 +10,40 @@ class Axis {
 private:
     Servo xServo;
     int servoPort;
-    double Kp = 2.5, Ki = 0, Kd = .0;
+    double Kp = 3, Ki = .0, Kd = .0;
     PID myPID;
+    int serialbnoAnglePrefix = -1;
+    int serialSpeedAdjustedPrefix = -1;
 
 public:
-    Axis(int servoPort);
+    Axis(int servoPort,
+         int controllerDirection,
+         int serialbnoAnglePrefix,
+         int serialSpeedAdjustedPrefix
+    );
 
     void update();
+
     void setup();
+
     double setpointAngle = 0;
     double bnoAngle = 0;
     double xSpeed = 0;
-    double xThreshold = .15;
-    double xSpeedAdjusted = 0;
+    double threshold = .15;
+    double speedAdjusted = 0;
     double xMinSpeed = 0;
     int xManualSpeed = 90;
 
     void setKp(double v);
+
     double GetKp();
+
     void setKi(double v);
+
     double GetKi();
+
     void setKd(double v);
+
     double GetKd();
 
     void reportState();

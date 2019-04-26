@@ -10,9 +10,10 @@
 #include "BNOReader.h"
 #include "SSD1306Display.h"
 
-Axis xAxis(6);
+Axis xAxis(7, 1, 1, 2);
+Axis yAxis(6, 0, 3, 4);
 BNOReader bnoReader;
-SSD1306Display display(xAxis);
+SSD1306Display display(xAxis, yAxis);
 
 void readAndParseCommands();
 
@@ -20,11 +21,12 @@ void addAndEnableTask(Task &task);
 
 double handle2ByteFloatParameter(const char *parameterName, int minValue, int maxValue);
 
-void xAxisReportState() {
+void reportAxisStates() {
     xAxis.reportState();
+    yAxis.reportState();
 }
 
-Task xAxisReportStateTask(200, TASK_FOREVER, &xAxisReportState);
+Task reportAxisStatesTask(200, TASK_FOREVER, &reportAxisStates);
 
 void updateDisplay() {
     display.updateDisplay();
@@ -37,7 +39,7 @@ Scheduler runner;
 void setupTasks() {
     runner.init();
     addAndEnableTask(updateDisplayTask);
-    addAndEnableTask(xAxisReportStateTask);
+    addAndEnableTask(reportAxisStatesTask);
 }
 
 
@@ -72,6 +74,7 @@ void setup() {
     updateDisplay();
 
     xAxis.setup();
+    yAxis.setup();
 
     setupTasks();
 
@@ -95,41 +98,37 @@ void loop() {
     bnoReader.update();
 
     xAxis.bnoAngle = bnoReader.xAngle;
+    yAxis.bnoAngle = bnoReader.yAngle;
     xAxis.update();
+    yAxis.update();
 }
 
 void readAndParseCommands() {
     if (Serial.available() >= 3) {
         int cmd = Serial.read();
-        if (cmd < 64) {
-            if (cmd == 1) { // setAngle
-                xAxis.setpointAngle = (map(read2byteFloat(), 0, 16000, 0, 100 * 100) / 100.0) - 50;
-                float y = read2byteFloat();
-            }
-            if (cmd == 2) {
-                double kp = handle2ByteFloatParameter("x Kp: ", 0, 100);
-                if (kp > 0) {
-                    xAxis.setKp(kp);
-                }
-            }
-            if (cmd == 3) {
-                double ki = handle2ByteFloatParameter("x Ki: ", 0, 100);
-                if (ki > 0) {
-                    xAxis.setKi(ki);
-                }
-            }
-            if (cmd == 4) {
-                double kd = handle2ByteFloatParameter("x Kd: ", 0, 100);
-                if (kd > 0) {
-                    xAxis.setKd(kd);
-                }
-            }
-            if (cmd == 6) {
-                double minSpeed = handle2ByteFloatParameter("x min spd: ", 0, 100);
-                if (minSpeed > 0) {
-                    xAxis.xMinSpeed = minSpeed;
-                }
-            }
+        if (cmd == 1) { // set x angle
+            xAxis.setpointAngle = (map(read2byteFloat(), 0, 16000, 0, 100 * 100) / 100.0) - 50;
+        }
+        if (cmd == 11) { // set y angle
+            yAxis.setpointAngle = (map(read2byteFloat(), 0, 16000, 0, 100 * 100) / 100.0) - 50;
+        }
+        if (cmd == 2) {
+            xAxis.setKp(handle2ByteFloatParameter("X Kp: ", 0, 100));
+        }
+        if (cmd == 12) {
+            yAxis.setKp(handle2ByteFloatParameter("Y Kp: ", 0, 100));
+        }
+        if (cmd == 3) {
+            xAxis.setKi(handle2ByteFloatParameter("X Ki: ", 0, 100));
+        }
+        if (cmd == 13) {
+            yAxis.setKi(handle2ByteFloatParameter("Y Ki: ", 0, 100));
+        }
+        if (cmd == 4) {
+            xAxis.setKd(handle2ByteFloatParameter("X Kd: ", 0, 100));
+        }
+        if (cmd == 5) {
+            xAxis.xMinSpeed = handle2ByteFloatParameter("x min spd: ", 0, 100);
         }
     }
 }

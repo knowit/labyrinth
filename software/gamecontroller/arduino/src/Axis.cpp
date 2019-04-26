@@ -2,8 +2,11 @@
 #include "Util.h"
 #include "Axis.h"
 
-Axis::Axis(int _servoPort) :
-        myPID(&bnoAngle, &xSpeed, &setpointAngle, Kp, Ki, Kd, DIRECT) {
+Axis::Axis(int _servoPort, int controllerDirection, int _serialbnoAnglePrefix, int _serialSpeedAdjustedPrefix) :
+        myPID(&bnoAngle, &xSpeed, &setpointAngle, Kp, Ki, Kd, controllerDirection),
+        serialbnoAnglePrefix(_serialbnoAnglePrefix),
+        serialSpeedAdjustedPrefix(_serialSpeedAdjustedPrefix)
+        {
 
     servoPort = _servoPort;
     myPID.SetOutputLimits(-70, 70);
@@ -21,17 +24,17 @@ void Axis::update() {
 
     myPID.Compute();
 
-    if ((xSpeed > xThreshold) || (xSpeed < 0 - xThreshold)) {
+    if ((xSpeed > threshold) || (xSpeed < 0 - threshold)) {
         if (xSpeed > 0) {
-            xSpeedAdjusted = xSpeed + xMinSpeed;
+            speedAdjusted = xSpeed + xMinSpeed;
         }
         if (xSpeed < 0) {
-            xSpeedAdjusted = xSpeed - xMinSpeed;
+            speedAdjusted = xSpeed - xMinSpeed;
         }
     } else {
-        xSpeedAdjusted = 0;
+        speedAdjusted = 0;
     }
-    xServo.write(90 - xSpeedAdjusted);
+    xServo.write(90 - speedAdjusted);
 
 }
 
@@ -63,9 +66,10 @@ double Axis::GetKd() {
 }
 
 void Axis::reportState() {
-    Serial.write(2);
-    write2byteFloat(map(xSpeedAdjusted * 100, -90 * 100, 90 * 100, 0, 16000));
-
-    Serial.write(1);
+    Serial.write(serialbnoAnglePrefix);
     write2byteFloat(map(bnoAngle * 100, -90 * 100, 90 * 100, 0, 16000));
+
+    Serial.write(serialSpeedAdjustedPrefix);
+    write2byteFloat(map(speedAdjusted * 100, -90 * 100, 90 * 100, 0, 16000));
+
 }

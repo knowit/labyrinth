@@ -34,12 +34,20 @@ port.on('readable', function () {
     const value = (msb - 64) * 192 + (lsb - 64);
     // Max.post('value:' + value);
 
-    if (packet[0] === 1) { // xBno
+    if (packet[0] === 1) {
       Max.outlet('x bno ' + translate(value, 0, 16000, -90, 90).toFixed(2));
     }
 
-    if (packet[0] === 2) { // xBno
+    if (packet[0] === 2) {
       Max.outlet('x speed ' + translate(value, 0, 16000, -90, 90).toFixed(2));
+    }
+
+    if (packet[0] === 3) {
+      Max.outlet('y bno ' + translate(value, 0, 16000, -90, 90).toFixed(2));
+    }
+
+    if (packet[0] === 4) {
+      Max.outlet('y speed ' + translate(value, 0, 16000, -90, 90).toFixed(2));
     }
 
 
@@ -63,7 +71,8 @@ function write2byteFloat(xPseudoValue) {
 function setAngle(x, y) {
   port.write([1]);
   write2byteFloat(translate(x + 50, 0, 100, 0, 16000));
-  write2byteFloat(translate(x, 0, 100, 0, 16000));
+  port.write([11]);
+  write2byteFloat(translate(y + 50, 0, 100, 0, 16000));
 }
 
 
@@ -72,8 +81,18 @@ function setXKp(t) {
   write2byteFloat(translate(t, 0, 100, 0, 16000));
 }
 
+function setYKp(t) {
+  port.write([12]);
+  write2byteFloat(translate(t, 0, 100, 0, 16000));
+}
+
 function setXKi(s) {
   port.write([3]);
+  write2byteFloat(translate(s, 0, 100, 0, 16000));
+}
+
+function setYKi(s) {
+  port.write([13]);
   write2byteFloat(translate(s, 0, 100, 0, 16000));
 }
 
@@ -83,7 +102,7 @@ function setXKd(s) {
 }
 
 function setXMinSpeed(s) {
-  port.write([6]);
+  port.write([5]);
   write2byteFloat(translate(s, 0, 100, 0, 16000));
 }
 
@@ -96,8 +115,16 @@ Max.addHandler("setXKp", (t) => {
   setXKp(t);
 });
 
+Max.addHandler("setYKp", (t) => {
+  setYKp(t);
+});
+
 Max.addHandler("setXKi", (s) => {
   setXKi(s);
+});
+
+Max.addHandler("setYKi", (s) => {
+  setYKi(s);
 });
 
 Max.addHandler("setXKd", (s) => {

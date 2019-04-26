@@ -5,8 +5,9 @@
 #include "SSD1306Display.h"
 
 
-SSD1306Display::SSD1306Display(Axis &_xAxis): xAxis(_xAxis) {
-
+SSD1306Display::SSD1306Display(Axis &_xAxis, Axis &_yAxis) :
+        xAxis(_xAxis),
+        yAxis(_yAxis) {
 }
 
 int SSD1306Display::setup() {
@@ -23,9 +24,6 @@ int SSD1306Display::setup() {
 
 void SSD1306Display::updateDisplay() {
 
-    int xPosBno = 38;
-    int xPosSpeed = 80;
-    int xPosSet = 5;
     display.clearDisplay();
     display.setTextSize(1);
     display.cp437(true);
@@ -42,19 +40,17 @@ void SSD1306Display::updateDisplay() {
         display.println(taskParam);
     }
 
-
-    display.setCursor(xPosSet, 8 * 2);
-    display.println(xAxis.setpointAngle);
-    display.setCursor(xPosBno, 8 * 2);
-    display.println(xAxis.bnoAngle);
-    display.setCursor(xPosSpeed, 8 * 2);
-    display.println(xAxis.xSpeedAdjusted);
-
-    display.setCursor(xPosSet, 8 * 3);
-    // display.println(setYAngle);
-    display.setCursor(xPosBno, 8 * 3);
-    // display.println(bnoY);
+    displayAxis(8 * 2, xAxis.setpointAngle, xAxis.bnoAngle, xAxis.speedAdjusted);
+    displayAxis(8 * 3, yAxis.setpointAngle, yAxis.bnoAngle, yAxis.speedAdjusted);
 
     display.display();
+}
 
+void SSD1306Display::displayAxis(int y, double setpointAngle, double bnoAngle, double speedAdjusted) {
+    display.setCursor(5, y);
+    display.println(setpointAngle);
+    display.setCursor(38, y);
+    display.println(bnoAngle);
+    display.setCursor(80, y);
+    display.println(speedAdjusted);
 }

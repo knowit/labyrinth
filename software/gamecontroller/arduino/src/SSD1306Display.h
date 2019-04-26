@@ -17,7 +17,7 @@ private:
     Adafruit_SSD1306 display = Adafruit_SSD1306(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 public:
-    SSD1306Display(Axis &xAxis);
+    SSD1306Display(Axis &xAxis, Axis &yAxis);
 
     void updateDisplay();
 
@@ -28,6 +28,9 @@ public:
     bool showTaskParam = false;
     float taskParam = 0;
     Axis &xAxis;
+    Axis &yAxis;
+
+    void displayAxis(int y, double setpointAngle, double bnoAngle, double speedAdjusted);
 };
 
 
