@@ -10,7 +10,7 @@ class Axis {
 private:
     Servo xServo;
     int servoPort;
-    double Kp = 5, Ki = 0, Kd = .0;
+    double Kp = 2.5, Ki = 0, Kd = .0;
     PID myPID;
 
 public:

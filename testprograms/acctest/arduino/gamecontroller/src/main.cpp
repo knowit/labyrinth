@@ -107,16 +107,28 @@ void readAndParseCommands() {
                 float y = read2byteFloat();
             }
             if (cmd == 2) {
-                xAxis.setKp(handle2ByteFloatParameter("x Kp: ", 0, 100));
+                double kp = handle2ByteFloatParameter("x Kp: ", 0, 100);
+                if (kp > 0) {
+                    xAxis.setKp(kp);
+                }
             }
             if (cmd == 3) {
-                xAxis.setKi(handle2ByteFloatParameter("x Ki: ", 0, 100));
+                double ki = handle2ByteFloatParameter("x Ki: ", 0, 100);
+                if (ki > 0) {
+                    xAxis.setKi(ki);
+                }
             }
             if (cmd == 4) {
-                xAxis.setKd(handle2ByteFloatParameter("x Kd: ", 0, 100));
+                double kd = handle2ByteFloatParameter("x Kd: ", 0, 100);
+                if (kd > 0) {
+                    xAxis.setKd(kd);
+                }
             }
             if (cmd == 6) {
-                xAxis.xMinSpeed = handle2ByteFloatParameter("x min spd: ", 0, 100);
+                double minSpeed = handle2ByteFloatParameter("x min spd: ", 0, 100);
+                if (minSpeed > 0) {
+                    xAxis.xMinSpeed = minSpeed;
+                }
             }
         }
     }

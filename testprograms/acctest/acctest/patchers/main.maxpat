@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 1954.0, 79.0, 1852.0, 2008.0 ],
+		"rect" : [ 34.0, 79.0, 1852.0, 2008.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -38,6 +38,42 @@
 		"style" : "",
 		"subpatcher_template" : "",
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-12",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 616.0, 283.0, 67.0, 22.0 ],
+					"text" : "setpoint $1"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-10",
+					"maxclass" : "newobj",
+					"numinlets" : 6,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 1470.0, 1324.0, 101.0, 22.0 ],
+					"text" : "scale 0 255 -4. 4."
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-9",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 1295.0, 1263.0, 50.0, 22.0 ],
+					"text" : "129"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-5",
 					"maxclass" : "newobj",
@@ -135,7 +171,7 @@
 					"numinlets" : 6,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1458.0, 1163.0, 101.0, 22.0 ],
+					"patching_rect" : [ 1430.0, 1139.0, 101.0, 22.0 ],
 					"text" : "scale 0 255 -4. 4."
 				}
 
@@ -148,7 +184,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 1666.0, 1226.0, 50.0, 22.0 ],
-					"text" : "121"
+					"text" : "125"
 				}
 
 			}
@@ -156,11 +192,11 @@
 				"box" : 				{
 					"id" : "obj-68",
 					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 1656.0, 1119.0, 53.0, 22.0 ],
-					"text" : "route 26"
+					"numinlets" : 3,
+					"numoutlets" : 3,
+					"outlettype" : [ "", "", "" ],
+					"patching_rect" : [ 1656.0, 1119.0, 69.0, 22.0 ],
+					"text" : "route 26 27"
 				}
 
 			}
@@ -211,7 +247,7 @@
 					"fontname" : "Arial",
 					"fontsize" : 13.0,
 					"id" : "obj-63",
-					"items" : [ "USB Receiver", ",", "USB Receiver 2", ",", "USB Receiver 3", ",", "Apple Internal Keyboard / Trackpad", ",", "Apple Internal Keyboard / Trackpad 2", ",", "Apple Internal Keyboard / Trackpad 3", ",", "Apple Internal Keyboard / Trackpad 4", ",", "Apple Internal Keyboard / Trackpad 5", ",", "Apple Keyboard", ",", "Apple Keyboard 2", ",", "USB Keyboard           ", ",", "iBridge Display", ",", "iBridge ALS", ",", "iBridge DFR brightness", ",", "Headset", ",", "Keyboard" ],
+					"items" : [ "PLAYSTATION(R)3 Controller", ",", "USB Receiver", ",", "USB Receiver 2", ",", "USB Receiver 3", ",", "Apple Internal Keyboard / Trackpad", ",", "Apple Internal Keyboard / Trackpad 2", ",", "Apple Internal Keyboard / Trackpad 3", ",", "Apple Internal Keyboard / Trackpad 4", ",", "Apple Internal Keyboard / Trackpad 5", ",", "Apple Keyboard", ",", "Apple Keyboard 2", ",", "USB Keyboard           ", ",", "iBridge Display", ",", "iBridge ALS", ",", "iBridge DFR brightness", ",", "Headset", ",", "Keyboard" ],
 					"labelclick" : 1,
 					"maxclass" : "umenu",
 					"numinlets" : 1,
@@ -654,7 +690,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 128.0, 1053.0, 248.0, 22.0 ],
-					"text" : "setAngle -0.669291 0"
+					"text" : "setAngle 0.047059 0"
 				}
 
 			}
@@ -703,6 +739,20 @@
 			}
  ],
 		"lines" : [ 			{
+				"patchline" : 				{
+					"destination" : [ "obj-12", 0 ],
+					"source" : [ "obj-10", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-37", 0 ],
+					"source" : [ "obj-12", 0 ]
+				}
+
+			}
+, 			{
 				"patchline" : 				{
 					"destination" : [ "obj-31", 1 ],
 					"source" : [ "obj-14", 0 ]
@@ -861,6 +911,14 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-10", 0 ],
+					"order" : 0,
+					"source" : [ "obj-68", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-28", 0 ],
 					"order" : 1,
 					"source" : [ "obj-68", 0 ]
@@ -872,6 +930,14 @@
 					"destination" : [ "obj-70", 1 ],
 					"order" : 0,
 					"source" : [ "obj-68", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-9", 1 ],
+					"order" : 1,
+					"source" : [ "obj-68", 1 ]
 				}
 
 			}
