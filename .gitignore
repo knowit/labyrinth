@@ -7,6 +7,7 @@ testprograms/js/firmatatest/.idea/workspace.xml
 testprograms/acctest/arduino/gamecontroller/cmake-build-debug/
 testprograms/acctest/arduino/gamecontroller/.idea/
 *.xml
+*.DS_Store
 testprograms/acctest/acctest/node_modules/
 testprograms/acctest/js/.idea/
 testprograms/acctest/arduino/gamecontroller/.pioenvs/uno/
