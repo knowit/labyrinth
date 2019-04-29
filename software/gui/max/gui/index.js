@@ -1,7 +1,7 @@
 const SerialPort = require('serialport')
 
 
-const port = new SerialPort('/dev/cu.wchusbserial1421140', {
+const port = new SerialPort('/dev/cu.wchusbserial1422140', {
   baudRate: 115200
 })
 const Max = require('max-api');
