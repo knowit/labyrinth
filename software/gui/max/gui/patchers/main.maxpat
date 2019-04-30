@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 79.0, 3772.0, 2008.0 ],
+		"rect" : [ 2594.0, 79.0, 1212.0, 2008.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -38,6 +38,27 @@
 		"style" : "",
 		"subpatcher_template" : "",
 		"boxes" : [ 			{
+				"box" : 				{
+					"bgmode" : 0,
+					"border" : 0,
+					"clickthrough" : 0,
+					"enablehscroll" : 0,
+					"enablevscroll" : 0,
+					"id" : "obj-9",
+					"lockeddragscroll" : 0,
+					"maxclass" : "bpatcher",
+					"name" : "n4m.monitor.maxpat",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"offset" : [ 0.0, 0.0 ],
+					"patching_rect" : [ 682.6666259765625, 1494.333251953125, 490.0, 423.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 685.6666259765625, 1496.333251953125, 944.0, 610.0 ],
+					"viewvisibility" : 1
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-34",
 					"maxclass" : "message",
@@ -384,7 +405,7 @@
 					"fontname" : "Arial",
 					"fontsize" : 13.0,
 					"id" : "obj-63",
-					"items" : [ "PLAYSTATION(R)3 Controller", ",", "USB Receiver", ",", "USB Receiver 2", ",", "USB Receiver 3", ",", "Keyboard", ",", "USB Keyboard           ", ",", "Apple Keyboard", ",", "Apple Keyboard 2", ",", "Apple Internal Keyboard / Trackpad", ",", "Apple Internal Keyboard / Trackpad 2", ",", "Apple Internal Keyboard / Trackpad 3", ",", "Apple Internal Keyboard / Trackpad 4", ",", "Apple Internal Keyboard / Trackpad 5", ",", "iBridge ALS", ",", "Headset", ",", "iBridge DFR brightness", ",", "iBridge Display" ],
+					"items" : [ "USB Receiver", ",", "USB Receiver 2", ",", "USB Receiver 3", ",", "USB Keyboard           ", ",", "Apple Keyboard", ",", "Apple Keyboard 2", ",", "Apple Internal Keyboard / Trackpad", ",", "Apple Internal Keyboard / Trackpad 2", ",", "Apple Internal Keyboard / Trackpad 3", ",", "Apple Internal Keyboard / Trackpad 4", ",", "Apple Internal Keyboard / Trackpad 5", ",", "iBridge Display", ",", "iBridge DFR brightness", ",", "Headset", ",", "iBridge ALS", ",", "Keyboard" ],
 					"labelclick" : 1,
 					"maxclass" : "umenu",
 					"numinlets" : 1,
@@ -455,7 +476,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 1314.0, 79.0, 2125.0, 2047.0 ],
+						"rect" : [ 2583.0, 467.0, 978.0, 1282.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -575,7 +596,6 @@
 									"outlettype" : [ "", "" ],
 									"patching_rect" : [ 277.0, 265.0, 111.0, 22.0 ],
 									"saved_object_attributes" : 									{
-										"args" : [ "a1" ],
 										"autostart" : 0,
 										"defer" : 0,
 										"node" : "",
@@ -744,11 +764,11 @@
 					"presentation_rect" : [ 96.666648864746094, 639.666748046875, 44.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_mmax" : 1.0,
-							"parameter_shortname" : "live.text",
 							"parameter_enum" : [ "val1", "val2" ],
 							"parameter_type" : 2,
-							"parameter_longname" : "live.text[1]"
+							"parameter_longname" : "live.text[1]",
+							"parameter_mmax" : 1.0,
+							"parameter_shortname" : "live.text"
 						}
 
 					}
@@ -773,11 +793,11 @@
 					"presentation_rect" : [ 24.666648864746094, 639.666748046875, 44.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_mmax" : 1.0,
-							"parameter_shortname" : "live.text",
 							"parameter_enum" : [ "val1", "val2" ],
 							"parameter_type" : 2,
-							"parameter_longname" : "live.text"
+							"parameter_longname" : "live.text",
+							"parameter_mmax" : 1.0,
+							"parameter_shortname" : "live.text"
 						}
 
 					}
@@ -833,7 +853,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 528.0, 1255.0, 248.0, 22.0 ],
-					"text" : "setAngle -0.141176 0.058824"
+					"text" : "setAngle 0.748031 -4.84252"
 				}
 
 			}
@@ -875,7 +895,9 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"offset" : [ 0.0, 0.0 ],
-					"patching_rect" : [ 78.666656494140625, 1458.333251953125, 400.0, 220.0 ],
+					"patching_rect" : [ 40.666656494140625, 1494.333251953125, 624.0, 345.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 24.666656494140625, 691.333251953125, 944.0, 610.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -1184,36 +1206,45 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-6", 0 ],
+					"order" : 1,
+					"source" : [ "obj-85", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-9", 0 ],
+					"order" : 0,
 					"source" : [ "obj-85", 0 ]
 				}
 
 			}
  ],
 		"parameters" : 		{
-			"obj-16::obj-2::obj-44" : [ "live.numbox[10]", "live.numbox", 0 ],
+			"obj-37::obj-9" : [ "live.numbox[15]", "live.numbox", 0 ],
+			"obj-16::obj-2::obj-37" : [ "live.numbox[17]", "live.numbox", 0 ],
+			"obj-37::obj-86" : [ "Setpoint", "Setpoint", 0 ],
+			"obj-16::obj-86" : [ "Setpoint[1]", "Setpoint", 0 ],
+			"obj-37::obj-2::obj-2" : [ "live.numbox[8]", "live.numbox", 0 ],
 			"obj-16::obj-2::obj-6" : [ "live.numbox[16]", "live.numbox", 0 ],
 			"obj-16::obj-9" : [ "live.numbox[18]", "live.numbox", 0 ],
-			"obj-37::obj-2::obj-6" : [ "live.numbox[9]", "live.numbox", 0 ],
-			"obj-16::obj-2::obj-40" : [ "live.numbox[13]", "live.numbox", 0 ],
-			"obj-37::obj-18" : [ "Speed", "Speed", 0 ],
-			"obj-80" : [ "live.text[1]", "live.text", 0 ],
-			"obj-16::obj-15" : [ "live.numbox[20]", "live.numbox", 0 ],
-			"obj-37::obj-24" : [ "BNO", "BNO", 0 ],
-			"obj-37::obj-3" : [ "live.numbox[11]", "live.numbox", 0 ],
-			"obj-37::obj-2::obj-37" : [ "live.numbox[5]", "live.numbox", 0 ],
-			"obj-16::obj-86" : [ "Setpoint[1]", "Setpoint", 0 ],
-			"obj-16::obj-2::obj-2" : [ "live.numbox[12]", "live.numbox", 0 ],
-			"obj-16::obj-3" : [ "live.numbox[19]", "live.numbox", 0 ],
-			"obj-37::obj-15" : [ "live.numbox[14]", "live.numbox", 0 ],
-			"obj-37::obj-2::obj-44" : [ "live.numbox[6]", "live.numbox", 0 ],
-			"obj-16::obj-2::obj-37" : [ "live.numbox[17]", "live.numbox", 0 ],
-			"obj-37::obj-2::obj-40" : [ "live.numbox[7]", "live.numbox", 0 ],
-			"obj-37::obj-9" : [ "live.numbox[15]", "live.numbox", 0 ],
 			"obj-16::obj-18" : [ "Speed[1]", "Speed", 0 ],
-			"obj-37::obj-2::obj-2" : [ "live.numbox[8]", "live.numbox", 0 ],
+			"obj-37::obj-15" : [ "live.numbox[14]", "live.numbox", 0 ],
+			"obj-37::obj-18" : [ "Speed", "Speed", 0 ],
+			"obj-37::obj-2::obj-6" : [ "live.numbox[9]", "live.numbox", 0 ],
+			"obj-16::obj-2::obj-2" : [ "live.numbox[12]", "live.numbox", 0 ],
+			"obj-16::obj-15" : [ "live.numbox[20]", "live.numbox", 0 ],
+			"obj-37::obj-2::obj-44" : [ "live.numbox[6]", "live.numbox", 0 ],
+			"obj-37::obj-2::obj-40" : [ "live.numbox[7]", "live.numbox", 0 ],
+			"obj-37::obj-3" : [ "live.numbox[11]", "live.numbox", 0 ],
+			"obj-16::obj-2::obj-40" : [ "live.numbox[13]", "live.numbox", 0 ],
+			"obj-16::obj-3" : [ "live.numbox[19]", "live.numbox", 0 ],
+			"obj-37::obj-2::obj-37" : [ "live.numbox[5]", "live.numbox", 0 ],
+			"obj-80" : [ "live.text[1]", "live.text", 0 ],
+			"obj-16::obj-2::obj-44" : [ "live.numbox[10]", "live.numbox", 0 ],
 			"obj-16::obj-24" : [ "BNO[1]", "BNO", 0 ],
 			"obj-79" : [ "live.text", "live.text", 0 ],
-			"obj-37::obj-86" : [ "Setpoint", "Setpoint", 0 ],
+			"obj-37::obj-24" : [ "BNO", "BNO", 0 ],
 			"parameterbanks" : 			{
 
 			}
@@ -1240,8 +1271,8 @@
 			}
 , 			{
 				"name" : "index.js",
-				"bootpath" : "~/dev/labyrinth/software/gui/max/gui",
-				"patcherrelativepath" : "..",
+				"bootpath" : "~/dev/labyrinth/software/gui/max/gui/code",
+				"patcherrelativepath" : "../code",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
