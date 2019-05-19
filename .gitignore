@@ -11,3 +11,6 @@ testprograms/acctest/arduino/gamecontroller/.idea/
 testprograms/acctest/acctest/node_modules/
 testprograms/acctest/js/.idea/
 testprograms/acctest/arduino/gamecontroller/.pioenvs/uno/
+software/dashboard/nrdash/node_modules/
+software/dashboard/nrdash/node-red/node_modules/
+software/server/node_modules/

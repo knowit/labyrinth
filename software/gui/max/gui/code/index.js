@@ -1,7 +1,9 @@
 const GameController = require('../../../js/index');
 const Max = require('max-api');
-// const SerialPort = require('serialport')
 
+console.log( JSON.stringify(process.argv,undefined, 2))
+
+let portName = process.argv[2];
 
 g = new GameController();
 
@@ -21,7 +23,7 @@ const onYSpeed = function (value) {
   Max.outlet('y speed ' + value);
 };
 
-g.openPort('/dev/cu.wchusbserial1421140', onXBNO, onXSpeed, onYBNO, onYSpeed);
+g.openPort(portName, onXBNO, onXSpeed, onYBNO, onYSpeed);
 
 Max.addHandler("setAngle", (x, y) => {
   g.setAngle(x, y);

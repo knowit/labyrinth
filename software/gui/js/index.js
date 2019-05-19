@@ -46,16 +46,13 @@ class GameController {
 
         if (packet[0] === 2) {
           onXSpeed(translate(value, 0, 16000, -90, 90).toFixed(2));
-          // Max.outlet('x speed ' + translate(value, 0, 16000, -90, 90).toFixed(2));
         }
 
         if (packet[0] === 3) {
-          // Max.outlet('y bno ' + translate(value, 0, 16000, -90, 90).toFixed(2));
           onYBNO(translate(value, 0, 16000, -90, 90).toFixed(2));
         }
 
         if (packet[0] === 4) {
-          // Max.outlet('y speed ' + translate(value, 0, 16000, -90, 90).toFixed(2));
           onYSpeed(translate(value, 0, 16000, -90, 90).toFixed(2));
         }
 
