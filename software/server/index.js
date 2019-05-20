@@ -66,7 +66,7 @@ io.on('connection', function (socket) {
 
 function emitScore(t) {
   if (serverSocket) {
-    serverSocket.broadcast.emit('score', {value: t});
+    serverSocket.emit('score', {value: t});
     console.log(`emitting score: ${t}`);
   } else {
     console.error("no server socket");

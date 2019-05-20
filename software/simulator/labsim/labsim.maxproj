@@ -2,7 +2,7 @@
 	"name" : "labsim",
 	"version" : 1,
 	"creationdate" : 3641122542,
-	"modificationdate" : 3641123696,
+	"modificationdate" : 3641227177,
 	"viewrect" : [ 25.0, 70.0, 300.0, 500.0 ],
 	"autoorganize" : 0,
 	"hideprojectwindow" : 0,
@@ -23,7 +23,12 @@
 ,
 			"socketiointegration.maxpat" : 			{
 				"kind" : "patcher",
-				"local" : 1
+				"local" : 1,
+				"singleton" : 				{
+					"bootpath" : "~/dev/labyrinth/software/simulator/labsim/patchers",
+					"projectrelativepath" : "./patchers"
+				}
+
 			}
 
 		}
