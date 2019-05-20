@@ -27,7 +27,8 @@ class App extends Component {
           ? <p>
             score: {score}
           </p>
-          : <p>Waiting for score...</p>}
+          : <p>score: 0
+          </p>}
       </div>
     );
   }
