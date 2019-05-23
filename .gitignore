@@ -21,3 +21,10 @@ software/gui/js/.idea/
 software/gamecontroller/arduino/.idea/
 software/server/.idea/
 software/dashboard/reactdash/.idea/
+software/gameserver/node_modules/
+software/gui/js/node_modules/
+software/test/pysocketio/venv/
+software/gamecontroller/js/node_modules/
+software/gamecontroller/js/.idea/
+software/gameserver/.idea/
+software/test/pysocketio/.idea/

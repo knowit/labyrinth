@@ -1,18 +1,28 @@
-var app = require('express')();
-var server = require('http').Server(app);
-var io = require('socket.io')(server);
+var app = require('http').createServer(handler)
+var io = require('socket.io')(app);
+var fs = require('fs');
 
 var score = 0;
 var inGame = false;
 var serverSocket;
 
-server.listen(9090);
+app.listen(9090);
 // WARNING: app.listen(80) will NOT work here!
 
-app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/index.html');
-});
+console.log("Started");
 
+function handler (req, res) {
+  fs.readFile(__dirname + '/index.html',
+    function (err, data) {
+      if (err) {
+        res.writeHead(500);
+        return res.end('Error loading index.html');
+      }
+
+      res.writeHead(200);
+      res.end(data);
+    });
+}
 function gameEventLost() {
   console.log('Lost');
   score = 0;
@@ -31,9 +41,16 @@ function gameEventGoal() {
 
 function gameEventGameStarted() {
   console.log('Game started');
-  score = 100;
+  score = 1000;
   inGame = true;
   emitScore(score);
+}
+
+function reemit(socket, event) {
+  socket.on(event, function (data) {
+    console.log(`${event} data:${JSON.stringify(data)}`);
+    serverSocket.emit(event, data);
+  });
 }
 
 io.on('connection', function (socket) {
@@ -41,8 +58,8 @@ io.on('connection', function (socket) {
 
   serverSocket = socket;
 
-  socket.on('event', function (data) {
-    console.log(`event.name: ${data.name}`);
+  socket.on('gamestate', function (data) {
+    console.log(`gamestate: ${data.name}`);
 
     if (data.name === 'gamestarted') {
       gameEventGameStarted();
@@ -56,12 +73,21 @@ io.on('connection', function (socket) {
       gameEventLost();
     }
 
-    socket.broadcast.emit('event', data);
+    serverSocket.emit('gamestate', data);
   });
+
 
   socket.on('disconnect', function (socket) {
     console.log(`socket.io event: disconnect id=${socket.id}`)
   });
+
+  // reemit(socket, 'gamestate');
+  reemit(socket, 'xbno');
+  reemit(socket, 'ybno');
+  reemit(socket, 'xspeed');
+  reemit(socket, 'yspeed');
+  reemit(socket, 'xsetpoint');
+  reemit(socket, 'ysetpoint');
 });
 
 function emitScore(t) {
@@ -77,7 +103,6 @@ setInterval(function () {
   if (inGame) {
     score = score - 10;
     if (score > 0) {
-      console.log(`score: ${score}`);
       emitScore(score);
     } else {
       gameEventLost();

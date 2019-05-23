@@ -3,15 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-const io = require('socket.io-client');
-
-/*
-const socket = io.connect('http://localhost:9090');
-
-socket.on('event', function (data) {
-  console.log(`event.name: ${data.name}`);
-});
-*/
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
