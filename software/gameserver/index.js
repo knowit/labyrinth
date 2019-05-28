@@ -16,30 +16,29 @@ console.log(`portName=${portName}`)
 
 console.log("Started");
 
+function emitToServerSocket(topic, value) {
+  if (serverSocket) {
+    serverSocket.emit(topic, {value});
+  }
+}
 const onXBNO = function (value) {
   console.log('xbno', {value});
-  serverSocket.emit('xbno', {value});
-};
-
-const onXSpeed = function (value) {
-  console.log('xspeed', {value});
-  serverSocket.emit('xspeed', {value});
+  emitToServerSocket('xbno', value);
 };
 
 const onYBNO = function (value) {
   console.log('ybno', {value});
-  serverSocket.emit('ybno', {value});
+  emitToServerSocket('ybno', value);
+};
+const onXSpeed = function (value) {
+  console.log('xspeed', {value});
+  emitToServerSocket('xspeed', value);
 };
 
 const onYSpeed = function (value) {
   console.log('yspeed', {value});
-  serverSocket.emit('yspeed', {value});
+  emitToServerSocket('yspeed', value);
 };
-
-
-console.log(`Connecting to port: ${portName}`);
-g.openPort(portName, onXBNO, onXSpeed, onYBNO, onYSpeed);
-
 
 function handler(req, res) {
   fs.readFile(__dirname + '/index.html',
@@ -76,6 +75,9 @@ function gameEventGameStarted() {
   inGame = true;
   emitScore(score);
 }
+
+console.log(`Connecting to port: ${portName}`);
+g.openPort(portName, onXBNO, onXSpeed, onYBNO, onYSpeed);
 
 io.on('connection', function (socket) {
   console.log(`socket.io event: connection id=${socket.id}`)

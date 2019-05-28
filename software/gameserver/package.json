@@ -1,5 +1,5 @@
 {
-  "name": "server",
+  "name": "gameserver",
   "version": "1.0.0",
   "description": "Socket.io-based labyrinth game server",
   "main": "index.js",
