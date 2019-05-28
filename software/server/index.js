@@ -1,17 +1,47 @@
 var app = require('http').createServer(handler)
 var io = require('socket.io')(app);
 var fs = require('fs');
+const GameController = require('../gamecontroller/js/index');
+
+g = new GameController();
 
 var score = 0;
 var inGame = false;
 var serverSocket;
 
 app.listen(9090);
-// WARNING: app.listen(80) will NOT work here!
+
+let portName = process.argv[2];
+console.log(`portName=${portName}`)
 
 console.log("Started");
 
-function handler (req, res) {
+const onXBNO = function (value) {
+  console.log('xbno', {value});
+  serverSocket.emit('xbno', {value});
+};
+
+const onXSpeed = function (value) {
+  console.log('xspeed', {value});
+  serverSocket.emit('xspeed', {value});
+};
+
+const onYBNO = function (value) {
+  console.log('ybno', {value});
+  serverSocket.emit('ybno', {value});
+};
+
+const onYSpeed = function (value) {
+  console.log('yspeed', {value});
+  serverSocket.emit('yspeed', {value});
+};
+
+
+console.log(`Connecting to port: ${portName}`);
+g.openPort(portName, onXBNO, onXSpeed, onYBNO, onYSpeed);
+
+
+function handler(req, res) {
   fs.readFile(__dirname + '/index.html',
     function (err, data) {
       if (err) {
@@ -23,6 +53,7 @@ function handler (req, res) {
       res.end(data);
     });
 }
+
 function gameEventLost() {
   console.log('Lost');
   score = 0;
@@ -44,13 +75,6 @@ function gameEventGameStarted() {
   score = 1000;
   inGame = true;
   emitScore(score);
-}
-
-function reemit(socket, event) {
-  socket.on(event, function (data) {
-    console.log(`${event} data:${JSON.stringify(data)}`);
-    serverSocket.emit(event, data);
-  });
 }
 
 io.on('connection', function (socket) {
@@ -81,13 +105,17 @@ io.on('connection', function (socket) {
     console.log(`socket.io event: disconnect id=${socket.id}`)
   });
 
-  // reemit(socket, 'gamestate');
-  reemit(socket, 'xbno');
-  reemit(socket, 'ybno');
-  reemit(socket, 'xspeed');
-  reemit(socket, 'yspeed');
-  reemit(socket, 'xsetpoint');
-  reemit(socket, 'ysetpoint');
+  socket.on('xsetpoint', function (data) {
+    console.log(`${'xsetpoint'} data:${JSON.stringify(data)}`);
+    g.setXAngle(data.value);
+  });
+
+  socket.on('ysetpoint', function (data) {
+    console.log(`${'ysetpoint'} data:${JSON.stringify(data)}`);
+    g.setYAngle(data.value);
+  });
+
+
 });
 
 function emitScore(t) {
