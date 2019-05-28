@@ -2,8 +2,9 @@ var app = require('http').createServer(handler)
 var io = require('socket.io')(app);
 var fs = require('fs');
 const GameController = require('../gamecontroller/js/index');
+var gamepad = require("gamepad");
 
-g = new GameController();
+gamecontroller = new GameController();
 
 var score = 0;
 var inGame = false;
@@ -12,7 +13,39 @@ var serverSocket;
 app.listen(9090);
 
 let portName = process.argv[2];
-console.log(`portName=${portName}`)
+
+
+function addGamePadSupport() {
+  console.log("init gamepad");
+// Initialize the library
+  gamepad.init()
+
+// Create a game loop and poll for events
+  setInterval(gamepad.processEvents, 16);
+// Scan for new gamepads as a slower rate
+  setInterval(gamepad.detectDevices, 500);
+
+// Listen for move events on all gamepads
+  gamepad.on("move", function (id, axis, value) {
+    /*
+    console.log("move", {
+      id: id,
+      axis: axis,
+      value: value,
+    });
+    */
+    if (axis === 7) {
+      // console.log(value);
+      gamecontroller.setXAngle(value * 5);
+    }
+    if (axis === 8) {
+      // console.log(value);
+      gamecontroller.setYAngle(value * 5);
+    }
+  });
+}
+
+addGamePadSupport();
 
 console.log("Started");
 
@@ -22,21 +55,21 @@ function emitToServerSocket(topic, value) {
   }
 }
 const onXBNO = function (value) {
-  console.log('xbno', {value});
+  // console.log('xbno', {value});
   emitToServerSocket('xbno', value);
 };
 
 const onYBNO = function (value) {
-  console.log('ybno', {value});
+  // console.log('ybno', {value});
   emitToServerSocket('ybno', value);
 };
 const onXSpeed = function (value) {
-  console.log('xspeed', {value});
+  // console.log('xspeed', {value});
   emitToServerSocket('xspeed', value);
 };
 
 const onYSpeed = function (value) {
-  console.log('yspeed', {value});
+  // console.log('yspeed', {value});
   emitToServerSocket('yspeed', value);
 };
 
@@ -77,7 +110,7 @@ function gameEventGameStarted() {
 }
 
 console.log(`Connecting to port: ${portName}`);
-g.openPort(portName, onXBNO, onXSpeed, onYBNO, onYSpeed);
+gamecontroller.openPort(portName, onXBNO, onXSpeed, onYBNO, onYSpeed);
 
 io.on('connection', function (socket) {
   console.log(`socket.io event: connection id=${socket.id}`)
@@ -108,13 +141,13 @@ io.on('connection', function (socket) {
   });
 
   socket.on('xsetpoint', function (data) {
-    console.log(`${'xsetpoint'} data:${JSON.stringify(data)}`);
-    g.setXAngle(data.value);
+    // console.log(`${'xsetpoint'} data:${JSON.stringify(data)}`);
+    gamecontroller.setXAngle(data.value);
   });
 
   socket.on('ysetpoint', function (data) {
-    console.log(`${'ysetpoint'} data:${JSON.stringify(data)}`);
-    g.setYAngle(data.value);
+    // console.log(`${'ysetpoint'} data:${JSON.stringify(data)}`);
+    gamecontroller.setYAngle(data.value);
   });
 
 
