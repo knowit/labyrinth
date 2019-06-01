@@ -26,17 +26,18 @@ const server = net.createServer(socket => {
     controller
         .openPort(
             portName, 
-            value => {
-                // onXBNO
-            }, 
-            value => {
-                // onXSpeed
-            },
-            value => {
-                // onYBNO
-            }, 
-            value => {
-                // onYSpeed
+            {
+                onPosition: (update) => {
+                    socket.write(
+                        Buffer.from(
+                            JSON.stringify({
+                                Position: {
+                                    x: update.x,
+                                    y: 0.0,
+                                    z: update.y
+                                }
+                            }), 'ascii'))
+                }
             });
 
     socket.on('data', (buffer) => {
