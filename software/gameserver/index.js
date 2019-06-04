@@ -150,6 +150,26 @@ io.on('connection', function (socket) {
     gamecontroller.setYAngle(data.value);
   });
 
+  socket.on('xKp', function (data) {
+    console.log(`${'xKp'} data:${JSON.stringify(data)}`);
+    gamecontroller.setXKp(data.value);
+  });
+
+  socket.on('yKp', function (data) {
+    console.log(`${'yKp'} data:${JSON.stringify(data)}`);
+    gamecontroller.setYKp(data.value);
+  });
+
+  socket.on('xKi', function (data) {
+    console.log(`${'xKi'} data:${JSON.stringify(data)}`);
+    gamecontroller.setXKi(data.value);
+  });
+
+  socket.on('yKi', function (data) {
+    console.log(`${'yKi'} data:${JSON.stringify(data)}`);
+    gamecontroller.setYKi(data.value);
+  });
+
 
 });
 

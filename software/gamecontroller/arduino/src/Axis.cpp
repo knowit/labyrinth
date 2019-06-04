@@ -3,7 +3,7 @@
 #include "Axis.h"
 
 Axis::Axis(int _servoPort, int controllerDirection, int _serialbnoAnglePrefix, int _serialSpeedAdjustedPrefix) :
-        myPID(&bnoAngle, &xSpeed, &setpointAngle, Kp, Ki, Kd, controllerDirection),
+        myPID(&calibratedAngle, &xSpeed, &setpointAngle, Kp, Ki, Kd, controllerDirection),
         serialbnoAnglePrefix(_serialbnoAnglePrefix),
         serialSpeedAdjustedPrefix(_serialSpeedAdjustedPrefix)
         {
@@ -21,6 +21,8 @@ void Axis::setup() {
 }
 
 void Axis::update() {
+
+    calibratedAngle = bnoAngle + calibration;
 
     myPID.Compute();
 

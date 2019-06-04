@@ -14,6 +14,10 @@ class App extends Component {
       gamestate: 'unknown',
       score: -99,
       xsetpoint: 0,
+      xKp: 0,
+      xKi: 0,
+      yKp: 0,
+      yKi: 0,
       ysetpoint: 0,
       xbno: 0,
       ybno: 0,
@@ -41,6 +45,10 @@ class App extends Component {
     const {gamestate} = this.state;
     const {score} = this.state;
     const {xsetpoint} = this.state;
+    const {xKp} = this.state;
+    const {xKi} = this.state;
+    const {yKp} = this.state;
+    const {yKi} = this.state;
     const {ysetpoint} = this.state;
     const {xbno} = this.state;
     const {ybno} = this.state;
@@ -61,6 +69,23 @@ class App extends Component {
           </p>}
         <Paper>
           <Typography variant="h5" component="h3">
+            X Setpoint
+          </Typography>
+          <Slider
+            onChange={(event, value) => {
+              this.setState({xsetpoint: value});
+              this.socket.emit("xsetpoint", {value: xsetpoint});
+            }}
+            value={xsetpoint}
+            min={-5.}
+            max={+5.}
+          />
+          <Typography>
+            {xsetpoint}
+          </Typography>
+        </Paper>
+        <Paper>
+          <Typography variant="h5" component="h3">
             X Angle
           </Typography>
           <Slider
@@ -70,6 +95,74 @@ class App extends Component {
           />
           <Typography>
             {xbno}
+          </Typography>
+        </Paper>
+        <Paper>
+          <Typography variant="h5" component="h3">
+            X Kp
+
+          </Typography>
+          <Slider
+            onChange={(event, value) => {
+              this.setState({xKp: value});
+              this.socket.emit("xKp", {value: xKp});
+            }}
+            value={xKp}
+            min={-30.}
+            max={+30.}
+          />
+          <Typography>
+            {xKp}
+          </Typography>
+        </Paper>
+        <Paper>
+          <Typography variant="h5" component="h3">
+            X Ki
+
+          </Typography>
+          <Slider
+            onChange={(event, value) => {
+              this.setState({xKi: value});
+              this.socket.emit("xKi", {value: xKi});
+            }}
+            value={xKi}
+            min={-30.}
+            max={+30.}
+          />
+          <Typography>
+            {xKi}
+          </Typography>
+        </Paper>
+        <Paper>
+          <Typography variant="h5" component="h3">
+            X Speed
+          </Typography>
+          <Slider
+            value={xspeed}
+            min={-5.}
+            max={+5.}
+          />
+          <Typography>
+            {xspeed}
+          </Typography>
+        </Paper>
+
+
+        <Paper>
+          <Typography variant="h5" component="h3">
+            Y Setpoint
+          </Typography>
+          <Slider
+            onChange={(event, value) => {
+              this.setState({ysetpoint: value});
+              this.socket.emit("ysetpoint", {value: ysetpoint});
+            }}
+            value={ysetpoint}
+            min={-5.}
+            max={+5.}
+          />
+          <Typography>
+            {ysetpoint}
           </Typography>
         </Paper>
         <Paper>
@@ -87,15 +180,38 @@ class App extends Component {
         </Paper>
         <Paper>
           <Typography variant="h5" component="h3">
-            X Speed
+            Y Kp
+
           </Typography>
           <Slider
-            value={xspeed}
-            min={-5.}
-            max={+5.}
+            onChange={(event, value) => {
+              this.setState({yKp: value});
+              this.socket.emit("yKp", {value: yKp});
+            }}
+            value={yKp}
+            min={-30.}
+            max={+30.}
           />
           <Typography>
-            {xspeed}
+            {yKp}
+          </Typography>
+        </Paper>
+        <Paper>
+          <Typography variant="h5" component="h3">
+            Y Ki
+
+          </Typography>
+          <Slider
+            onChange={(event, value) => {
+              this.setState({yKi: value});
+              this.socket.emit("yKi", {value: yKi});
+            }}
+            value={yKi}
+            min={-30.}
+            max={+30.}
+          />
+          <Typography>
+            {yKi}
           </Typography>
         </Paper>
         <Paper>
@@ -109,41 +225,6 @@ class App extends Component {
           />
           <Typography>
             {yspeed}
-          </Typography>
-        </Paper>
-        <Paper>
-          <Typography variant="h5" component="h3">
-            X Setpoint
-
-          </Typography>
-          <Slider
-            onChange={(event, value) => {
-              this.setState({xsetpoint: value});
-              this.socket.emit("xsetpoint", {value: xsetpoint});
-            }}
-            value={xsetpoint}
-            min={-5.}
-            max={+5.}
-          />
-          <Typography>
-            {xsetpoint}
-          </Typography>
-        </Paper>
-        <Paper>
-          <Typography variant="h5" component="h3">
-            Y Setpoint
-          </Typography>
-          <Slider
-            onChange={(event, value) => {
-              this.setState({ysetpoint: value});
-              this.socket.emit("ysetpoint", {value: ysetpoint});
-            }}
-            value={ysetpoint}
-            min={-5.}
-            max={+5.}
-          />
-          <Typography>
-            {ysetpoint}
           </Typography>
         </Paper>
       </div>

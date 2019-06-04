@@ -82,6 +82,8 @@ void setup() {
     display.task = "";
 
     Serial1.println("____SETUP_END______");
+
+    yAxis.calibration = -1.5;
 }
 
 
