@@ -19,7 +19,7 @@ void readAndParseCommands();
 
 void addAndEnableTask(Task &task);
 
-double handle2ByteFloatParameter(const char *parameterName, int minValue, int maxValue);
+double handle2ByteFloatParameter(const char *parameterName, int minValue, int maxValue, float offset);
 
 void reportAxisStates() {
     xAxis.reportState();
@@ -115,29 +115,35 @@ void readAndParseCommands() {
             yAxis.setpointAngle = (map(read2byteFloat(), 0, 16000, 0, 100 * 100) / 100.0) - 50;
         }
         if (cmd == 2) {
-            xAxis.setKp(handle2ByteFloatParameter("X Kp: ", 0, 100));
+            xAxis.setKp(handle2ByteFloatParameter("X Kp: ", 0, 100, 0));
         }
         if (cmd == 12) {
-            yAxis.setKp(handle2ByteFloatParameter("Y Kp: ", 0, 100));
+            yAxis.setKp(handle2ByteFloatParameter("Y Kp: ", 0, 100, 0));
         }
         if (cmd == 3) {
-            xAxis.setKi(handle2ByteFloatParameter("X Ki: ", 0, 100));
+            xAxis.setKi(handle2ByteFloatParameter("X Ki: ", 0, 100, 0));
         }
         if (cmd == 13) {
-            yAxis.setKi(handle2ByteFloatParameter("Y Ki: ", 0, 100));
+            yAxis.setKi(handle2ByteFloatParameter("Y Ki: ", 0, 100, 0));
         }
         if (cmd == 4) {
-            xAxis.setKd(handle2ByteFloatParameter("X Kd: ", 0, 100));
+            xAxis.setKd(handle2ByteFloatParameter("X Kd: ", 0, 100, 0));
+        }
+        if (cmd == 14) {
+            yAxis.setKd(handle2ByteFloatParameter("Y Kd: ", 0, 100, 0));
         }
         if (cmd == 5) {
-            xAxis.xMinSpeed = handle2ByteFloatParameter("x min spd: ", 0, 100);
+            xAxis.calibration = handle2ByteFloatParameter("X cal: ", 0, 100, -50.);
+        }
+        if (cmd == 15) {
+            yAxis.calibration = handle2ByteFloatParameter("Y cal: ", 0, 100, -50.);
         }
     }
 }
 
-double handle2ByteFloatParameter(const char *parameterName, int minValue, int maxValue) {
+double handle2ByteFloatParameter(const char *parameterName, int minValue, int maxValue, float offset) {
     float t = read2byteFloat();
-    double value = map(t, 0, 16000, minValue, maxValue * 100) / 100.0;
+    double value = map(t, 0, 16000, minValue, maxValue * 100) / 100.0 + offset;
     display.task = parameterName;
     display.taskParam = value;
     display.showTaskParam = true;

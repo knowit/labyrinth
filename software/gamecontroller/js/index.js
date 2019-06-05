@@ -118,10 +118,32 @@ class GameController {
     this.write2byteFloat(translate(s, 0, 100, 0, 16000));
   }
 
+  setYKd(s) {
+    this.port.write([14]);
+    this.write2byteFloat(translate(s, 0, 100, 0, 16000));
+  }
+
+  setXCalibration(s) {
+    this.port.write([5]);
+    this.write2byteFloat(translate(s + 50, 0, 100, 0, 16000));
+  }
+
+  setYCalibration(s) {
+    this.port.write([15]);
+    this.write2byteFloat(translate(s + 50, 0, 100, 0, 16000));
+  }
+
+  /*
+  setXKd(s) {
+    this.port.write([4]);
+    this.write2byteFloat(translate(s, 0, 100, 0, 16000));
+  }
+
   setXMinSpeed(s) {
     this.port.write([5]);
     this.write2byteFloat(translate(s, 0, 100, 0, 16000));
   }
+  */
 
 }
 

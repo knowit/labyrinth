@@ -1,1 +1,1 @@
-platformio run --target upload --upload-port /dev/cu.wchusbserial1431120
+platformio run --target upload --upload-port /dev/cu.wchusbserial144220

@@ -1,5 +1,7 @@
-var app = require('http').createServer(handler)
-var io = require('socket.io')(app);
+var app = require('express')();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+
 var fs = require('fs');
 const GameController = require('../gamecontroller/js/index');
 var gamepad = require("gamepad");
@@ -10,7 +12,7 @@ var score = 0;
 var inGame = false;
 var serverSocket;
 
-app.listen(9090);
+server.listen(8080);
 
 let portName = process.argv[2];
 
@@ -54,6 +56,7 @@ function emitToServerSocket(topic, value) {
     serverSocket.emit(topic, {value});
   }
 }
+
 const onXBNO = function (value) {
   // console.log('xbno', {value});
   emitToServerSocket('xbno', value);
@@ -73,18 +76,34 @@ const onYSpeed = function (value) {
   emitToServerSocket('yspeed', value);
 };
 
-function handler(req, res) {
-  fs.readFile(__dirname + '/index.html',
-    function (err, data) {
-      if (err) {
-        res.writeHead(500);
-        return res.end('Error loading index.html');
-      }
+app.get('/', function (req, res) {
+  res.sendFile(__dirname + '/index.html');
+});
 
-      res.writeHead(200);
-      res.end(data);
-    });
-}
+app.get('/gamestarted', function (req, res) {
+  gameEventGameStarted();
+  res.sendFile(__dirname + '/index.html');
+  serverSocket.emit('gamestate', {name: 'gamestarted'});
+});
+
+app.get('/gamelost', function (req, res) {
+  gameEventLost();
+  res.sendFile(__dirname + '/index.html');
+  serverSocket.emit('gamestate', {name: 'gamelost'});
+});
+
+app.get('/gamegoal', function (req, res) {
+  gameEventGoal();
+  res.sendFile(__dirname + '/index.html');
+  serverSocket.emit('gamestate', {name: 'gamegoal'});
+});
+
+app.get('/gamepending', function (req, res) {
+  gameEventGamePending();
+  res.sendFile(__dirname + '/index.html');
+  serverSocket.emit('gamestate', {name: 'gamepending'});
+});
+
 
 function gameEventLost() {
   console.log('Lost');
@@ -106,6 +125,13 @@ function gameEventGameStarted() {
   console.log('Game started');
   score = 1000;
   inGame = true;
+  emitScore(score);
+}
+
+function gameEventGamePending() {
+  console.log('Game pending');
+  score = 0;
+  inGame = false;
   emitScore(score);
 }
 
@@ -168,6 +194,26 @@ io.on('connection', function (socket) {
   socket.on('yKi', function (data) {
     console.log(`${'yKi'} data:${JSON.stringify(data)}`);
     gamecontroller.setYKi(data.value);
+  });
+
+  socket.on('xKd', function (data) {
+    console.log(`${'xKd'} data:${JSON.stringify(data)}`);
+    gamecontroller.setXKd(data.value);
+  });
+
+  socket.on('yKd', function (data) {
+    console.log(`${'xKd'} data:${JSON.stringify(data)}`);
+    gamecontroller.setYKd(data.value);
+  });
+
+  socket.on('xCalibration', function (data) {
+    console.log(`${'xCalibration'} data:${JSON.stringify(data)}`);
+    gamecontroller.setXCalibration(data.value);
+  });
+
+  socket.on('yCalibration', function (data) {
+    console.log(`${'yCalibration'} data:${JSON.stringify(data)}`);
+    gamecontroller.setYCalibration(data.value);
   });
 
 
