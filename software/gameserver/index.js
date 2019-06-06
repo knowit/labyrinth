@@ -10,6 +10,7 @@ gamecontroller = new GameController();
 
 var score = 0;
 var inGame = false;
+var gamestate = 'unknown';
 var serverSocket;
 
 server.listen(8080);
@@ -38,10 +39,12 @@ function addGamePadSupport() {
     */
     if (axis === 7) {
       // console.log(value);
+      startIfPending();
       gamecontroller.setXAngle(value * 5);
     }
     if (axis === 8) {
       // console.log(value);
+      startIfPending();
       gamecontroller.setYAngle(value * 5);
     }
   });
@@ -83,45 +86,48 @@ app.get('/', function (req, res) {
 app.get('/gamestarted', function (req, res) {
   gameEventGameStarted();
   res.sendFile(__dirname + '/index.html');
-  serverSocket.emit('gamestate', {name: 'gamestarted'});
 });
 
 app.get('/gamelost', function (req, res) {
   gameEventLost();
   res.sendFile(__dirname + '/index.html');
-  serverSocket.emit('gamestate', {name: 'gamelost'});
 });
 
 app.get('/gamegoal', function (req, res) {
   gameEventGoal();
   res.sendFile(__dirname + '/index.html');
-  serverSocket.emit('gamestate', {name: 'gamegoal'});
 });
 
 app.get('/gamepending', function (req, res) {
   gameEventGamePending();
   res.sendFile(__dirname + '/index.html');
-  serverSocket.emit('gamestate', {name: 'gamepending'});
 });
 
 
 function gameEventLost() {
+  gamestate = "gamelost";
+  serverSocket.emit('gamestate', {name: 'gamelost'});
   console.log('Lost');
   score = 0;
   console.log(`Score: ${score}`)
   inGame = false;
   emitScore(score);
+  gameEventGamePending();
 }
 
 function gameEventGoal() {
+  gamestate = "gamegoal";
+  serverSocket.emit('gamestate', {name: 'gamegoal'});
   console.log('GOAL!');
   console.log(`Score: ${score}`)
   inGame = false;
   emitScore(score);
-
+  gameEventGamePending();
 }
 
 function gameEventGameStarted() {
+  serverSocket.emit('gamestate', {name: 'gamestarted'});
+  gamestate = "gamestarted";
   console.log('Game started');
   score = 1000;
   inGame = true;
@@ -129,14 +135,25 @@ function gameEventGameStarted() {
 }
 
 function gameEventGamePending() {
+  gamestate = "gamepending";
+  serverSocket.emit('gamestate', {name: 'gamepending'});
   console.log('Game pending');
   score = 0;
   inGame = false;
+  gamecontroller.setXAngle(-2);
+  gamecontroller.setYAngle(2);
   emitScore(score);
 }
 
 console.log(`Connecting to port: ${portName}`);
 gamecontroller.openPort(portName, onXBNO, onXSpeed, onYBNO, onYSpeed);
+
+function startIfPending() {
+  console.log(`startIfPending, gamestate=${gamestate}`);
+  if (gamestate === 'gamepending') {
+    gameEventGameStarted();
+  }
+}
 
 io.on('connection', function (socket) {
   console.log(`socket.io event: connection id=${socket.id}`)
@@ -168,11 +185,13 @@ io.on('connection', function (socket) {
 
   socket.on('xsetpoint', function (data) {
     // console.log(`${'xsetpoint'} data:${JSON.stringify(data)}`);
+    startIfPending();
     gamecontroller.setXAngle(data.value);
   });
 
   socket.on('ysetpoint', function (data) {
     // console.log(`${'ysetpoint'} data:${JSON.stringify(data)}`);
+    startIfPending();
     gamecontroller.setYAngle(data.value);
   });
 
@@ -238,3 +257,12 @@ setInterval(function () {
     }
   }
 }, 500);
+
+
+var hasPerformedInit = false;
+setInterval(function () {
+  if (!hasPerformedInit) {
+    gameEventGamePending();
+    hasPerformedInit = true;
+  }
+}, 3000);
