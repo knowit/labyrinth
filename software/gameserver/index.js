@@ -249,14 +249,14 @@ function emitScore(t) {
 
 setInterval(function () {
   if (inGame) {
-    score = score - 10;
+    score = score - 1;
     if (score > 0) {
       emitScore(score);
     } else {
       gameEventLost();
     }
   }
-}, 500);
+}, 250);
 
 
 var hasPerformedInit = false;
