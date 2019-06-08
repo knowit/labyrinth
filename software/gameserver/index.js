@@ -1,12 +1,15 @@
 var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-
+let Highscore = require('./Highscore');
 var fs = require('fs');
 const GameController = require('../gamecontroller/js/index');
 var gamepad = require("gamepad");
 
 gamecontroller = new GameController();
+const highscore = new Highscore();
+highscore.load();
+console.log(highscore.entries);
 
 var score = 0;
 var inGame = false;
@@ -79,6 +82,12 @@ const onYSpeed = function (value) {
   emitToServerSocket('yspeed', value);
 };
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
@@ -103,6 +112,10 @@ app.get('/gamepending', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
+app.get('/highscore', function (req, res) {
+  res.send(highscore.entries);
+});
+
 
 function gameEventLost() {
   gamestate = "gamelost";
@@ -122,6 +135,10 @@ function gameEventGoal() {
   console.log(`Score: ${score}`)
   inGame = false;
   emitScore(score);
+  if( highscore.isNewHighScore(score)  ) {
+    highscore.addNewHighscore({name: 'AUTO', score:score })
+    highscore.save();
+  }
   gameEventGamePending();
 }
 
@@ -149,7 +166,6 @@ console.log(`Connecting to port: ${portName}`);
 gamecontroller.openPort(portName, onXBNO, onXSpeed, onYBNO, onYSpeed);
 
 function startIfPending() {
-  console.log(`startIfPending, gamestate=${gamestate}`);
   if (gamestate === 'gamepending') {
     gameEventGameStarted();
   }
@@ -259,10 +275,13 @@ setInterval(function () {
 }, 250);
 
 
+/*
 var hasPerformedInit = false;
 setInterval(function () {
   if (!hasPerformedInit) {
     gameEventGamePending();
     hasPerformedInit = true;
   }
-}, 3000);
+}, 8000);
+
+ */

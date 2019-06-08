@@ -4,6 +4,12 @@ import 'typeface-roboto';
 import Slider from '@material-ui/lab/Slider';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 
 class App extends Component {
 
@@ -27,12 +33,24 @@ class App extends Component {
       ybno: 0,
       xspeed: 0,
       yspeed: 0,
+      highscore: []
     };
   }
 
   componentDidMount() {
     this.socket.on('gamestate', data => {
       console.log(`gamestate: ${JSON.stringify(data)} `);
+
+      var t = this;
+      fetch('http://localhost:8080/highscore')
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(myJson) {
+          console.log(JSON.stringify(myJson));
+          t.setState({highscore: myJson})
+        });
+
       this.setState({gamestate: data.name})
     });
     this.socket.on('score', data => {
@@ -45,7 +63,11 @@ class App extends Component {
     this.socket.on("yspeed", data => this.setState({yspeed: data.value}));
   }
 
+
+
   render() {
+
+
     const {gamestate} = this.state;
     const {score} = this.state;
     const {xsetpoint} = this.state;
@@ -62,6 +84,8 @@ class App extends Component {
     const {ybno} = this.state;
     const {xspeed} = this.state;
     const {yspeed} = this.state;
+    const {highscore} = this.state;
+
     return (
       <div>
         {gamestate
@@ -75,6 +99,50 @@ class App extends Component {
           </p>
           : <p>score: 0
           </p>}
+        <Button
+          variant="contained"
+          onClick={() => {
+            fetch('http://localhost:8080/gamepending');
+          }}
+        >
+          Pending
+        </Button>
+        <Button
+          variant="contained"
+          onClick={() => {
+            fetch('http://localhost:8080/gamegoal');
+          }}
+        >
+          Goal
+        </Button>
+        <Button
+          variant="contained"
+          onClick={() => {
+            fetch('http://localhost:8080/gamelost');
+          }}
+        >
+          Lost
+        </Button>
+        <Paper >
+          <Table >
+            <TableHead>
+              <TableRow>
+                <TableCell>name</TableCell>
+                <TableCell align="right">Score</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {highscore.map(row => (
+                <TableRow key={row.name+row.score}>
+                  <TableCell component="th" scope="row">
+                    {row.name}
+                  </TableCell>
+                  <TableCell align="right">{row.score}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </Paper>
         <Paper>
           <Typography variant="h5" component="h3">
             X Setpoint
@@ -157,24 +225,6 @@ class App extends Component {
           />
           <Typography>
             {xKi}
-          </Typography>
-        </Paper>
-        <Paper>
-          <Typography variant="h5" component="h3">
-            X Kd
-
-          </Typography>
-          <Slider
-            onChange={(event, value) => {
-              this.setState({xKd: value});
-              this.socket.emit("xKd", {value: xKd});
-            }}
-            value={xKd}
-            min={0.}
-            max={+30.}
-          />
-          <Typography>
-            {xKd}
           </Typography>
         </Paper>
         <Paper>
@@ -274,24 +324,6 @@ class App extends Component {
           />
           <Typography>
             {yKi}
-          </Typography>
-        </Paper>
-        <Paper>
-          <Typography variant="h5" component="h3">
-            Y Kd
-
-          </Typography>
-          <Slider
-            onChange={(event, value) => {
-              this.setState({yKd: value});
-              this.socket.emit("yKd", {value: yKd});
-            }}
-            value={yKd}
-            min={0.}
-            max={+30.}
-          />
-          <Typography>
-            {yKd}
           </Typography>
         </Paper>
         <Paper>

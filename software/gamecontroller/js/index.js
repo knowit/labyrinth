@@ -1,5 +1,10 @@
 const SerialPort = require('serialport')
 
+SerialPort.list(function (err, ports) {
+  ports.forEach(function(port) {
+    console.log(`Found port:  ${port.comName}`);
+  });
+});
 
 function translate(input, inputMinA, inputMaxA, outputMin, outputMax) {
   return outputMin + (outputMax - outputMin) * (input - inputMinA) / (inputMaxA - inputMinA)

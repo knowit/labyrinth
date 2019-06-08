@@ -4,13 +4,19 @@
   "description": "Socket.io-based labyrinth game server",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "test": "jest",
+    "start": "node index.js",
+    "inithighscore": "node inithighscore.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "gamepad": "^1.6.0",
     "socketio": "^1.0.0"
+  },
+  "devDependencies": {
+    "jest": "^24.8.0"
   }
 }
+
+
