@@ -1,1 +1,1 @@
- pio device monitor -b 115200 -p /dev/cu.usbserial-A603VAQ6
+ pio device monitor -b 115200 -p /dev/cu.usbserial-A603VAQ9

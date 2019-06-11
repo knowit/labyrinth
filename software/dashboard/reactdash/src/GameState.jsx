@@ -10,6 +10,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import TextField from '@material-ui/core/TextField';
 
 class App extends Component {
 
@@ -33,7 +34,8 @@ class App extends Component {
       ybno: 0,
       xspeed: 0,
       yspeed: 0,
-      highscore: []
+      highscore: [],
+      name: ''
     };
   }
 
@@ -43,10 +45,10 @@ class App extends Component {
 
       var t = this;
       fetch('http://localhost:8080/highscore')
-        .then(function(response) {
+        .then(function (response) {
           return response.json();
         })
-        .then(function(myJson) {
+        .then(function (myJson) {
           console.log(JSON.stringify(myJson));
           t.setState({highscore: myJson})
         });
@@ -62,7 +64,6 @@ class App extends Component {
     this.socket.on("xspeed", data => this.setState({xspeed: data.value}));
     this.socket.on("yspeed", data => this.setState({yspeed: data.value}));
   }
-
 
 
   render() {
@@ -123,8 +124,37 @@ class App extends Component {
         >
           Lost
         </Button>
-        <Paper >
-          <Table >
+        <TextField
+          id="standard-number"
+          label="Name"
+          value={this.state.name}
+          onChange={(event, value) => {
+            this.setState({name: event.target.value});
+          }}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          margin="normal"
+        />
+        <Button
+          variant="contained"
+          onClick={() => {
+            console.log(this.state.name);
+            fetch('http://localhost:8080/addnewhighscore', {
+              method: 'post',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({name: this.state.name, score: score})
+            }).then(function(response) {
+            }).then(function(data) {
+            });
+          }}
+        >
+          Add to highscore
+        </Button>
+        <Paper>
+          <Table>
             <TableHead>
               <TableRow>
                 <TableCell>name</TableCell>
@@ -133,7 +163,7 @@ class App extends Component {
             </TableHead>
             <TableBody>
               {highscore.map(row => (
-                <TableRow key={row.name+row.score}>
+                <TableRow key={row.name + row.score}>
                   <TableCell component="th" scope="row">
                     {row.name}
                   </TableCell>

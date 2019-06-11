@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "gamepad": "^1.6.0",
     "socketio": "^1.0.0"
   },
@@ -18,5 +19,3 @@
     "jest": "^24.8.0"
   }
 }
-
-

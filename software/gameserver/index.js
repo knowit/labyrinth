@@ -1,6 +1,7 @@
 var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
+var bodyParser = require("body-parser");
 let Highscore = require('./Highscore');
 var fs = require('fs');
 const GameController = require('../gamecontroller/js/index');
@@ -82,11 +83,15 @@ const onYSpeed = function (value) {
   emitToServerSocket('yspeed', value);
 };
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
@@ -112,8 +117,21 @@ app.get('/gamepending', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
+app.get('/gamepending', function (req, res) {
+  gameEventGamePending();
+  res.sendFile(__dirname + '/index.html');
+});
+
 app.get('/highscore', function (req, res) {
   res.send(highscore.entries);
+});
+
+
+app.post('/addnewhighscore',function(request,response){
+  console.log(JSON.stringify(request.body));
+  highscore.addNewHighscore(request.body);
+  highscore.save();
+  response.sendFile(__dirname + '/index.html');
 });
 
 
@@ -135,11 +153,12 @@ function gameEventGoal() {
   console.log(`Score: ${score}`)
   inGame = false;
   emitScore(score);
-  if( highscore.isNewHighScore(score)  ) {
-    highscore.addNewHighscore({name: 'AUTO', score:score })
+  /*
+  if (highscore.isNewHighScore(score)) {
+    highscore.addNewHighscore({name: 'AUTO', score: score})
     highscore.save();
   }
-  gameEventGamePending();
+   */
 }
 
 function gameEventGameStarted() {
