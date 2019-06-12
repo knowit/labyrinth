@@ -1,0 +1,75 @@
+import cv2
+import numpy as np
+
+cap = cv2.VideoCapture(0)
+
+while(1):
+
+    # Take each frame
+    _, frame = cap.read()
+
+    # Convert BGR to HSV
+    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+
+    # define range of green color in HSV
+    lower_green = np.array([65,20, 20])
+    upper_green = np.array([85,150, 150])
+
+    lower_red = np.array([2, 150, 150])
+    upper_red = np.array([4, 255, 255])
+
+    # Threshold the HSV image to get only green colors
+    green_mask = cv2.inRange(hsv, lower_green, upper_green)
+    red_mask = cv2.inRange(hsv, lower_red, upper_red)
+
+    green_kernel = np.ones((5, 5), 'int')
+    green_dilated = cv2.dilate(green_mask, green_kernel)
+
+    red_kernel = np.ones((5, 5), 'int')
+    red_dilated = cv2.dilate(red_mask, red_kernel)
+
+    # Bitwise-AND mask and original image
+    green_res = cv2.bitwise_and(frame, frame, mask=green_mask)
+    ret, green_thrshed = cv2.threshold(cv2.cvtColor(green_res,cv2.COLOR_BGR2GRAY), 3, 255, cv2.THRESH_BINARY)
+    green_contours, hier = cv2.findContours(green_thrshed, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+
+    red_res = cv2.bitwise_and(frame, frame, mask=red_mask)
+    ret, red_thrshed = cv2.threshold(cv2.cvtColor(red_res,cv2.COLOR_BGR2GRAY), 3, 255, cv2.THRESH_BINARY)
+    red_contours, hier = cv2.findContours(red_thrshed, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+
+    # cv2.drawContours(frame, contours, -1, (0,255,0), 3)
+
+    for cnt in green_contours:
+        #Contour area is taken
+        area = cv2.contourArea(cnt)
+        print(cnt)
+
+        if area > 50:
+            cv2.putText(frame, "Green Object Detected", (10, 80), cv2.FONT_HERSHEY_SIMPLEX, 1, 1)
+            cv2.rectangle(frame, (5, 40), (400, 100), (0, 255, 255), 2)
+            M = cv2.moments(cnt)
+            cx = int(M['m10']/M['m00'])
+            cy = int(M['m01']/M['m00'])
+            cv2.circle(frame, (cx, cy), 25 , (124, 252, 0), 3)
+
+    for cnt in red_contours:
+        #Contour area is taken
+        area = cv2.contourArea(cnt)
+        print(cnt)
+
+        if area > 50:
+            cv2.putText(frame, "Red Object Detected", (10, 280), cv2.FONT_HERSHEY_SIMPLEX, 1, 1)
+            cv2.rectangle(frame, (5, 240), (400, 100), (0, 255, 255), 2)
+            M = cv2.moments(cnt)
+            cx = int(M['m10']/M['m00'])
+            cy = int(M['m01']/M['m00'])
+            cv2.circle(frame, (cx, cy), 25 , (0, 100, 100), 3)
+
+
+    cv2.imshow('frame', frame)
+
+    k = cv2.waitKey(5) & 0xFF
+    if k == 27:
+        break
+cap.release()
+cv2.destroyAllWindows()
