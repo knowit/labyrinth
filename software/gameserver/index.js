@@ -8,6 +8,7 @@ const GameController = require('../gamecontroller/js/index');
 var gamepad = require("gamepad");
 
 gamecontroller = new GameController();
+gamecontroller.printPorts();
 const highscore = new Highscore();
 highscore.load();
 console.log(highscore.entries);
@@ -90,7 +91,7 @@ app.use(function (req, res, next) {
 });
 
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
@@ -98,82 +99,94 @@ app.get('/', function (req, res) {
 });
 
 app.get('/gamestarted', function (req, res) {
-  gameEventGameStarted();
+  gameStateStarted();
   res.sendFile(__dirname + '/index.html');
 });
 
 app.get('/gamelost', function (req, res) {
-  gameEventLost();
+  gameStateLost();
   res.sendFile(__dirname + '/index.html');
 });
 
 app.get('/gamegoal', function (req, res) {
-  gameEventGoal();
+  gameStateGoal();
   res.sendFile(__dirname + '/index.html');
 });
 
 app.get('/gamepending', function (req, res) {
-  gameEventGamePending();
+  gameStatePending();
   res.sendFile(__dirname + '/index.html');
 });
 
 app.get('/gamepending', function (req, res) {
-  gameEventGamePending();
+  gameStatePending();
   res.sendFile(__dirname + '/index.html');
 });
+
+app.get('/newhighscore', function (req, res) {
+  gameStateNewHighscore();
+  res.sendFile(__dirname + '/index.html');
+});
+
 
 app.get('/highscore', function (req, res) {
   res.send(highscore.entries);
 });
 
 
-app.post('/addnewhighscore',function(request,response){
+app.post('/addnewhighscore', function (request, response) {
   console.log(JSON.stringify(request.body));
   highscore.addNewHighscore(request.body);
   highscore.save();
   response.sendFile(__dirname + '/index.html');
+  gameStatePending();
 });
 
 
-function gameEventLost() {
+function gameStateLost() {
+  console.log('Lost');
   gamestate = "gamelost";
   serverSocket.emit('gamestate', {name: 'gamelost'});
-  console.log('Lost');
   score = 0;
   console.log(`Score: ${score}`)
   inGame = false;
   emitScore(score);
-  gameEventGamePending();
+  gameStatePending();
 }
 
-function gameEventGoal() {
-  gamestate = "gamegoal";
-  serverSocket.emit('gamestate', {name: 'gamegoal'});
+function gameStateGoal() {
   console.log('GOAL!');
   console.log(`Score: ${score}`)
+  gamestate = "gamegoal";
+  serverSocket.emit('gamestate', {name: 'gamegoal'});
   inGame = false;
   emitScore(score);
-  /*
   if (highscore.isNewHighScore(score)) {
-    highscore.addNewHighscore({name: 'AUTO', score: score})
-    highscore.save();
+    gameStateNewHighscore();
   }
-   */
 }
 
-function gameEventGameStarted() {
-  serverSocket.emit('gamestate', {name: 'gamestarted'});
-  gamestate = "gamestarted";
+function gameStateStarted() {
   console.log('Game started');
+  gamestate = "gamestarted";
+  serverSocket.emit('gamestate', {name: 'gamestarted'});
   score = 1000;
   inGame = true;
   emitScore(score);
 }
 
-function gameEventGamePending() {
+function gameStateNewHighscore() {
+  console.log('New highscore!');
+  gamestate = "newhighscore";
+  serverSocket.emit('gamestate', {name: gamestate});
+  inGame = false;
+  emitScore(score);
+}
+
+function gameStatePending() {
+  console.log('Game pending');
   gamestate = "gamepending";
   serverSocket.emit('gamestate', {name: 'gamepending'});
-  console.log('Game pending');
   score = 0;
   inGame = false;
   gamecontroller.setXAngle(-2);
@@ -186,7 +199,7 @@ gamecontroller.openPort(portName, onXBNO, onXSpeed, onYBNO, onYSpeed);
 
 function startIfPending() {
   if (gamestate === 'gamepending') {
-    gameEventGameStarted();
+    gameStateStarted();
   }
 }
 
@@ -194,25 +207,6 @@ io.on('connection', function (socket) {
   console.log(`socket.io event: connection id=${socket.id}`)
 
   serverSocket = socket;
-
-  socket.on('gamestate', function (data) {
-    console.log(`gamestate: ${data.name}`);
-
-    if (data.name === 'gamestarted') {
-      gameEventGameStarted();
-    }
-
-    if (data.name === 'goal') {
-      gameEventGoal();
-    }
-
-    if (data.name === 'lost') {
-      gameEventLost();
-    }
-
-    serverSocket.emit('gamestate', data);
-  });
-
 
   socket.on('disconnect', function (socket) {
     console.log(`socket.io event: disconnect id=${socket.id}`)
@@ -250,6 +244,7 @@ io.on('connection', function (socket) {
     gamecontroller.setYKi(data.value);
   });
 
+  /*
   socket.on('xKd', function (data) {
     console.log(`${'xKd'} data:${JSON.stringify(data)}`);
     gamecontroller.setXKd(data.value);
@@ -259,6 +254,8 @@ io.on('connection', function (socket) {
     console.log(`${'xKd'} data:${JSON.stringify(data)}`);
     gamecontroller.setYKd(data.value);
   });
+
+   */
 
   socket.on('xCalibration', function (data) {
     console.log(`${'xCalibration'} data:${JSON.stringify(data)}`);
@@ -288,7 +285,7 @@ setInterval(function () {
     if (score > 0) {
       emitScore(score);
     } else {
-      gameEventLost();
+      gameStateLost();
     }
   }
 }, 250);

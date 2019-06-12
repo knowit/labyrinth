@@ -10,7 +10,7 @@ class Axis {
 private:
     Servo xServo;
     int servoPort;
-    double Kp = 5., Ki = .5, Kd = .0;
+    double Kp = 2., Ki = 2., Kd = .0;
     PID myPID;
     int serialbnoAnglePrefix = -1;
     int serialSpeedAdjustedPrefix = -1;

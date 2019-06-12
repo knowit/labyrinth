@@ -124,35 +124,41 @@ class App extends Component {
         >
           Lost
         </Button>
-        <TextField
-          id="standard-number"
-          label="Name"
-          value={this.state.name}
-          onChange={(event, value) => {
-            this.setState({name: event.target.value});
-          }}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          margin="normal"
-        />
-        <Button
-          variant="contained"
-          onClick={() => {
-            console.log(this.state.name);
-            fetch('http://localhost:8080/addnewhighscore', {
-              method: 'post',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({name: this.state.name, score: score})
-            }).then(function(response) {
-            }).then(function(data) {
-            });
-          }}
-        >
-          Add to highscore
-        </Button>
+        {gamestate === 'newhighscore' ?
+          <div>
+            <TextField
+              id="standard-number"
+              label="Name"
+              value={this.state.name}
+              onChange={(event, value) => {
+                this.setState({name: event.target.value});
+              }}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              margin="normal"
+            />
+            <Button
+              variant="contained"
+              onClick={() => {
+                console.log(this.state.name);
+                const t = this;
+                fetch('http://localhost:8080/addnewhighscore', {
+                  method: 'post',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({name: this.state.name, score: score})
+                }).then(function(response) {
+                }).then(function(data) {
+                  t.setState({name: ''});
+                });
+              }}
+            >
+              Add to highscore
+            </Button>
+          </div>
+          : ''}
         <Paper>
           <Table>
             <TableHead>
