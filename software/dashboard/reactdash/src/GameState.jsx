@@ -82,9 +82,17 @@ class App extends Component {
     const getGameState = (state) => {
       switch(state) {
         case 'newhighscore':
-          return 'WON';
+          return 'WON!';
         case 'unknown':
           return 'IDLE';
+        case 'gamepending':
+          return 'PENDING';
+        case 'gamestarted':
+          return 'STARTED';
+        case 'gamegoal':
+          return 'WON!';
+        case 'gamelost':
+          return 'LOST!';
         default:
           return 'IDLE';
       }
