@@ -1,13 +1,26 @@
+html,
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  width: 100%;
+  height: 100%;
+}
+
+@font-face {
+  font-family: 'retro-gaming';
+  src: URL('./retro-gaming.ttf') format('truetype');
+}
+
+body {
+  min-height: 100%;
+  font-family: "retro-gaming";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+#root {
+  height: 100%;
+}
+
+.App {
+  height: 100%;
 }

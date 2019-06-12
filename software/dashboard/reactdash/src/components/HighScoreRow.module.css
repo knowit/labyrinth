@@ -1,0 +1,15 @@
+:local(.root) {
+  color: #54ffff;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  width: 400px;
+  font-size: 60px;
+}
+
+:local(.name) {
+
+}
+
+:local(.score) {
+  text-align: end;
+}

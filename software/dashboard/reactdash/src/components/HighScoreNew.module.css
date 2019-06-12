@@ -1,0 +1,41 @@
+:local(.root) {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: auto;
+  top: 30%;
+  border: 10px solid #ff54ff;
+  width: 70%;
+  height: 40%;
+  background: black;
+}
+
+:local(.title) {
+  font-size: 60px;
+  color: #54ffff;
+}
+
+:local(.userInput) {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+:local(.input) {
+  height: 60px;
+  width: 300px;
+  font-size: 40px;
+  font-family: "retro-gaming";
+}
+
+:local(.button) {
+  border: 0;
+  background: #54ffff;
+  color: black;
+  font-family: "retro-gaming";
+  font-size: 40px;
+  box-shadow: none;
+  border-radius: 0px;
+  height: 66px;
+  margin-left: 40px;
+}
