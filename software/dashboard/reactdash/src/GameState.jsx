@@ -9,9 +9,10 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      gamestate: 'newhighscore', // 'unknown',
+      gamestate: 'unknown',
       score: -99,
       highscore: [
+        /*
         {
           name: 'PEE',
           score: 23123,
@@ -48,6 +49,7 @@ class App extends Component {
           name: 'ASS',
           score: 69,
         },
+        */
       ],
     };
   }
