@@ -1,5 +1,9 @@
 [
   {
+    "name": "AAA",
+    "score": 10
+  },
+  {
     "name": "BBB",
     "score": 20
   },
@@ -34,9 +38,5 @@
   {
     "name": "JJJ",
     "score": 100
-  },
-  {
-    "name": "AA974!!",
-    "score": 974
   }
 ]
