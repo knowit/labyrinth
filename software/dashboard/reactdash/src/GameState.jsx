@@ -4,7 +4,7 @@ import HighScoreNew from './components/HighScoreNew';
 import HighScoreRow from './components/HighScoreRow';
 import styles from './GameState.module.css';
 
-class App extends Component {
+class GameState extends Component {
 
   constructor() {
     super();
@@ -99,7 +99,7 @@ class App extends Component {
     }
 
     return (
-      <div className={styles.root}>
+      <div className={`${styles.root} ${this.props.visible ? '' : styles.invisible}`}>
         {gamestate === 'newhighscore' ?
           <HighScoreNew score={this.state.score} /> : ''}
 
@@ -128,4 +128,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default GameState;

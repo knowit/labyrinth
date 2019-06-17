@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import Slider from '@material-ui/lab/Slider';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import Slider from './components/Slider';
 import styles from './Controls.module.css';
 
 class Controls extends Component {
@@ -39,10 +37,8 @@ class Controls extends Component {
     const {yCalibration} = this.state;
     const {xKp} = this.state;
     const {xKi} = this.state;
-    const {xKd} = this.state;
     const {yKp} = this.state;
     const {yKi} = this.state;
-    const {yKd} = this.state;
     const {ysetpoint} = this.state;
     const {xbno} = this.state;
     const {ybno} = this.state;
@@ -50,202 +46,110 @@ class Controls extends Component {
     const {yspeed} = this.state;
     return (
       <div className={styles.root}>
-        <Paper>
-          <Typography variant="h5" component="h3">
-            X Setpoint
-          </Typography>
-          <Slider
-            onChange={(event, value) => {
-              this.setState({xsetpoint: value});
-              this.props.socket.emit("xsetpoint", {value: xsetpoint});
-            }}
-            value={xsetpoint}
-            min={-5.}
-            max={+5.}
-          />
-          <Typography>
-            {xsetpoint}
-          </Typography>
-        </Paper>
-        <Paper>
-          <Typography variant="h5" component="h3">
-            X Angle
-          </Typography>
-          <Slider
-            value={xbno}
-            min={-5.}
-            max={+5.}
-          />
-          <Typography>
-            {xbno}
-          </Typography>
-        </Paper>
-        <Paper>
-          <Typography variant="h5" component="h3">
-            X Calibration
-
-          </Typography>
-          <Slider
-            onChange={(event, value) => {
-              this.setState({xCalibration: value});
-              this.props.socket.emit("xCalibration", {value: xCalibration});
-            }}
-            value={xCalibration}
-            min={-3.}
-            max={+3.}
-          />
-          <Typography>
-            {xCalibration}
-          </Typography>
-        </Paper>
-        <Paper>
-          <Typography variant="h5" component="h3">
-            X Kp
-
-          </Typography>
-          <Slider
-            onChange={(event, value) => {
-              this.setState({xKp: value});
-              this.props.socket.emit("xKp", {value: xKp});
-            }}
-            value={xKp}
-            min={0.}
-            max={+30.}
-          />
-          <Typography>
-            {xKp}
-          </Typography>
-        </Paper>
-        <Paper>
-          <Typography variant="h5" component="h3">
-            X Ki
-
-          </Typography>
-          <Slider
-            onChange={(event, value) => {
-              this.setState({xKi: value});
-              this.props.socket.emit("xKi", {value: xKi});
-            }}
-            value={xKi}
-            min={0.}
-            max={+30.}
-          />
-          <Typography>
-            {xKi}
-          </Typography>
-        </Paper>
-        <Paper>
-          <Typography variant="h5" component="h3">
-            X Speed
-          </Typography>
-          <Slider
-            value={xspeed}
-            min={-5.}
-            max={+5.}
-          />
-          <Typography>
-            {xspeed}
-          </Typography>
-        </Paper>
-
-
-        <Paper>
-          <Typography variant="h5" component="h3">
-            Y Setpoint
-          </Typography>
-          <Slider
-            onChange={(event, value) => {
-              this.setState({ysetpoint: value});
-              this.props.socket.emit("ysetpoint", {value: ysetpoint});
-            }}
-            value={ysetpoint}
-            min={-5.}
-            max={+5.}
-          />
-          <Typography>
-            {ysetpoint}
-          </Typography>
-        </Paper>
-        <Paper>
-          <Typography variant="h5" component="h3">
-            Y Angle
-          </Typography>
-          <Slider
-            value={ybno}
-            min={-5.}
-            max={+5.}
-          />
-          <Typography>
-            {ybno}
-          </Typography>
-        </Paper>
-        <Paper>
-          <Typography variant="h5" component="h3">
-            Y Calibration
-
-          </Typography>
-          <Slider
-            onChange={(event, value) => {
-              this.setState({yCalibration: value});
-              this.props.socket.emit("yCalibration", {value: yCalibration});
-            }}
-            value={yCalibration}
-            min={-3.}
-            max={+3.}
-          />
-          <Typography>
-            {yCalibration}
-          </Typography>
-        </Paper>
-        <Paper>
-          <Typography variant="h5" component="h3">
-            Y Kp
-
-          </Typography>
-          <Slider
-            onChange={(event, value) => {
-              this.setState({yKp: value});
-              this.props.socket.emit("yKp", {value: yKp});
-            }}
-            value={yKp}
-            min={0.}
-            max={+30.}
-          />
-          <Typography>
-            {yKp}
-          </Typography>
-        </Paper>
-        <Paper>
-          <Typography variant="h5" component="h3">
-            Y Ki
-
-          </Typography>
-          <Slider
-            onChange={(event, value) => {
-              this.setState({yKi: value});
-              this.props.socket.emit("yKi", {value: yKi});
-            }}
-            value={yKi}
-            min={0.}
-            max={+30.}
-          />
-          <Typography>
-            {yKi}
-          </Typography>
-        </Paper>
-        <Paper>
-          <Typography variant="h5" component="h3">
-            Y Speed
-          </Typography>
-          <Slider
-            value={yspeed}
-            min={-5.}
-            max={+5.}
-          />
-          <Typography>
-            {yspeed}
-          </Typography>
-        </Paper>
+        <Slider
+          onChange={(event, value) => {
+            this.setState({xsetpoint: value});
+            this.props.socket.emit("xsetpoint", {value: xsetpoint});
+          }}
+          value={xsetpoint}
+          min={-5.}
+          max={+5.}
+          title="X Setpoint"
+        />
+        <Slider
+          value={xbno}
+          min={-5.}
+          max={+5.}
+          title="X Angle"
+        />
+        <Slider
+          onChange={(event, value) => {
+            this.setState({xCalibration: value});
+            this.props.socket.emit("xCalibration", {value: xCalibration});
+          }}
+          value={xCalibration}
+          min={-3.}
+          max={+3.}
+          title="X Calibration"
+        />
+        <Slider
+          onChange={(event, value) => {
+            this.setState({xKp: value});
+            this.props.socket.emit("xKp", {value: xKp});
+          }}
+          value={xKp}
+          min={0.}
+          max={+30.}
+          title="X Kp"
+        />
+        <Slider
+          onChange={(event, value) => {
+            this.setState({xKi: value});
+            this.props.socket.emit("xKi", {value: xKi});
+          }}
+          value={xKi}
+          min={0.}
+          max={+30.}
+          title="X Ki"
+        />
+        <Slider
+          value={xspeed}
+          min={-5.}
+          max={+5.}
+          title="X Speed"
+        />
+        <Slider
+          onChange={(event, value) => {
+            this.setState({ysetpoint: value});
+            this.props.socket.emit("ysetpoint", {value: ysetpoint});
+          }}
+          value={ysetpoint}
+          min={-5.}
+          max={+5.}
+          title="Y Setpoint"
+        />
+        <Slider
+          value={ybno}
+          min={-5.}
+          max={+5.}
+          title="Y Angle"
+        />
+        <Slider
+          onChange={(event, value) => {
+            this.setState({yCalibration: value});
+            this.props.socket.emit("yCalibration", {value: yCalibration});
+          }}
+          value={yCalibration}
+          min={-3.}
+          max={+3.}
+          title="Y Calibration"
+        />
+        <Slider
+          onChange={(event, value) => {
+            this.setState({yKp: value});
+            this.props.socket.emit("yKp", {value: yKp});
+          }}
+          value={yKp}
+          min={0.}
+          max={+30.}
+          title="Y Kp"
+        />
+        <Slider
+          onChange={(event, value) => {
+            this.setState({yKi: value});
+            this.props.socket.emit("yKi", {value: yKi});
+          }}
+          value={yKi}
+          min={0.}
+          max={+30.}
+          title="Y Ki"
+        />
+        <Slider
+          value={yspeed}
+          min={-5.}
+          max={+5.}
+          title="Y Speed"
+        />
       </div>
     );
   }

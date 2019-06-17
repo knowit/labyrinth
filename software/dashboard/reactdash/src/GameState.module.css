@@ -8,6 +8,10 @@
   opacity: 0.87;
 }
 
+:local(.invisible) {
+  visibility: hidden;
+}
+
 :local(.gameStatus) {
   display: flex;
   flex-direction: column;
