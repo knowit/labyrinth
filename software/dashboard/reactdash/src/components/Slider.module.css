@@ -9,7 +9,6 @@
   border-radius: 5px;   
   background: #d3d3d3;
   outline: none;
-  opacity: 0.7;
   -webkit-transition: .2s;
   transition: opacity .2s;
 }
@@ -20,7 +19,7 @@
   width: 25px;
   height: 25px;
   border-radius: 50%; 
-  background: #fee715ff;
+  background: #FF8300;
   cursor: pointer;
 }
 
@@ -28,6 +27,6 @@
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background: #fee715ff;
+  background: #FF8300;
   cursor: pointer;
 }

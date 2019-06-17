@@ -24,7 +24,7 @@ class App extends Component {
           {this.state.gameStateOnTop ? 'Hide' : 'Show'}
         </button>
         <Controls socket={this.socket} />
-        <GameStatus socket={this.socket} visible={this.state.gameStateOnTop}/>
+        <GameStatus socket={this.socket} visible={this.state.gameStateOnTop} />
       </div>
     );
   }
