@@ -1,17 +1,12 @@
 import cv2
 import numpy as np
-from picamera.array import PiRGBArray
-from picamera import PiCamera
 import time
+import requests
 
 GOAL_AREA_START = (240, 180)
 GOAL_AREA_END = (340, 300)
 
-# initialize the camera and grab a reference to the raw camera capture
-camera = PiCamera()
-camera.resolution = (640, 480)
-camera.framerate = 30
-rawCapture = PiRGBArray(camera, size=(640, 480))
+cap = cv2.VideoCapture(0)
 
 # allow the camera to warmup
 time.sleep(0.1)
@@ -40,18 +35,23 @@ def is_ball_lost():
         return ball_last_seen + 1000 < time_now_ms
 
 def check_if_won():
-    if is_ball_lost() and ball_is_within_goal: print('GOAL!')
+    if is_ball_lost() and ball_is_within_goal:
+        global ball_is_seen
+        if not ball_is_seen:
+            print('WON!')
+            ball_is_seen = True
 
 def check_if_lost():
-    if is_ball_lost() and not ball_is_within_goal: print('LOOOOSER!')
+    if is_ball_lost() and not ball_is_within_goal:
+        global ball_is_seen
+        if not ball_is_seen:
+            print('LOST!')
+            ball_is_seen = True
 
 def run():
     # capture frames from the camera
-    for fr in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
-        # grab the raw NumPy array representing the image, then initialize the timestamp
-        # and occupied/unoccupied text
-        frame = fr.array
-        rawCapture.truncate(0)
+    while(True):
+        _, frame = cap.read()
 
         # Convert BGR to HSV
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
