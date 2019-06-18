@@ -11,46 +11,7 @@ class GameState extends Component {
     this.state = {
       gamestate: 'unknown',
       score: -99,
-      highscore: [
-        /*
-        {
-          name: 'PEE',
-          score: 23123,
-        },
-        {
-          name: 'ASS',
-          score: 69,
-        },{
-          name: 'PEE',
-          score: 23123,
-        },
-        {
-          name: 'ASS',
-          score: 69,
-        },{
-          name: 'PEE',
-          score: 23123,
-        },
-        {
-          name: 'ASS',
-          score: 69,
-        },{
-          name: 'PEE',
-          score: 23123,
-        },
-        {
-          name: 'ASS',
-          score: 69,
-        },{
-          name: 'PEE',
-          score: 23123,
-        },
-        {
-          name: 'ASS',
-          score: 69,
-        },
-        */
-      ],
+      highscore: [],
     };
   }
 
@@ -120,6 +81,7 @@ class GameState extends Component {
             <HighScoreRow
               name={row.name}
               score={row.score}
+              key={row.name + row.score}
             />
           ))}
         </div>

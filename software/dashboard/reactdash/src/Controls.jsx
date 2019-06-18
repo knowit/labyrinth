@@ -31,6 +31,10 @@ class Controls extends Component {
     this.props.socket.on("yspeed", data => this.setState({yspeed: data.value}));
   }
 
+  handleChange(event) {
+    console.log(event);
+  }
+
   render() {
     const {xsetpoint} = this.state;
     const {xCalibration} = this.state;
@@ -47,8 +51,8 @@ class Controls extends Component {
     return (
       <div className={styles.root}>
         <Slider
-          onChange={(event, value) => {
-            this.setState({xsetpoint: value});
+          onChange={(event) => {
+            this.setState({xsetpoint: event.target.value});
             this.props.socket.emit("xsetpoint", {value: xsetpoint});
           }}
           value={xsetpoint}
@@ -61,10 +65,11 @@ class Controls extends Component {
           min={-5.}
           max={+5.}
           title="X Angle"
+          readOnly
         />
         <Slider
-          onChange={(event, value) => {
-            this.setState({xCalibration: value});
+          onChange={(event) => {
+            this.setState({xCalibration: event.target.value});
             this.props.socket.emit("xCalibration", {value: xCalibration});
           }}
           value={xCalibration}
@@ -73,8 +78,8 @@ class Controls extends Component {
           title="X Calibration"
         />
         <Slider
-          onChange={(event, value) => {
-            this.setState({xKp: value});
+          onChange={(event) => {
+            this.setState({xKp: event.target.value});
             this.props.socket.emit("xKp", {value: xKp});
           }}
           value={xKp}
@@ -83,8 +88,8 @@ class Controls extends Component {
           title="X Kp"
         />
         <Slider
-          onChange={(event, value) => {
-            this.setState({xKi: value});
+          onChange={(event) => {
+            this.setState({xKi: event.target.value});
             this.props.socket.emit("xKi", {value: xKi});
           }}
           value={xKi}
@@ -94,16 +99,17 @@ class Controls extends Component {
         />
         <Slider
           value={xspeed}
+          readOnly
           min={-5.}
           max={+5.}
           title="X Speed"
         />
         <Slider
-          onChange={(event, value) => {
-            this.setState({ysetpoint: value});
+          onChange={(event) => {
+            this.setState({ysetpoint: event.target.value});
             this.props.socket.emit("ysetpoint", {value: ysetpoint});
           }}
-          value={ysetpoint}
+          value={this.state.ysetpoint}
           min={-5.}
           max={+5.}
           title="Y Setpoint"
@@ -113,10 +119,11 @@ class Controls extends Component {
           min={-5.}
           max={+5.}
           title="Y Angle"
+          readOnly
         />
         <Slider
-          onChange={(event, value) => {
-            this.setState({yCalibration: value});
+          onChange={(event) => {
+            this.setState({yCalibration: event.target.value});
             this.props.socket.emit("yCalibration", {value: yCalibration});
           }}
           value={yCalibration}
@@ -125,8 +132,8 @@ class Controls extends Component {
           title="Y Calibration"
         />
         <Slider
-          onChange={(event, value) => {
-            this.setState({yKp: value});
+          onChange={(event) => {
+            this.setState({yKp: event.target.value});
             this.props.socket.emit("yKp", {value: yKp});
           }}
           value={yKp}
@@ -135,8 +142,8 @@ class Controls extends Component {
           title="Y Kp"
         />
         <Slider
-          onChange={(event, value) => {
-            this.setState({yKi: value});
+          onChange={(event) => {
+            this.setState({yKi: event.target.value});
             this.props.socket.emit("yKi", {value: yKi});
           }}
           value={yKi}
@@ -149,6 +156,7 @@ class Controls extends Component {
           min={-5.}
           max={+5.}
           title="Y Speed"
+          readOnly
         />
       </div>
     );

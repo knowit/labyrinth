@@ -13,6 +13,7 @@ const Slider = (props) => (
       max={props.max}
       value={props.value}
       onChange={props.onChange}
+      readOnly={props.readOnly}
     />
     <div className={styles.value}>
       {props.value}
