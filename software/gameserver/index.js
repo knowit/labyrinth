@@ -35,6 +35,7 @@ function addGamePadSupport() {
 
 // Listen for move events on all gamepads
   gamepad.on("move", function (id, axis, value) {
+	  // console.log(axis);
     /*
     console.log("move", {
       id: id,
@@ -42,12 +43,12 @@ function addGamePadSupport() {
       value: value,
     });
     */
-    if (axis === 7) {
+    if (axis === 5) {
       // console.log(value);
       startIfPending();
       gamecontroller.setXAngle(value * 5);
     }
-    if (axis === 8) {
+    if (axis === 9) {
       // console.log(value);
       startIfPending();
       gamecontroller.setYAngle(value * 5);

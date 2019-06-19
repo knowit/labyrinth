@@ -14,6 +14,7 @@ time.sleep(0.1)
 ball_last_seen = int(round(time.time() * 1000)) + 5000 # in milliseconds
 ball_is_seen = False
 ball_is_within_goal = False
+game_status_updated = False
 
 
 def update_ball_is_within_goal(ball_x, ball_y):
@@ -27,6 +28,8 @@ def update_ball_last_seen():
     current_time_ms = int(round(time.time() * 1000))
     ball_last_seen = current_time_ms
     ball_is_seen = True
+    global game_status_updated
+    game_status_updated = False
 
 def is_ball_lost():
     if ball_is_seen: return False
@@ -36,17 +39,19 @@ def is_ball_lost():
 
 def check_if_won():
     if is_ball_lost() and ball_is_within_goal:
-        global ball_is_seen
-        if not ball_is_seen:
+        global game_status_updated
+        if not game_status_updated:
             print('WON!')
-            ball_is_seen = True
+            requests.get("http://localhost:8080/gamegoal")
+            game_status_updated = True
 
 def check_if_lost():
     if is_ball_lost() and not ball_is_within_goal:
-        global ball_is_seen
-        if not ball_is_seen:
+        global game_status_updated
+        if not game_status_updated:
             print('LOST!')
-            ball_is_seen = True
+            requests.get("http://localhost:8080/gamelost")
+            game_status_updated = True
 
 def run():
     # capture frames from the camera
