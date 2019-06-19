@@ -26,7 +26,11 @@ class GameState extends Component {
         })
         .then(function (myJson) {
           console.log(JSON.stringify(myJson));
-          t.setState({ highscore: myJson })
+          t.setState({ highscore: myJson.map((item, index) => ({
+            ...item,
+            id: index,
+          }))
+        })
         });
 
       this.setState({ gamestate: data.name })
@@ -77,11 +81,11 @@ class GameState extends Component {
         </div>
         
         <div className={styles.highScoreTable}>
-          {highscore.sort((a, b) => b.score - a.score).map(row => (
+          {highscore.sort((a, b) => b.score - a.score).slice(0, 10).map(row => (
             <HighScoreRow
               name={row.name}
               score={row.score}
-              key={row.name + row.score}
+              key={row.id}
             />
           ))}
         </div>
