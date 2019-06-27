@@ -17,37 +17,43 @@ class HighScoreNew extends Component {
           New highscore!
         </div>
         <div className={styles.userInput}>
-          <input
-            className={styles.input}
-            label="Name"
-            value={this.state.name}
-            onChange={(event, value) => {
-              this.setState({ name: event.target.value });
-            }}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            margin="normal"
-          />
-          <button
-            className={styles.button}
-            onClick={() => {
-              console.log(this.state.name);
-              const t = this;
-              fetch('http://localhost:8080/addnewhighscore', {
-                method: 'post',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ name: this.state.name, score: this.props.score })
-              }).then(function(response) {
-              }).then(function(data) {
-                t.setState({ name: '' });
-              });
-            }}
+          <form onSubmit={(event) => {
+            event.preventDefault();
+            console.log(this.state.name);
+            const t = this;
+            fetch('http://localhost:8080/addnewhighscore', {
+              method: 'post',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ name: this.state.name, score: this.props.score })
+            }).then(function(response) {
+            }).then(function(data) {
+              t.setState({ name: '' });
+            })
+          }}
           >
-            Add to highscore
-          </button>
+            <input
+              autoFocus
+              className={styles.input}
+              label="Name"
+              value={this.state.name}
+              onChange={(event, value) => {
+                if (event.target.value.length > 3) return;
+                this.setState({ name: event.target.value.toUpperCase() });
+              }}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              margin="normal"
+            />
+            <button
+              type="submit"
+              className={styles.button}
+            >
+              Add to highscore
+            </button>
+          </form>
         </div>
       </div>
     )

@@ -6,6 +6,11 @@
   flex-direction: row;
   justify-content: center;
   opacity: 0.87;
+  z-index: 1;
+}
+
+:local(.invisible) {
+  visibility: hidden;
 }
 
 :local(.gameStatus) {

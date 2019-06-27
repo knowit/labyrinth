@@ -1,6 +1,6 @@
 :local(.root) {
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  z-index: 2; /* Sit on top */
   left: auto;
   top: 30%;
   border: 10px solid #ff54ff;
@@ -38,4 +38,5 @@
   border-radius: 0px;
   height: 66px;
   margin-left: 40px;
+  outline: none;
 }

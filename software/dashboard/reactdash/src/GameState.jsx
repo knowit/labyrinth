@@ -4,53 +4,14 @@ import HighScoreNew from './components/HighScoreNew';
 import HighScoreRow from './components/HighScoreRow';
 import styles from './GameState.module.css';
 
-class App extends Component {
+class GameState extends Component {
 
   constructor() {
     super();
     this.state = {
       gamestate: 'unknown',
       score: -99,
-      highscore: [
-        /*
-        {
-          name: 'PEE',
-          score: 23123,
-        },
-        {
-          name: 'ASS',
-          score: 69,
-        },{
-          name: 'PEE',
-          score: 23123,
-        },
-        {
-          name: 'ASS',
-          score: 69,
-        },{
-          name: 'PEE',
-          score: 23123,
-        },
-        {
-          name: 'ASS',
-          score: 69,
-        },{
-          name: 'PEE',
-          score: 23123,
-        },
-        {
-          name: 'ASS',
-          score: 69,
-        },{
-          name: 'PEE',
-          score: 23123,
-        },
-        {
-          name: 'ASS',
-          score: 69,
-        },
-        */
-      ],
+      highscore: [],
     };
   }
 
@@ -65,7 +26,11 @@ class App extends Component {
         })
         .then(function (myJson) {
           console.log(JSON.stringify(myJson));
-          t.setState({ highscore: myJson })
+          t.setState({ highscore: myJson.map((item, index) => ({
+            ...item,
+            id: index,
+          }))
+        })
         });
 
       this.setState({ gamestate: data.name })
@@ -99,7 +64,7 @@ class App extends Component {
     }
 
     return (
-      <div className={styles.root}>
+      <div className={`${styles.root} ${this.props.visible ? '' : styles.invisible}`}>
         {gamestate === 'newhighscore' ?
           <HighScoreNew score={this.state.score} /> : ''}
 
@@ -116,10 +81,11 @@ class App extends Component {
         </div>
         
         <div className={styles.highScoreTable}>
-          {highscore.sort((a, b) => b.score - a.score).map(row => (
+          {highscore.sort((a, b) => b.score - a.score).slice(0, 10).map(row => (
             <HighScoreRow
               name={row.name}
               score={row.score}
+              key={row.id}
             />
           ))}
         </div>
@@ -128,4 +94,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default GameState;

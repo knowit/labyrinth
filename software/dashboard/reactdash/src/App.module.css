@@ -1,0 +1,16 @@
+:local(.toggleButton) {
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+  right: 0;
+  border: 0;
+  background: #54ffff;
+  color: black;
+  font-family: "retro-gaming";
+  font-size: 40px;
+  box-shadow: none;
+  border-radius: 0px;
+  height: 66px;
+  margin-left: 40px;
+  outline: none;
+}
