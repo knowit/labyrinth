@@ -35,6 +35,7 @@ function addGamePadSupport() {
 
 // Listen for move events on all gamepads
   gamepad.on("move", function (id, axis, value) {
+	  // console.log(axis);
     /*
     console.log("move", {
       id: id,
@@ -42,12 +43,12 @@ function addGamePadSupport() {
       value: value,
     });
     */
-    if (axis === 7) {
+    if (axis === 5) {
       // console.log(value);
       startIfPending();
       gamecontroller.setXAngle(value * 5);
     }
-    if (axis === 8) {
+    if (axis === 9) {
       // console.log(value);
       startIfPending();
       gamecontroller.setYAngle(value * 5);
@@ -147,11 +148,14 @@ function gameStateLost() {
   console.log('Lost');
   gamestate = "gamelost";
   serverSocket.emit('gamestate', {name: 'gamelost'});
-  score = 0;
-  console.log(`Score: ${score}`)
   inGame = false;
-  emitScore(score);
-  gameStatePending();
+  var i = setInterval(function () {
+    gameStatePending();
+	score = 0;
+    console.log(`Score: ${score}`)
+    emitScore(score);
+	clearInterval(i);
+	}, 3000);
 }
 
 function gameStateGoal() {
@@ -170,7 +174,7 @@ function gameStateStarted() {
   console.log('Game started');
   gamestate = "gamestarted";
   serverSocket.emit('gamestate', {name: 'gamestarted'});
-  score = 1000;
+  score = 10000;
   inGame = true;
   emitScore(score);
 }
@@ -288,7 +292,7 @@ setInterval(function () {
       gameStateLost();
     }
   }
-}, 250);
+}, 10);
 
 
 /*
