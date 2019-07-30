@@ -148,11 +148,14 @@ function gameStateLost() {
   console.log('Lost');
   gamestate = "gamelost";
   serverSocket.emit('gamestate', {name: 'gamelost'});
-  score = 0;
-  console.log(`Score: ${score}`)
   inGame = false;
-  emitScore(score);
-  gameStatePending();
+  var i = setInterval(function () {
+    gameStatePending();
+	score = 0;
+    console.log(`Score: ${score}`)
+    emitScore(score);
+	clearInterval(i);
+	}, 3000);
 }
 
 function gameStateGoal() {
@@ -171,7 +174,7 @@ function gameStateStarted() {
   console.log('Game started');
   gamestate = "gamestarted";
   serverSocket.emit('gamestate', {name: 'gamestarted'});
-  score = 1000;
+  score = 10000;
   inGame = true;
   emitScore(score);
 }
@@ -289,7 +292,7 @@ setInterval(function () {
       gameStateLost();
     }
   }
-}, 250);
+}, 10);
 
 
 /*

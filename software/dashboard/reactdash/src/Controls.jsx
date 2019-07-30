@@ -73,8 +73,8 @@ class Controls extends Component {
             this.props.socket.emit("xCalibration", {value: parseFloat(xCalibration)});
           }}
           value={xCalibration}
-          min={-3.}
-          max={+3.}
+          min={-5.}
+          max={+5.}
           title="X Calibration"
         />
         <Slider
@@ -127,8 +127,8 @@ class Controls extends Component {
             this.props.socket.emit("yCalibration", {value: parseFloat(yCalibration)});
           }}
           value={yCalibration}
-          min={-3.}
-          max={+3.}
+          min={-5.}
+          max={+5.}
           title="Y Calibration"
         />
         <Slider
