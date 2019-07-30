@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Slider from './components/Slider';
 import styles from './Controls.module.css';
 
@@ -53,7 +53,7 @@ class Controls extends Component {
         <Slider
           onChange={(event) => {
             this.setState({xsetpoint: event.target.value});
-            this.props.socket.emit("xsetpoint", {value: xsetpoint});
+            this.props.socket.emit("xsetpoint", {value: parseFloat(xsetpoint)});
           }}
           value={xsetpoint}
           min={-5.}
@@ -70,17 +70,17 @@ class Controls extends Component {
         <Slider
           onChange={(event) => {
             this.setState({xCalibration: event.target.value});
-            this.props.socket.emit("xCalibration", {value: xCalibration});
+            this.props.socket.emit("xCalibration", {value: parseFloat(xCalibration)});
           }}
           value={xCalibration}
-          min={-3.}
-          max={+3.}
+          min={-8.}
+          max={+8.}
           title="X Calibration"
         />
         <Slider
           onChange={(event) => {
             this.setState({xKp: event.target.value});
-            this.props.socket.emit("xKp", {value: xKp});
+            this.props.socket.emit("xKp", {value: parseFloat(xKp)});
           }}
           value={xKp}
           min={0.}
@@ -90,7 +90,7 @@ class Controls extends Component {
         <Slider
           onChange={(event) => {
             this.setState({xKi: event.target.value});
-            this.props.socket.emit("xKi", {value: xKi});
+            this.props.socket.emit("xKi", {value: parseFloat(xKi)});
           }}
           value={xKi}
           min={0.}
@@ -107,7 +107,7 @@ class Controls extends Component {
         <Slider
           onChange={(event) => {
             this.setState({ysetpoint: event.target.value});
-            this.props.socket.emit("ysetpoint", {value: ysetpoint});
+            this.props.socket.emit("ysetpoint", {value: parseFloat(ysetpoint)});
           }}
           value={this.state.ysetpoint}
           min={-5.}
@@ -124,17 +124,17 @@ class Controls extends Component {
         <Slider
           onChange={(event) => {
             this.setState({yCalibration: event.target.value});
-            this.props.socket.emit("yCalibration", {value: yCalibration});
+            this.props.socket.emit("yCalibration", {value: parseFloat(yCalibration)});
           }}
           value={yCalibration}
-          min={-3.}
-          max={+3.}
+          min={-8.}
+          max={+8.}
           title="Y Calibration"
         />
         <Slider
           onChange={(event) => {
             this.setState({yKp: event.target.value});
-            this.props.socket.emit("yKp", {value: yKp});
+            this.props.socket.emit("yKp", {value: parseFloat(yKp)});
           }}
           value={yKp}
           min={0.}
@@ -144,7 +144,7 @@ class Controls extends Component {
         <Slider
           onChange={(event) => {
             this.setState({yKi: event.target.value});
-            this.props.socket.emit("yKi", {value: yKi});
+            this.props.socket.emit("yKi", {value: parseFloat(yKi)});
           }}
           value={yKi}
           min={0.}
@@ -161,7 +161,7 @@ class Controls extends Component {
       </div>
     );
   }
-  
+
 }
 
 export default Controls;
