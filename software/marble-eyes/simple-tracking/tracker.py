@@ -2,13 +2,15 @@ import cv2
 import numpy as np
 import time
 import requests
+import socket
+import json
 
 GOAL_AREA_START = (240, 180)
 GOAL_AREA_END = (340, 300)
 
 class Tracker:
 
-  def __init__(self):
+  def __init__(self, unity_IP = None):
     self.cap = cv2.VideoCapture(0)
     # allow the camera to warmup
     time.sleep(0.1)
@@ -16,6 +18,11 @@ class Tracker:
     self.ball_is_seen = False
     self.ball_is_within_goal = False
     self.game_status_updated = False
+    if (unity_IP):
+      self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+      self.s.connect((unity_IP, 9092))
+      self.s.send(MESSAGE)
+      self.unity_IP = unity_IP
 
   def update_ball_is_within_goal(self, ball_x, ball_y):
     is_within_x = GOAL_AREA_START[0] < ball_x < GOAL_AREA_END[0]
@@ -95,6 +102,15 @@ class Tracker:
         cv2.circle(frame, (average_contour_x, average_contour_y), 25 , (124, 252, 0), 3)
         self.update_ball_last_seen()
         self.update_ball_is_within_goal(average_contour_x, average_contour_y)
+        if self.unity_IP:
+          pos = {
+            "Position": {
+              "x": average_contour_x / 640,
+              "y": 0.0,
+              "z": average_contour_y / 480
+            }
+          }
+          self.s.send(json.dumps(pos))
       else:
         self.ball_is_seen = False
 
@@ -107,4 +123,5 @@ class Tracker:
       if k == 27:
         cap.release()
         cv2.destroyAllWindows()
+        self.s.close()
         break
