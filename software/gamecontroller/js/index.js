@@ -1,5 +1,5 @@
 const SerialPort = require('serialport')
-
+const MockBinding = require('@serialport/binding-mock')
 
 function translate(input, inputMinA, inputMaxA, outputMin, outputMax) {
   return outputMin + (outputMax - outputMin) * (input - inputMinA) / (inputMaxA - inputMinA)
@@ -34,9 +34,13 @@ class GameController {
 
     this.port = port;
 
+    var posX = {val: 0, update: false};
+    var posY = {val: 0, update: false};
+
     let serialBuffer = new Uint8Array();
     this.port.on('readable', function () {
       serialBuffer = joinArrays(serialBuffer, port.read());
+
       while (serialBuffer.length > 3) {
         while (serialBuffer[0] > 63) {
           serialBuffer = serialBuffer.slice(1, 9999);
@@ -50,7 +54,9 @@ class GameController {
         // Max.post('value:' + value);
 
         if (packet[0] === 1) {
-          onXBNO(translate(value, 0, 16000, -90, 90).toFixed(2));
+          var x = translate(value, 0, 16000, -90, 90)
+          onXBNO(x.toFixed(2));
+          posX.val = x; posX.update = true;
         }
 
         if (packet[0] === 2) {
@@ -58,13 +64,19 @@ class GameController {
         }
 
         if (packet[0] === 3) {
-          onYBNO(translate(value, 0, 16000, -90, 90).toFixed(2));
+          var y = translate(value, 0, 16000, -90, 90)
+          onYBNO(y.toFixed(2));
+          posY.val = y; posY.update = true;
         }
 
         if (packet[0] === 4) {
           onYSpeed(translate(value, 0, 16000, -90, 90).toFixed(2));
         }
 
+        if (posX.update && posY.update) {
+          // onPosition({ x: posX.val, y: posY.val })
+          posX.update = posY.update = false;
+        }
 
         serialBuffer = serialBuffer.slice(3, 9999);
       }

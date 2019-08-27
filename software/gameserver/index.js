@@ -199,7 +199,7 @@ function gameStatePending() {
 }
 
 console.log(`Connecting to port: ${portName}`);
-gamecontroller.openPort(portName, onXBNO, onXSpeed, onYBNO, onYSpeed);
+gamecontroller.openPort(portName, { onXBNO, onXSpeed, onYBNO, onYSpeed });
 
 function startIfPending() {
   if (gamestate === 'gamepending') {
