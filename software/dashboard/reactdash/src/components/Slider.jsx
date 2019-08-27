@@ -14,7 +14,7 @@ const Slider = (props) => (
       value={props.value}
       onChange={props.onChange}
       readOnly={props.readOnly}
-      step={0.1}
+      step={0.01}
     />
     <div className={styles.value}>
       {props.value}

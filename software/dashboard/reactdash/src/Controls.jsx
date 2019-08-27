@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Slider from './components/Slider';
 import styles from './Controls.module.css';
 
@@ -73,8 +73,8 @@ class Controls extends Component {
             this.props.socket.emit("xCalibration", {value: parseFloat(xCalibration)});
           }}
           value={xCalibration}
-          min={-5.}
-          max={+5.}
+          min={-8.}
+          max={+8.}
           title="X Calibration"
         />
         <Slider
@@ -127,8 +127,8 @@ class Controls extends Component {
             this.props.socket.emit("yCalibration", {value: parseFloat(yCalibration)});
           }}
           value={yCalibration}
-          min={-5.}
-          max={+5.}
+          min={-8.}
+          max={+8.}
           title="Y Calibration"
         />
         <Slider
@@ -161,7 +161,7 @@ class Controls extends Component {
       </div>
     );
   }
-  
+
 }
 
 export default Controls;
