@@ -5,8 +5,8 @@ import requests
 import socket
 import json
 
-GOAL_AREA_START = (240, 180)
-GOAL_AREA_END = (340, 300)
+GOAL_AREA_START = (290, 180)
+GOAL_AREA_END = (390, 300)
 
 class Tracker:
 
@@ -45,14 +45,20 @@ class Tracker:
     if self.is_ball_lost() and self.ball_is_within_goal:
       if not self.game_status_updated:
         print('WON!')
-        requests.get("http://localhost:8080/gamegoal")
+        try:
+          requests.get("http://localhost:8080/gamegoal")
+        except:
+          print("Unable to request backend")
         self.game_status_updated = True
 
   def check_if_lost(self):
     if self.is_ball_lost() and not self.ball_is_within_goal:
       if not self.game_status_updated:
         print('LOST!')
-        requests.get("http://localhost:8080/gamelost")
+        try:
+          requests.get("http://localhost:8080/gamelost")
+        except:
+          print("Unable to request backend")
         self.game_status_updated = True
 
   def run(self):
