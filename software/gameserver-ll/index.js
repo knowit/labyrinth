@@ -1,52 +1,26 @@
-const GameController = require('../gamecontroller/js/')
 const net = require('net')
-
-const quatToEulerAxis = (q) => {
-	const x = Math.atan2(
-        2.0 * (q.w * q.x + q.y * q.z),
-        1.0 - 2.0 * (q.x * q.x + q.y * q.y));
-
-    const sinp = 2.0 * (q.w * q.y - q.z * q.x);
-    const y = Math.abs(sinp) >= 1 ? Math.sign(sinp) * (Math.PI / 2.0) :  Math.asin(sinp)
- 
-    const z = Math.atan2(
-        2.0 * (q.w * q.z + q.x * q.y), 
-        1.0 - 2.0 * (q.y * q.y + q.z * q.z));
-    
-    // Radians
-    return { x, y, z }
-}
-
-const controller = new GameController()
-const portName = process.argv[2]
 
 const server = net.createServer(socket => {
 
-    console.log(`Connecting to port: ${portName}`);
-    controller
-        .openPort(
-            portName, 
-            {
-                onPosition: (update) => {
-                    socket.write(
-                        Buffer.from(
-                            JSON.stringify({
-                                Position: {
-                                    x: update.x,
-                                    y: 0.0,
-                                    z: update.y
-                                }
-                            }), 'ascii'))
-                }
-            });
+    const testWritePos = () => {
+        console.log("sending data");
+        
+        // [ xpos, ypos, xrot, yrot ]
+        var data = new Float32Array([
+            (Math.random()*2.0)-1.0, (Math.random()*2.0)-1.0, 
+            (Math.random() * 4.0) - 2.0, (Math.random() * 4.0) - 2.0
+        ]);
+        socket.write(Buffer.from(data.buffer));
+
+        setTimeout(testWritePos, 100);
+    }
+    setTimeout(testWritePos, 100);
 
     socket.on('data', (buffer) => {
-        var recieved = JSON.parse(buffer.toString('ascii'));
-        
-        var orientation = quatToEulerAxis(recieved.Rotation);
 
-        controller.setXAngle(orientation.x);
-        controller.setYAngle(orientation.z);
+        // X axis [1,-1] and Y Axis [1,-1] 
+        var floats = [buffer.readFloatLE(0), buffer.readFloatLE(4)];
+        console.log(floats);
     })
 })
 server.on('error', err => console.error(err))
