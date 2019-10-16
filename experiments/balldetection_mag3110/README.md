@@ -7,7 +7,7 @@
 ## Utstyr
 
 * MAG3110
-* Teensy 3.1 (eller annen arduino-kompatibel mikrokontoller)
+* Teensy 3.2 (eller annen arduino-kompatibel mikrokontoller)
 * Magnet (helst magnetisk ball)
 
 ![](./doc/Lab.jpeg)
