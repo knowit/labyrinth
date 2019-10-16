@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+message Vec2 {
+    float x = 1;
+    float y = 2;
+}
+
+message Quat {
+    float x = 1;
+    float y = 2;
+    float z = 3;
+    float w = 4;
+}
+
+message InputUpdate {
+    Vec2 input_analoge_axis = 1;
+    Quat camera_orientation = 2;
+}
+
+message GameState {
+    Vec2 rotation = 1;
+    Vec2 position = 2;
+}
+
+message GameMessage {
+    oneof oneof_messages {
+        InputUpdate input_update = 1;
+        GameState game_state = 2;
+    }
+}
+
+message GameUpdate {
+    string event = 1;
+    GameMessage data = 2;
+}
+

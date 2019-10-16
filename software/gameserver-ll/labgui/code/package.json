@@ -1,0 +1,14 @@
+{
+  "name": "gameserver-ll",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index \"/dev/ROBOT\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "protobufjs": "^6.8.8"
+  }
+}
