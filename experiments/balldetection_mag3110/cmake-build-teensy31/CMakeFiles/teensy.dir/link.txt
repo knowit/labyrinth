@@ -1,0 +1,1 @@
+/Users/badeand/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++   -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/teensy.dir/.pio/libdeps/teensy31/SparkFun_MAG3110_Magnetometer_Breakout_Arduino_Library_ID1600/src/SparkFun_MAG3110.cpp.o CMakeFiles/teensy.dir/src/main.cpp.o  -o teensy 

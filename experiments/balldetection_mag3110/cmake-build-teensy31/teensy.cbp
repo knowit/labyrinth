@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="teensy"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="teensy">
+				<Option output="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/teensy" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/include"/>
+					<Add directory="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/src"/>
+					<Add directory="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/.pio/libdeps/teensy31/SparkFun MAG3110 Magnetometer Breakout Arduino Library_ID1600/src"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Wire"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Wire/utility"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/cores/teensy3"/>
+					<Add directory="/Users/badeand/.platformio/lib/PacketSerial_ID1198/src"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/ADC"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/AccelStepper/src"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Adafruit_CC3000"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Adafruit_CC3000/utility"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Adafruit_GFX"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Adafruit_NeoPixel"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Adafruit_RA8875"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Adafruit_STMPE610"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Adafruit_VS1053"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Adafruit_nRF8001"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Adafruit_nRF8001/utility"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/AltSoftSerial"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Artnet"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Audio"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Audio/utility"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Bounce"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Bounce2"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/CapacitiveSensor"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/CryptoAccel/src"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/DS1307RTC"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/DmxSimple"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/DogLcd"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/EEPROM"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/EasyTransfer"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/EasyTransferI2C"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Encoder"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Encoder/utility"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Entropy"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Ethernet/src"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/FastCRC"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/FastLED"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/FlexCAN"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/FlexiTimer2"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/FreqCount"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/FreqMeasure"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/FreqMeasureMulti"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/FrequencyTimer2"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/ILI9341_t3"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/IRremote"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Keypad/src"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/LedControl/src"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/LedDisplay"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/LiquidCrystal/src"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/LiquidCrystalFast"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/LowPower"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/MFRC522/src"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/MIDI/src"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Metro"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/MsTimer2"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/NXPMotionSense"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/NXPMotionSense/utility"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/OSC"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/OctoWS2811"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/OneWire"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/PS2Keyboard"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/PS2Keyboard/utility"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/PWMServo"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Ping"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/PulsePosition"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/RA8875"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/RadioHead"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/ResponsiveAnalogRead/src"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/SD"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/SD/utility"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/SPI"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/SPIFlash"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/ST7565"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/ST7735_t3"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/SerialFlash"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Servo"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/ShiftPWM"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Snooze"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Snooze/utility"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/SoftPWM"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/SoftwareSerial"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/TFT_ILI9163C"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Talkie"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/TeensyThreads"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Time"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/TimeAlarms"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/TimerOne"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/TimerThree"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/TinyGPS"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Tlc5940"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/TouchScreen"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/USBHost_t36"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/USBHost_t36/utility"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/UTFT"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/VirtualWire"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/WS2812Serial"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/XBee"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/XPT2046_Touchscreen"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/i2c_t3"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/ks0108"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/openGLCD"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/ssd1351"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/x10"/>
+					<Add directory="/Users/badeand/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include"/>
+					<Add directory="/Users/badeand/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include/c++/5.4.1"/>
+					<Add directory="/Users/badeand/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include/c++/5.4.1/arm-none-eabi"/>
+					<Add directory="/Users/badeand/.platformio/packages/toolchain-gccarmnoneeabi/lib/gcc/arm-none-eabi/5.4.1/include"/>
+					<Add directory="/Users/badeand/.platformio/packages/toolchain-gccarmnoneeabi/lib/gcc/arm-none-eabi/5.4.1/include-fixed"/>
+					<Add directory="/Users/badeand/.platformio/packages/tool-unity"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 teensy"/>
+					<CompileFile command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="teensy/fast">
+				<Option output="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/teensy" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/include"/>
+					<Add directory="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/src"/>
+					<Add directory="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/.pio/libdeps/teensy31/SparkFun MAG3110 Magnetometer Breakout Arduino Library_ID1600/src"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Wire"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Wire/utility"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/cores/teensy3"/>
+					<Add directory="/Users/badeand/.platformio/lib/PacketSerial_ID1198/src"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/ADC"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/AccelStepper/src"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Adafruit_CC3000"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Adafruit_CC3000/utility"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Adafruit_GFX"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Adafruit_NeoPixel"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Adafruit_RA8875"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Adafruit_STMPE610"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Adafruit_VS1053"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Adafruit_nRF8001"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Adafruit_nRF8001/utility"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/AltSoftSerial"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Artnet"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Audio"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Audio/utility"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Bounce"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Bounce2"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/CapacitiveSensor"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/CryptoAccel/src"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/DS1307RTC"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/DmxSimple"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/DogLcd"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/EEPROM"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/EasyTransfer"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/EasyTransferI2C"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Encoder"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Encoder/utility"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Entropy"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Ethernet/src"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/FastCRC"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/FastLED"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/FlexCAN"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/FlexiTimer2"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/FreqCount"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/FreqMeasure"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/FreqMeasureMulti"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/FrequencyTimer2"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/ILI9341_t3"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/IRremote"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Keypad/src"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/LedControl/src"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/LedDisplay"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/LiquidCrystal/src"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/LiquidCrystalFast"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/LowPower"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/MFRC522/src"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/MIDI/src"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Metro"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/MsTimer2"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/NXPMotionSense"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/NXPMotionSense/utility"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/OSC"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/OctoWS2811"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/OneWire"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/PS2Keyboard"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/PS2Keyboard/utility"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/PWMServo"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Ping"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/PulsePosition"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/RA8875"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/RadioHead"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/ResponsiveAnalogRead/src"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/SD"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/SD/utility"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/SPI"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/SPIFlash"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/ST7565"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/ST7735_t3"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/SerialFlash"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Servo"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/ShiftPWM"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Snooze"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Snooze/utility"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/SoftPWM"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/SoftwareSerial"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/TFT_ILI9163C"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Talkie"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/TeensyThreads"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Time"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/TimeAlarms"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/TimerOne"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/TimerThree"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/TinyGPS"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/Tlc5940"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/TouchScreen"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/USBHost_t36"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/USBHost_t36/utility"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/UTFT"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/VirtualWire"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/WS2812Serial"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/XBee"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/XPT2046_Touchscreen"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/i2c_t3"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/ks0108"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/openGLCD"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/ssd1351"/>
+					<Add directory="/Users/badeand/.platformio/packages/framework-arduinoteensy/libraries/x10"/>
+					<Add directory="/Users/badeand/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include"/>
+					<Add directory="/Users/badeand/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include/c++/5.4.1"/>
+					<Add directory="/Users/badeand/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include/c++/5.4.1/arm-none-eabi"/>
+					<Add directory="/Users/badeand/.platformio/packages/toolchain-gccarmnoneeabi/lib/gcc/arm-none-eabi/5.4.1/include"/>
+					<Add directory="/Users/badeand/.platformio/packages/toolchain-gccarmnoneeabi/lib/gcc/arm-none-eabi/5.4.1/include-fixed"/>
+					<Add directory="/Users/badeand/.platformio/packages/tool-unity"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 teensy/fast"/>
+					<CompileFile command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="PLATFORMIO_BUILD">
+				<Option working_dir="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 PLATFORMIO_BUILD"/>
+					<CompileFile command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="PLATFORMIO_DEVICE_LIST">
+				<Option working_dir="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 PLATFORMIO_DEVICE_LIST"/>
+					<CompileFile command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="PLATFORMIO_REBUILD_PROJECT_INDEX">
+				<Option working_dir="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 PLATFORMIO_REBUILD_PROJECT_INDEX"/>
+					<CompileFile command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="PLATFORMIO_PROGRAM">
+				<Option working_dir="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 PLATFORMIO_PROGRAM"/>
+					<CompileFile command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="PLATFORMIO_UPDATE_ALL">
+				<Option working_dir="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 PLATFORMIO_UPDATE_ALL"/>
+					<CompileFile command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="PLATFORMIO_UPLOADFS">
+				<Option working_dir="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 PLATFORMIO_UPLOADFS"/>
+					<CompileFile command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="PLATFORMIO_TEST">
+				<Option working_dir="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 PLATFORMIO_TEST"/>
+					<CompileFile command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="PLATFORMIO_UPLOAD">
+				<Option working_dir="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 PLATFORMIO_UPLOAD"/>
+					<CompileFile command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="PLATFORMIO_CLEAN">
+				<Option working_dir="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 PLATFORMIO_CLEAN"/>
+					<CompileFile command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="PLATFORMIO_BUILD_VERBOSE">
+				<Option working_dir="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 PLATFORMIO_BUILD_VERBOSE"/>
+					<CompileFile command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="PLATFORMIO_MONITOR">
+				<Option working_dir="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 PLATFORMIO_MONITOR"/>
+					<CompileFile command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/cmake-build-teensy31/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/.pio/libdeps/teensy31/SparkFun MAG3110 Magnetometer Breakout Arduino Library_ID1600/.gitattributes">
+			<Option target="teensy"/>
+		</Unit>
+		<Unit filename="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/.pio/libdeps/teensy31/SparkFun MAG3110 Magnetometer Breakout Arduino Library_ID1600/.gitignore">
+			<Option target="teensy"/>
+		</Unit>
+		<Unit filename="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/.pio/libdeps/teensy31/SparkFun MAG3110 Magnetometer Breakout Arduino Library_ID1600/.library.json">
+			<Option target="teensy"/>
+		</Unit>
+		<Unit filename="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/.pio/libdeps/teensy31/SparkFun MAG3110 Magnetometer Breakout Arduino Library_ID1600/LICENSE.md">
+			<Option target="teensy"/>
+		</Unit>
+		<Unit filename="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/.pio/libdeps/teensy31/SparkFun MAG3110 Magnetometer Breakout Arduino Library_ID1600/README.md">
+			<Option target="teensy"/>
+		</Unit>
+		<Unit filename="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/.pio/libdeps/teensy31/SparkFun MAG3110 Magnetometer Breakout Arduino Library_ID1600/examples/SparkFun_DigitalCompass/Processing/uViewImageConverter/data/spriteMono.png">
+			<Option target="teensy"/>
+		</Unit>
+		<Unit filename="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/.pio/libdeps/teensy31/SparkFun MAG3110 Magnetometer Breakout Arduino Library_ID1600/examples/SparkFun_DigitalCompass/Processing/uViewImageConverter/data/uview_t.png">
+			<Option target="teensy"/>
+		</Unit>
+		<Unit filename="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/.pio/libdeps/teensy31/SparkFun MAG3110 Magnetometer Breakout Arduino Library_ID1600/examples/SparkFun_DigitalCompass/Processing/uViewImageConverter/uViewImageConverter.pde">
+			<Option target="teensy"/>
+		</Unit>
+		<Unit filename="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/.pio/libdeps/teensy31/SparkFun MAG3110 Magnetometer Breakout Arduino Library_ID1600/examples/SparkFun_DigitalCompass/SparkFun_DigitalCompass.ino">
+			<Option target="teensy"/>
+		</Unit>
+		<Unit filename="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/.pio/libdeps/teensy31/SparkFun MAG3110 Magnetometer Breakout Arduino Library_ID1600/examples/SparkFun_MAG3110_Basic/SparkFun_MAG3110_Basic.ino">
+			<Option target="teensy"/>
+		</Unit>
+		<Unit filename="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/.pio/libdeps/teensy31/SparkFun MAG3110 Magnetometer Breakout Arduino Library_ID1600/examples/SparkFun_MAG3110_Calibrated/SparkFun_MAG3110_Calibrated.ino">
+			<Option target="teensy"/>
+		</Unit>
+		<Unit filename="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/.pio/libdeps/teensy31/SparkFun MAG3110 Magnetometer Breakout Arduino Library_ID1600/examples/SparkFun_MAG3110_Magnitude/SparkFun_MAG3110_Magnitude.ino">
+			<Option target="teensy"/>
+		</Unit>
+		<Unit filename="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/.pio/libdeps/teensy31/SparkFun MAG3110 Magnetometer Breakout Arduino Library_ID1600/examples/SparkFun_MAG3110_Other/SparkFun_MAG3110_Other.ino">
+			<Option target="teensy"/>
+		</Unit>
+		<Unit filename="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/.pio/libdeps/teensy31/SparkFun MAG3110 Magnetometer Breakout Arduino Library_ID1600/examples/SparkFun_MAG3110_Triggered/SparkFun_MAG3110_Triggered.ino">
+			<Option target="teensy"/>
+		</Unit>
+		<Unit filename="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/.pio/libdeps/teensy31/SparkFun MAG3110 Magnetometer Breakout Arduino Library_ID1600/keywords.txt">
+			<Option target="teensy"/>
+		</Unit>
+		<Unit filename="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/.pio/libdeps/teensy31/SparkFun MAG3110 Magnetometer Breakout Arduino Library_ID1600/library.properties">
+			<Option target="teensy"/>
+		</Unit>
+		<Unit filename="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/.pio/libdeps/teensy31/SparkFun MAG3110 Magnetometer Breakout Arduino Library_ID1600/src/SparkFun_MAG3110.cpp">
+			<Option target="teensy"/>
+		</Unit>
+		<Unit filename="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/.pio/libdeps/teensy31/SparkFun MAG3110 Magnetometer Breakout Arduino Library_ID1600/src/SparkFun_MAG3110.h">
+			<Option target="teensy"/>
+		</Unit>
+		<Unit filename="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/src/main.cpp">
+			<Option target="teensy"/>
+		</Unit>
+		<Unit filename="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/Users/badeand/dev/labyrinth/experiments/balldetection_mag3110/CMakeListsPrivate.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
