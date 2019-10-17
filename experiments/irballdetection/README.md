@@ -20,7 +20,7 @@ Denne IR-holderen ble konstruert:
 
 ## Eksperiment
 
-* Se video: [Video](./doc/IRBallDetectorTest.mp4) 
+![](./doc/Lab.jpeg) 
 
 ## Resultat
 
