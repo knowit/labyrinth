@@ -16,8 +16,6 @@ Denne IR-holderen ble konstruert:
 
 3D-modeller til IR-holdere ligger her: [LEDHolder](./things/LEDHolder/)
 
-[Video](./doc/Lab.jpeg)
-
 ## Eksperiment
 
 ![](./doc/Lab.jpeg) 
