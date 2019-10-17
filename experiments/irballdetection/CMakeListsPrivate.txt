@@ -1,0 +1,45 @@
+# !!! WARNING !!! AUTO-GENERATED FILE, PLEASE DO NOT MODIFY IT AND USE
+# https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags
+#
+# If you need to override existing CMake configuration or add extra,
+# please create `CMakeListsUser.txt` in the root of project.
+# The `CMakeListsUser.txt` will not be overwritten by PlatformIO.
+
+
+set(CMAKE_CONFIGURATION_TYPES "uno" CACHE STRING "" FORCE)
+
+set(PLATFORMIO_CMD "/usr/local/bin/platformio")
+
+SET(CMAKE_C_COMPILER "$ENV{HOME}/.platformio/packages/toolchain-atmelavr/bin/avr-gcc")
+SET(CMAKE_CXX_COMPILER "$ENV{HOME}/.platformio/packages/toolchain-atmelavr/bin/avr-g++")
+SET(CMAKE_CXX_FLAGS_DISTRIBUTION "-fno-exceptions -fno-threadsafe-statics -fpermissive -std=gnu++11 -Os -Wall -ffunction-sections -fdata-sections -flto -mmcu=atmega328p")
+SET(CMAKE_C_FLAGS_DISTRIBUTION "-std=gnu11 -fno-fat-lto-objects -Os -Wall -ffunction-sections -fdata-sections -flto -mmcu=atmega328p")
+
+SET(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 11)
+
+if (CMAKE_BUILD_TYPE MATCHES "uno")
+    add_definitions(-D'PLATFORMIO=40003')
+    add_definitions(-D'ARDUINO_AVR_UNO')
+    add_definitions(-D'F_CPU=16000000L')
+    add_definitions(-D'ARDUINO_ARCH_AVR')
+    add_definitions(-D'ARDUINO=10805')
+    add_definitions(-D'__AVR_ATmega328P__')
+
+    include_directories("${CMAKE_CURRENT_LIST_DIR}/include")
+    include_directories("${CMAKE_CURRENT_LIST_DIR}/src")
+    include_directories("$ENV{HOME}/.platformio/packages/framework-arduinoavr/cores/arduino")
+    include_directories("$ENV{HOME}/.platformio/packages/framework-arduinoavr/variants/standard")
+    include_directories("$ENV{HOME}/.platformio/lib/PacketSerial_ID1198/src")
+    include_directories("$ENV{HOME}/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/EEPROM/src")
+    include_directories("$ENV{HOME}/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/HID/src")
+    include_directories("$ENV{HOME}/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SPI/src")
+    include_directories("$ENV{HOME}/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SoftwareSerial/src")
+    include_directories("$ENV{HOME}/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/Wire/src")
+    include_directories("$ENV{HOME}/.platformio/packages/toolchain-atmelavr/avr/include")
+    include_directories("$ENV{HOME}/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include")
+    include_directories("$ENV{HOME}/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include-fixed")
+    include_directories("$ENV{HOME}/.platformio/packages/tool-unity")
+endif()
+
+FILE(GLOB_RECURSE SRC_LIST "${CMAKE_CURRENT_LIST_DIR}/src/*.*" "${CMAKE_CURRENT_LIST_DIR}/lib/*.*" "${CMAKE_CURRENT_LIST_DIR}/.pio/libdeps/uno/*.*")
