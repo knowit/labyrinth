@@ -18,6 +18,8 @@ Denne IR-holderen ble konstruert:
 
 ## Eksperiment
 
+Se oppkobling på [denne siden][http://startrobotics.blogspot.com/2013/05/how-to-use-ir-led-and-photodiode-with-arduino.html].
+
 ![](./doc/Lab.jpeg) 
 
 ## Resultat
