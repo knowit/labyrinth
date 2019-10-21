@@ -121,7 +121,7 @@ Distributed as-is; no warranty is given.
 class MAG3110
 {
  public:
-  MAG3110();
+  MAG3110(int port);
   
   bool initialize();
   
@@ -171,7 +171,7 @@ class MAG3110
  int x_offset;
   int y_offset;
 
-  
+  int port;
 
   int x_min;
   int x_max;

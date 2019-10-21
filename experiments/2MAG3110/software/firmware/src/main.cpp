@@ -1,7 +1,8 @@
 #include <Arduino.h>
 #include <SparkFun_MAG3110.h>
 
-MAG3110 mag = MAG3110(); //Instantiate MAG3110
+MAG3110 mag0 = MAG3110(0); //Instantiate MAG3110
+MAG3110 mag1 = MAG3110(1); //Instantiate MAG3110
 
 void printValue(int value);
 
@@ -14,32 +15,36 @@ void setup() {
 
     Serial.begin(115200);
 
-    Wire.begin();             //setup I2C bus
+    Wire.begin();
     Wire.setClock(400000);    // I2C fast mode, 400kHz
 
-    mag.initialize(); //Initializes the mag sensor
-    mag.start();      //Puts the sensor in active mode
+    mag0.initialize(); //Initializes the mag sensor
+    mag0.start();      //Puts the sensor in active mode
+
+    Wire1.begin(33, 32, 400000);
+    Wire1.setClock(400000);    // I2C fast mode, 400kHz
+
+    mag1.initialize(); //Initializes the mag sensor
+    mag1.start();      //Puts the sensor in active mode
 }
 
 void loop() {
 
-    int x, y, z;
-    int xAdj, yAdj, zAdj;
-    //Only read data when it's ready
-    if (mag.dataReady()) {
-        //Read the data
-        mag.readMag(&x, &y, &z);
+    int x0, y0, z0;
+    int x1, y1, z1;
 
-        xAdj = adjust(x);
-        printValue(xAdj);
+    if (mag0.dataReady() && mag1.dataReady()) {
 
-        yAdj = adjust(y);
-        printValue(yAdj);
+        mag1.readMag(&x0, &y0, &z0);
+        mag0.readMag(&x1, &y1, &z1);
 
-        zAdj = adjust(z);
-        printValue(zAdj);
+        printValue(adjust(x0));
+        printValue(adjust(y0));
+        printValue(adjust(z0));
 
-        printValue(max(xAdj, max(yAdj, zAdj)));
+        printValue(adjust(x1));
+        printValue(adjust(y1));
+        printValue(adjust(z1));
 
         Serial.println();
     }
