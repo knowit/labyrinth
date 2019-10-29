@@ -32,7 +32,7 @@ Det store problemet, var at ballen festet seg i labyrinten fordi den er en sterk
 og spillet har flere metalldeler. Bildet viser at ballen har
 festet seg i en av metallstengene inne i spillet:
 
-![Stuck ball](./doc/stuckball.JPG)
+![Stuck ball](./doc/stuckball.jpg)
 
 I dette tilfellet satt ballen så godt fast at man måtte bruke en annen magnet
 for å få den ut.
