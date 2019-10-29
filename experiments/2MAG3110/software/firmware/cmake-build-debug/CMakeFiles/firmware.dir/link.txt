@@ -1,0 +1,1 @@
+/Users/badeand/.platformio/packages/toolchain-xtensa32/bin/xtensa-esp32-elf-g++  -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/firmware.dir/lib/MAG3110_mod/src/SparkFun_MAG3110.cpp.o CMakeFiles/firmware.dir/src/main.cpp.o  -o firmware 

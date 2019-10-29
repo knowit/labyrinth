@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="firmware"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="firmware">
+				<Option output="/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/firmware" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 firmware"/>
+					<CompileFile command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="firmware/fast">
+				<Option output="/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/firmware" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 firmware/fast"/>
+					<CompileFile command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="PLATFORMIO_BUILD">
+				<Option working_dir="/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 PLATFORMIO_BUILD"/>
+					<CompileFile command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="PLATFORMIO_DEVICE_LIST">
+				<Option working_dir="/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 PLATFORMIO_DEVICE_LIST"/>
+					<CompileFile command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="PLATFORMIO_REBUILD_PROJECT_INDEX">
+				<Option working_dir="/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 PLATFORMIO_REBUILD_PROJECT_INDEX"/>
+					<CompileFile command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="PLATFORMIO_PROGRAM">
+				<Option working_dir="/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 PLATFORMIO_PROGRAM"/>
+					<CompileFile command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="PLATFORMIO_UPDATE_ALL">
+				<Option working_dir="/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 PLATFORMIO_UPDATE_ALL"/>
+					<CompileFile command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="PLATFORMIO_UPLOADFS">
+				<Option working_dir="/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 PLATFORMIO_UPLOADFS"/>
+					<CompileFile command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="PLATFORMIO_TEST">
+				<Option working_dir="/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 PLATFORMIO_TEST"/>
+					<CompileFile command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="PLATFORMIO_UPLOAD">
+				<Option working_dir="/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 PLATFORMIO_UPLOAD"/>
+					<CompileFile command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="PLATFORMIO_CLEAN">
+				<Option working_dir="/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 PLATFORMIO_CLEAN"/>
+					<CompileFile command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="PLATFORMIO_BUILD_VERBOSE">
+				<Option working_dir="/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 PLATFORMIO_BUILD_VERBOSE"/>
+					<CompileFile command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="PLATFORMIO_MONITOR">
+				<Option working_dir="/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 PLATFORMIO_MONITOR"/>
+					<CompileFile command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/local/bin/gmake -j12 -f &quot;/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/lib/MAG3110_mod/src/SparkFun_MAG3110.cpp">
+			<Option target="firmware"/>
+		</Unit>
+		<Unit filename="/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/lib/MAG3110_mod/src/SparkFun_MAG3110.h">
+			<Option target="firmware"/>
+		</Unit>
+		<Unit filename="/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/src/main.cpp">
+			<Option target="firmware"/>
+		</Unit>
+		<Unit filename="/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/CMakeListsPrivate.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

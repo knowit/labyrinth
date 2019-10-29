@@ -1,0 +1,4 @@
+"/Users/badeand/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/191.7479.33/CLion.app/Contents/bin/cmake/mac/bin/cmake" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/badeand/dev/labyrinth/experiments/2MAG3110/software/firmware/cmake-build-debug

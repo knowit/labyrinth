@@ -52,7 +52,7 @@ void loop() {
 
 void printValue(int value) {
     Serial.print(value);
-    Serial.print(",");
+    Serial.print(" ");
 }
 
 int adjust(int rawValue) { return rawValue > 32767 ? rawValue - (32767 * 2) : rawValue; }

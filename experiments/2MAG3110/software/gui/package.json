@@ -1,0 +1,20 @@
+{
+  "name": "gui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@serialport/binding-mock": "^2.0.5",
+    "@serialport/parser-slip-encoder": "^2.0.2",
+    "buffer-to-uint8array": "^1.1.0",
+    "protocol-slip": "^1.0.1",
+    "radiohead-serial": "^4.0.0",
+    "serialport": "^7.1.4",
+    "slip": "^1.0.2"
+  },
+  "author": "",
+  "license": "ISC"
+}
