@@ -1,9 +1,10 @@
 
 ## Hypotese
 
-* Det er mulig å detektere posisjonen til en ball ved å
-  1. hente sensordata fra magnetsensorer som gir tre verdier hver (x,y,z)
-  2. sende data inn i nevralt nettverk og lære posisjoner gitt inputdata 
+Det er mulig å detektere posisjonen til en ball ved å
+
+1. hente sensordata fra magnetsensorer som gir tre verdier hver (x,y,z)
+2. sende data inn i nevralt nettverk og lære posisjoner gitt inputdata 
 
 ## Utstyr
 
