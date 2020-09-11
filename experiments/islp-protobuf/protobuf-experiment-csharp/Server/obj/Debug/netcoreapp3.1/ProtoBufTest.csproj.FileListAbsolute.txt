@@ -1,0 +1,11 @@
+/Users/badeand/temp/ProtoBufTest/ProtoBufTest/bin/Debug/netcoreapp3.1/ProtoBufTest
+/Users/badeand/temp/ProtoBufTest/ProtoBufTest/bin/Debug/netcoreapp3.1/ProtoBufTest.deps.json
+/Users/badeand/temp/ProtoBufTest/ProtoBufTest/bin/Debug/netcoreapp3.1/ProtoBufTest.runtimeconfig.json
+/Users/badeand/temp/ProtoBufTest/ProtoBufTest/bin/Debug/netcoreapp3.1/ProtoBufTest.runtimeconfig.dev.json
+/Users/badeand/temp/ProtoBufTest/ProtoBufTest/bin/Debug/netcoreapp3.1/ProtoBufTest.dll
+/Users/badeand/temp/ProtoBufTest/ProtoBufTest/bin/Debug/netcoreapp3.1/ProtoBufTest.pdb
+/Users/badeand/temp/ProtoBufTest/ProtoBufTest/obj/Debug/netcoreapp3.1/ProtoBufTest.csprojAssemblyReference.cache
+/Users/badeand/temp/ProtoBufTest/ProtoBufTest/obj/Debug/netcoreapp3.1/ProtoBufTest.AssemblyInfoInputs.cache
+/Users/badeand/temp/ProtoBufTest/ProtoBufTest/obj/Debug/netcoreapp3.1/ProtoBufTest.AssemblyInfo.cs
+/Users/badeand/temp/ProtoBufTest/ProtoBufTest/obj/Debug/netcoreapp3.1/ProtoBufTest.dll
+/Users/badeand/temp/ProtoBufTest/ProtoBufTest/obj/Debug/netcoreapp3.1/ProtoBufTest.pdb
