@@ -87,7 +87,6 @@ void sendMessage() {
 
     message.msg = 123;
 
-
     pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
 
     bool status = pb_encode(&stream, TestMessage_fields, &message);
@@ -119,7 +118,7 @@ void sendMessage() {
 
 void loop() {
 
-    //Serial.println(i++);
+    Serial.println(i++);
 
     delay(500);
     sendMessage();
