@@ -47,19 +47,19 @@ class GameState extends Component {
     const getGameState = (state) => {
       switch(state) {
         case 'newhighscore':
-          return 'WON!';
+          return 'DU VENT!';
         case 'unknown':
-          return 'IDLE';
+          return 'UKJENT';
         case 'gamepending':
-          return 'PENDING';
+          return 'VENTER';
         case 'gamestarted':
-          return 'STARTED';
+          return 'SPILLER';
         case 'gamegoal':
-          return 'WON!';
+          return 'DU VANT!';
         case 'gamelost':
-          return 'LOST!';
+          return 'UFFDA';
         default:
-          return 'IDLE';
+          return 'VENTER';
       }
     }
 
@@ -70,7 +70,7 @@ class GameState extends Component {
 
         <div className={styles.gameStatus}>
           <div className={styles.scoreTitle}>
-            Score
+            Poeng
           </div>
           <div className={styles.score}>
             {score}

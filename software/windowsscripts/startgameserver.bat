@@ -1,4 +1,4 @@
 @echo Starting game server
 cd ..\gameserver
-node index.js COM7
+node index.js COM3
 @pause
