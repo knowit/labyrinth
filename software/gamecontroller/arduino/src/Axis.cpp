@@ -3,7 +3,7 @@
 #include "Axis.h"
 
 Axis::Axis(int _servoPort, int controllerDirection, int _serialbnoAnglePrefix, int _serialSpeedAdjustedPrefix) :
-        myPID(&calibratedAngle, &xSpeed, &setpointAngle, Kp, Ki, Kd, controllerDirection),
+        myPID(&calibratedAngle, &speed, &setpointAngle, Kp, Ki, Kd, controllerDirection),
         serialbnoAnglePrefix(_serialbnoAnglePrefix),
         serialSpeedAdjustedPrefix(_serialSpeedAdjustedPrefix)
         {
@@ -11,13 +11,13 @@ Axis::Axis(int _servoPort, int controllerDirection, int _serialbnoAnglePrefix, i
     servoPort = _servoPort;
     myPID.SetOutputLimits(-70, 70);
     myPID.SetMode(AUTOMATIC);
-    myPID.SetSampleTime(100);
+    myPID.SetSampleTime(20);
 }
 
 
 void Axis::setup() {
-    xServo.attach(servoPort);
-    xServo.write(90);
+    servo.attach(servoPort);
+    servo.write(90);
 }
 
 void Axis::update() {
@@ -26,17 +26,17 @@ void Axis::update() {
 
     myPID.Compute();
 
-    if ((xSpeed > threshold) || (xSpeed < 0 - threshold)) {
-        if (xSpeed > 0) {
-            speedAdjusted = xSpeed + xMinSpeed;
+    if ((speed > threshold) || (speed < 0 - threshold)) {
+        if (speed > 0) {
+            speedAdjusted = speed + xMinSpeed;
         }
-        if (xSpeed < 0) {
-            speedAdjusted = xSpeed - xMinSpeed;
+        if (speed < 0) {
+            speedAdjusted = speed - xMinSpeed;
         }
     } else {
         speedAdjusted = 0;
     }
-    xServo.write(90 - speedAdjusted);
+    servo.write(90 - speedAdjusted);
 
 }
 
@@ -67,11 +67,3 @@ double Axis::GetKd() {
     return myPID.GetKd();
 }
 
-void Axis::reportState() {
-    Serial.write(serialbnoAnglePrefix);
-    write2byteFloat(map(bnoAngle * 100, -90 * 100, 90 * 100, 0, 16000));
-
-    Serial.write(serialSpeedAdjustedPrefix);
-    write2byteFloat(map(speedAdjusted * 100, -90 * 100, 90 * 100, 0, 16000));
-
-}

@@ -8,9 +8,9 @@
 class Axis {
 
 private:
-    Servo xServo;
+    Servo servo;
     int servoPort;
-    double Kp = .2, Ki = .1, Kd = .0;
+    double Kp = 1.1, Ki = 1.1, Kd = .0;
     PID myPID;
     int serialbnoAnglePrefix = -1;
     int serialSpeedAdjustedPrefix = -1;
@@ -30,7 +30,7 @@ public:
     double bnoAngle = 0;
     double calibratedAngle = 0;
     double calibration = 0;
-    double xSpeed = 0;
+    double speed = 0;
     double threshold = .15;
     double speedAdjusted = 0;
     double xMinSpeed = 0;
@@ -48,7 +48,6 @@ public:
 
     double GetKd();
 
-    void reportState();
 
 };
 
