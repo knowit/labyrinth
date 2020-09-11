@@ -85,11 +85,13 @@ void setup() {
 
 void sendMessage() {
 
-    message.msg = 123;
+    message.msg = 1.12f;
 
     pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
 
     bool status = pb_encode(&stream, TestMessage_fields, &message);
+
+
 
     if (!status) {
         Serial.println("Failed to encode");
@@ -111,7 +113,7 @@ void sendMessage() {
 
     //send hello world to server
     udp.beginPacket(udpAddress, udpPort);
-    udp.write(buffer, 2);
+     udp.write(buffer,stream.bytes_written );
     udp.endPacket();
 
 }
@@ -120,7 +122,7 @@ void loop() {
 
     Serial.println(i++);
 
-    delay(500);
+    delay(7000);
     sendMessage();
 
 

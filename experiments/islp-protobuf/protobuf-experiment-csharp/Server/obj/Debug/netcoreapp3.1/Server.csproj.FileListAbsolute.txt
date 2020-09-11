@@ -20,3 +20,5 @@
 /Users/badeand/dev/labyrinth/experiments/islp-protobuf/protobuf-experiment-csharp/Server/obj/Debug/netcoreapp3.1/Server.AssemblyInfo.cs
 /Users/badeand/dev/labyrinth/experiments/islp-protobuf/protobuf-experiment-csharp/Server/obj/Debug/netcoreapp3.1/Server.dll
 /Users/badeand/dev/labyrinth/experiments/islp-protobuf/protobuf-experiment-csharp/Server/obj/Debug/netcoreapp3.1/Server.pdb
+/Users/badeand/dev/labyrinth/experiments/islp-protobuf/protobuf-experiment-csharp/Server/bin/Debug/netcoreapp3.1/Google.Protobuf.dll
+/Users/badeand/dev/labyrinth/experiments/islp-protobuf/protobuf-experiment-csharp/Server/obj/Debug/netcoreapp3.1/Server.csproj.CopyComplete

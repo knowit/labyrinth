@@ -16,7 +16,7 @@ namespace ConsoleApp1
 
             
             var testMessage = new TestMessage();
-            testMessage.Msg = 55555.12345f;
+            testMessage.Msg = 3.14f;
             
             using (MemoryStream stream = new MemoryStream())
             {
