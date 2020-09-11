@@ -67,7 +67,7 @@ function emitToServerSocket(topic, value) {
 }
 
 const onXBNO = function (value) {
-  // console.log('xbno', {value});
+  console.log('xbno', {value});
   emitToServerSocket('xbno', value);
 };
 
@@ -199,7 +199,7 @@ function gameStatePending() {
 }
 
 console.log(`Connecting to port: ${portName}`);
-gamecontroller.openPort(portName, { onXBNO, onXSpeed, onYBNO, onYSpeed });
+gamecontroller.openPort(portName,  onXBNO, onXSpeed, onYBNO, onYSpeed );
 
 function startIfPending() {
   if (gamestate === 'gamepending') {
