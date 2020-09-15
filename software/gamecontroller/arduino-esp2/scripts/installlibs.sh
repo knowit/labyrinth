@@ -5,3 +5,4 @@ platformio lib install "Adafruit BNO055@1.3.0"
 platformio lib install "Adafruit GFX Library@1.9.0"
 platformio lib install "Adafruit SSD1306@2.3.1"
 platformio lib install 2@1.2.1 ## PID
+pio lib install "Nanopb@0.4.2"

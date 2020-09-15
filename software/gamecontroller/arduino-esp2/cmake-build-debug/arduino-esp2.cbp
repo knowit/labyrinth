@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6"/>
 	<Project>
-		<Option title="arduino"/>
+		<Option title="arduino-esp2"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
 		<Option virtualFolders="CMake Files\;"/>
@@ -131,6 +131,15 @@
 			<Option target="Z_DUMMY_TARGET"/>
 		</Unit>
 		<Unit filename="/Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/src/main.cpp">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="/Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/src/pb/GameMessage.pb.c">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="/Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/src/pb/GameMessage.pb.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="/Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/src/pb/GameMessage.proto">
 			<Option target="Z_DUMMY_TARGET"/>
 		</Unit>
 		<Unit filename="/Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/src/wificonfigmode.h">

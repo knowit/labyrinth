@@ -1,4 +1,4 @@
-# Install script for directory: /Users/badeand/dev/labyrinth/software/gamecontroller/arduino
+# Install script for directory: /Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -29,7 +29,7 @@ endif()
 
 # Is this installation the result of a crosscompile?
 if(NOT DEFINED CMAKE_CROSSCOMPILING)
-  set(CMAKE_CROSSCOMPILING "FALSE")
+  set(CMAKE_CROSSCOMPILING "TRUE")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/badeand/dev/labyrinth/software/gamecontroller/arduino/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -1,5 +1,12 @@
 #include <Arduino.h>
-// #include <SoftwareSerial.h>
+
+#include "pb_common.h"
+#include "pb.h"
+#include "pb_encode.h"
+#include "pb_decode.h"
+
+#include "./pb/GameMessage.pb.h"
+
 #include <SPI.h>
 #include <TaskScheduler.h>
 #include <Wire.h>
@@ -12,6 +19,7 @@
 #include <ESPmDNS.h>
 #include <Preferences.h>
 #include <wificonfigmode.h>
+#include <WiFiUdp.h>
 
 Axis xAxis(4, 1, 1, 2);
 Axis yAxis(19, 0, 3, 4);
@@ -19,8 +27,12 @@ BNOReader bnoReader;
 SSD1306Display display(xAxis, yAxis);
 Joystick joystick;
 Preferences preferences;
-
 WebServer webServer(80);
+WiFiUDP udp;
+const char *udpAddress = "192.168.10.165";
+uint8_t buffer[512];
+
+const int udpPort = 4049;
 
 void addAndEnableTask(Task &task);
 
@@ -39,6 +51,44 @@ void readJoystick() {
 
 Task readJoystickTask(10, TASK_FOREVER, &readJoystick);
 
+void sendUDPMessage() {
+    // Serial.println("sendUDPMessage");
+
+    BoardState boardState = BoardState_init_zero;
+    boardState.has_orientation=true;
+    boardState.orientation.x =bnoReader.xAngle;
+    boardState.orientation.y = bnoReader.yAngle;
+
+    pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
+
+    bool status = pb_encode(&stream, BoardState_fields, &boardState);
+
+    if (!status) {
+        Serial.println("Failed to encode");
+        return;
+    }
+
+/*
+    Serial.print("Message Length: ");
+    Serial.println(stream.bytes_written);
+
+    Serial.print("Message: ");
+
+    for(int i = 0; i<stream.bytes_written; i++){
+        Serial.printf("%02X",buffer[i]);
+    }
+    Serial.println();
+*/
+
+
+    //send hello world to server
+    udp.beginPacket(udpAddress, udpPort);
+    udp.write(buffer,stream.bytes_written );
+    udp.endPacket();
+}
+
+Task sendUDPMessageTask(10, TASK_FOREVER, &sendUDPMessage);
+
 void serveWebRequests() {
     webServer.handleClient();
 }
@@ -52,6 +102,7 @@ void setupTasks() {
     addAndEnableTask(updateDisplayTask);
     addAndEnableTask(readJoystickTask);
     addAndEnableTask(serveWebRequestsTask);
+    addAndEnableTask(sendUDPMessageTask);
 }
 
 
@@ -84,6 +135,10 @@ void setupServer() {
     webServer.on("/calibrateaxis", calibrateaxis);
     webServer.on("/calibratejoystick", calibratejoystick);
     webServer.begin();
+}
+
+void setupUDP(){
+    udp.begin(udpPort);
 }
 
 void setupWIFI() {
@@ -178,6 +233,14 @@ void setup() {
     updateDisplay();
     setupWIFI();
 
+    Serial.println("setup setup BEGIN");
+    display.task = "init UDP/PB";
+    updateDisplay();
+    setupUDP();
+    display.task = "init UDP/PB OK";
+    updateDisplay();
+    Serial.println("setup UDP - OK");
+
     Serial.println("joystick setup BEGIN");
     display.task = "init joystick";
     updateDisplay();
@@ -239,49 +302,4 @@ void loop() {
 
 }
 
-void readAndParseCommands() {
-    if (Serial.available() >= 3) {
-        int cmd = Serial.read();
-        /*
-        if (cmd == 1) { // set x angle
-            xAxis.setpointAngle = (map(read2byteFloat(), 0, 16000, 0, 100 * 100) / 100.0) - 50;
-        }
-        if (cmd == 11) { // set y angle
-            yAxis.setpointAngle = (map(read2byteFloat(), 0, 16000, 0, 100 * 100) / 100.0) - 50;
-        }
-         */
-        if (cmd == 2) {
-            xAxis.setKp(handle2ByteFloatParameter("X Kp: ", 0, 100, 0));
-        }
-        if (cmd == 12) {
-            yAxis.setKp(handle2ByteFloatParameter("Y Kp: ", 0, 100, 0));
-        }
-        if (cmd == 3) {
-            xAxis.setKi(handle2ByteFloatParameter("X Ki: ", 0, 100, 0));
-        }
-        if (cmd == 13) {
-            yAxis.setKi(handle2ByteFloatParameter("Y Ki: ", 0, 100, 0));
-        }
-        if (cmd == 4) {
-            xAxis.setKd(handle2ByteFloatParameter("X Kd: ", 0, 100, 0));
-        }
-        if (cmd == 14) {
-            yAxis.setKd(handle2ByteFloatParameter("Y Kd: ", 0, 100, 0));
-        }
-        if (cmd == 5) {
-            xAxis.calibration = handle2ByteFloatParameter("X cal: ", 0, 100, -50.);
-        }
-        if (cmd == 15) {
-            yAxis.calibration = handle2ByteFloatParameter("Y cal: ", 0, 100, -50.);
-        }
-    }
-}
 
-double handle2ByteFloatParameter(const char *parameterName, int minValue, int maxValue, float offset) {
-    float t = read2byteFloat();
-    double value = map(t, 0, 16000, minValue, maxValue * 100) / 100.0 + offset;
-    display.task = parameterName;
-    display.taskParam = value;
-    display.showTaskParam = true;
-    return value;
-}

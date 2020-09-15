@@ -48,10 +48,10 @@ RM = "/Users/badeand/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/badeand/dev/labyrinth/software/gamecontroller/arduino
+CMAKE_SOURCE_DIR = /Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/badeand/dev/labyrinth/software/gamecontroller/arduino/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/badeand/dev/labyrinth/software/gamecontroller/arduino/cmake-build-debug/CMakeFiles /Users/badeand/dev/labyrinth/software/gamecontroller/arduino/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/cmake-build-debug/CMakeFiles /Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/badeand/dev/labyrinth/software/gamecontroller/arduino/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -149,14 +149,14 @@ Production/fast:
 	$(MAKE) -f CMakeFiles/Production.dir/build.make CMakeFiles/Production.dir/build
 .PHONY : Production/fast
 
-src/Axis.o: src/Axis.cpp.o
+src/Axis.obj: src/Axis.cpp.obj
 
-.PHONY : src/Axis.o
+.PHONY : src/Axis.obj
 
 # target to build an object file
-src/Axis.cpp.o:
-	$(MAKE) -f CMakeFiles/Z_DUMMY_TARGET.dir/build.make CMakeFiles/Z_DUMMY_TARGET.dir/src/Axis.cpp.o
-.PHONY : src/Axis.cpp.o
+src/Axis.cpp.obj:
+	$(MAKE) -f CMakeFiles/Z_DUMMY_TARGET.dir/build.make CMakeFiles/Z_DUMMY_TARGET.dir/src/Axis.cpp.obj
+.PHONY : src/Axis.cpp.obj
 
 src/Axis.i: src/Axis.cpp.i
 
@@ -176,14 +176,14 @@ src/Axis.cpp.s:
 	$(MAKE) -f CMakeFiles/Z_DUMMY_TARGET.dir/build.make CMakeFiles/Z_DUMMY_TARGET.dir/src/Axis.cpp.s
 .PHONY : src/Axis.cpp.s
 
-src/BNOReader.o: src/BNOReader.cpp.o
+src/BNOReader.obj: src/BNOReader.cpp.obj
 
-.PHONY : src/BNOReader.o
+.PHONY : src/BNOReader.obj
 
 # target to build an object file
-src/BNOReader.cpp.o:
-	$(MAKE) -f CMakeFiles/Z_DUMMY_TARGET.dir/build.make CMakeFiles/Z_DUMMY_TARGET.dir/src/BNOReader.cpp.o
-.PHONY : src/BNOReader.cpp.o
+src/BNOReader.cpp.obj:
+	$(MAKE) -f CMakeFiles/Z_DUMMY_TARGET.dir/build.make CMakeFiles/Z_DUMMY_TARGET.dir/src/BNOReader.cpp.obj
+.PHONY : src/BNOReader.cpp.obj
 
 src/BNOReader.i: src/BNOReader.cpp.i
 
@@ -203,14 +203,14 @@ src/BNOReader.cpp.s:
 	$(MAKE) -f CMakeFiles/Z_DUMMY_TARGET.dir/build.make CMakeFiles/Z_DUMMY_TARGET.dir/src/BNOReader.cpp.s
 .PHONY : src/BNOReader.cpp.s
 
-src/Joystick.o: src/Joystick.cpp.o
+src/Joystick.obj: src/Joystick.cpp.obj
 
-.PHONY : src/Joystick.o
+.PHONY : src/Joystick.obj
 
 # target to build an object file
-src/Joystick.cpp.o:
-	$(MAKE) -f CMakeFiles/Z_DUMMY_TARGET.dir/build.make CMakeFiles/Z_DUMMY_TARGET.dir/src/Joystick.cpp.o
-.PHONY : src/Joystick.cpp.o
+src/Joystick.cpp.obj:
+	$(MAKE) -f CMakeFiles/Z_DUMMY_TARGET.dir/build.make CMakeFiles/Z_DUMMY_TARGET.dir/src/Joystick.cpp.obj
+.PHONY : src/Joystick.cpp.obj
 
 src/Joystick.i: src/Joystick.cpp.i
 
@@ -230,14 +230,14 @@ src/Joystick.cpp.s:
 	$(MAKE) -f CMakeFiles/Z_DUMMY_TARGET.dir/build.make CMakeFiles/Z_DUMMY_TARGET.dir/src/Joystick.cpp.s
 .PHONY : src/Joystick.cpp.s
 
-src/SSD1306Display.o: src/SSD1306Display.cpp.o
+src/SSD1306Display.obj: src/SSD1306Display.cpp.obj
 
-.PHONY : src/SSD1306Display.o
+.PHONY : src/SSD1306Display.obj
 
 # target to build an object file
-src/SSD1306Display.cpp.o:
-	$(MAKE) -f CMakeFiles/Z_DUMMY_TARGET.dir/build.make CMakeFiles/Z_DUMMY_TARGET.dir/src/SSD1306Display.cpp.o
-.PHONY : src/SSD1306Display.cpp.o
+src/SSD1306Display.cpp.obj:
+	$(MAKE) -f CMakeFiles/Z_DUMMY_TARGET.dir/build.make CMakeFiles/Z_DUMMY_TARGET.dir/src/SSD1306Display.cpp.obj
+.PHONY : src/SSD1306Display.cpp.obj
 
 src/SSD1306Display.i: src/SSD1306Display.cpp.i
 
@@ -257,14 +257,14 @@ src/SSD1306Display.cpp.s:
 	$(MAKE) -f CMakeFiles/Z_DUMMY_TARGET.dir/build.make CMakeFiles/Z_DUMMY_TARGET.dir/src/SSD1306Display.cpp.s
 .PHONY : src/SSD1306Display.cpp.s
 
-src/Util.o: src/Util.cpp.o
+src/Util.obj: src/Util.cpp.obj
 
-.PHONY : src/Util.o
+.PHONY : src/Util.obj
 
 # target to build an object file
-src/Util.cpp.o:
-	$(MAKE) -f CMakeFiles/Z_DUMMY_TARGET.dir/build.make CMakeFiles/Z_DUMMY_TARGET.dir/src/Util.cpp.o
-.PHONY : src/Util.cpp.o
+src/Util.cpp.obj:
+	$(MAKE) -f CMakeFiles/Z_DUMMY_TARGET.dir/build.make CMakeFiles/Z_DUMMY_TARGET.dir/src/Util.cpp.obj
+.PHONY : src/Util.cpp.obj
 
 src/Util.i: src/Util.cpp.i
 
@@ -284,14 +284,14 @@ src/Util.cpp.s:
 	$(MAKE) -f CMakeFiles/Z_DUMMY_TARGET.dir/build.make CMakeFiles/Z_DUMMY_TARGET.dir/src/Util.cpp.s
 .PHONY : src/Util.cpp.s
 
-src/main.o: src/main.cpp.o
+src/main.obj: src/main.cpp.obj
 
-.PHONY : src/main.o
+.PHONY : src/main.obj
 
 # target to build an object file
-src/main.cpp.o:
-	$(MAKE) -f CMakeFiles/Z_DUMMY_TARGET.dir/build.make CMakeFiles/Z_DUMMY_TARGET.dir/src/main.cpp.o
-.PHONY : src/main.cpp.o
+src/main.cpp.obj:
+	$(MAKE) -f CMakeFiles/Z_DUMMY_TARGET.dir/build.make CMakeFiles/Z_DUMMY_TARGET.dir/src/main.cpp.obj
+.PHONY : src/main.cpp.obj
 
 src/main.i: src/main.cpp.i
 
@@ -311,6 +311,33 @@ src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/Z_DUMMY_TARGET.dir/build.make CMakeFiles/Z_DUMMY_TARGET.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/pb/GameMessage.pb.obj: src/pb/GameMessage.pb.c.obj
+
+.PHONY : src/pb/GameMessage.pb.obj
+
+# target to build an object file
+src/pb/GameMessage.pb.c.obj:
+	$(MAKE) -f CMakeFiles/Z_DUMMY_TARGET.dir/build.make CMakeFiles/Z_DUMMY_TARGET.dir/src/pb/GameMessage.pb.c.obj
+.PHONY : src/pb/GameMessage.pb.c.obj
+
+src/pb/GameMessage.pb.i: src/pb/GameMessage.pb.c.i
+
+.PHONY : src/pb/GameMessage.pb.i
+
+# target to preprocess a source file
+src/pb/GameMessage.pb.c.i:
+	$(MAKE) -f CMakeFiles/Z_DUMMY_TARGET.dir/build.make CMakeFiles/Z_DUMMY_TARGET.dir/src/pb/GameMessage.pb.c.i
+.PHONY : src/pb/GameMessage.pb.c.i
+
+src/pb/GameMessage.pb.s: src/pb/GameMessage.pb.c.s
+
+.PHONY : src/pb/GameMessage.pb.s
+
+# target to generate assembly for a file
+src/pb/GameMessage.pb.c.s:
+	$(MAKE) -f CMakeFiles/Z_DUMMY_TARGET.dir/build.make CMakeFiles/Z_DUMMY_TARGET.dir/src/pb/GameMessage.pb.c.s
+.PHONY : src/pb/GameMessage.pb.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -322,24 +349,27 @@ help:
 	@echo "... Z_DUMMY_TARGET"
 	@echo "... Debug"
 	@echo "... Production"
-	@echo "... src/Axis.o"
+	@echo "... src/Axis.obj"
 	@echo "... src/Axis.i"
 	@echo "... src/Axis.s"
-	@echo "... src/BNOReader.o"
+	@echo "... src/BNOReader.obj"
 	@echo "... src/BNOReader.i"
 	@echo "... src/BNOReader.s"
-	@echo "... src/Joystick.o"
+	@echo "... src/Joystick.obj"
 	@echo "... src/Joystick.i"
 	@echo "... src/Joystick.s"
-	@echo "... src/SSD1306Display.o"
+	@echo "... src/SSD1306Display.obj"
 	@echo "... src/SSD1306Display.i"
 	@echo "... src/SSD1306Display.s"
-	@echo "... src/Util.o"
+	@echo "... src/Util.obj"
 	@echo "... src/Util.i"
 	@echo "... src/Util.s"
-	@echo "... src/main.o"
+	@echo "... src/main.obj"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/pb/GameMessage.pb.obj"
+	@echo "... src/pb/GameMessage.pb.i"
+	@echo "... src/pb/GameMessage.pb.s"
 .PHONY : help
 
 

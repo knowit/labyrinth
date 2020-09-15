@@ -32,8 +32,11 @@ namespace ProtoBufTest
 
                     Console.WriteLine();
 
-                    TestMessage testMessage = TestMessage.Parser.ParseFrom(bytes);
-                    Console.WriteLine(testMessage.Msg);
+                    
+                    BoardState boardState = BoardState.Parser.ParseFrom(bytes);
+                    Console.WriteLine(boardState.Orientation.X);
+                    Console.WriteLine(boardState.Orientation.Y);
+                    
                 }
             }
             catch (SocketException e)

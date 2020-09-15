@@ -1,1 +1,1 @@
-protoc --csharp_out=. test.proto
+protoc --csharp_out=. GameMessage.proto
