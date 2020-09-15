@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+message Vec2 {
+  float x = 1;
+  float y = 2;
+}
+
+message JoystickState {
+  Vec2 orientation = 1;
+}
+
+message BallState {
+  Vec2 position = 1;
+}
+
+message BoardState {
+  Vec2 orientation = 1;
+}
+

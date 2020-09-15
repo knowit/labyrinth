@@ -14,12 +14,17 @@ namespace ConsoleApp1
             Console.WriteLine("Hello World!");
 
 
+
+            var testMessage = new JoystickState();
+            testMessage.Orientation = new Vec2();
             
-            var testMessage = new TestMessage();
-            testMessage.Msg = 3.14f;
             
             using (MemoryStream stream = new MemoryStream())
             {
+                
+                testMessage.Orientation.X = 3f;
+                testMessage.Orientation.Y = 0f;
+                
                 // Save the person to a stream
                 testMessage.WriteTo(stream);
                 byte[] bytes = stream.ToArray();
@@ -31,9 +36,9 @@ namespace ConsoleApp1
 
                 Console.WriteLine();
 
-                UdpClient udpClient = new UdpClient(4049);
+                UdpClient udpClient = new UdpClient(4050);
                 try{
-                    udpClient.Connect("192.168.10.196", 4049);
+                    udpClient.Connect("192.168.10.185", 4050);
 
                     udpClient.Send(bytes, bytes.Length);
                 
