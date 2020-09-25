@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using Google.Protobuf;
 
 namespace ConsoleApp1
@@ -13,43 +14,67 @@ namespace ConsoleApp1
         {
             Console.WriteLine("Hello World!");
 
+            float x = 0;
+            float y = 0;
 
 
             var testMessage = new JoystickState();
             testMessage.Orientation = new Vec2();
-            
-            
-            using (MemoryStream stream = new MemoryStream())
+
+            while (true)
             {
-                
-                testMessage.Orientation.X = 3f;
-                testMessage.Orientation.Y = 0f;
-                
-                // Save the person to a stream
-                testMessage.WriteTo(stream);
-                byte[] bytes = stream.ToArray();
-
-                for (int i = 0; i < bytes.Length; i++)
+                Thread.Sleep(5);
+                if (x < 5f)
                 {
-                    Console.Write(String.Format("{0:X2}",  bytes[i]));    
+                    x = x + .03f;
                 }
-
-                Console.WriteLine();
-
-                UdpClient udpClient = new UdpClient(4050);
-                try{
-                    udpClient.Connect("192.168.10.185", 4050);
-
-                    udpClient.Send(bytes, bytes.Length);
+                else
+                {
+                    x = -5f;
+                }
                 
-                    udpClient.Close();
+                if (y < 4f)
+                {
+                    y = y + .02f;
                 }
-                catch (Exception e ) {
-                    Console.WriteLine(e.ToString());
+                else
+                {
+                    y = -4f;
                 }
+                
+                using (MemoryStream stream = new MemoryStream())
+                {
+                
+                    testMessage.Orientation.X = x;
+                    testMessage.Orientation.Y = y;
+                
+                    // Save the person to a stream
+                    testMessage.WriteTo(stream);
+                    byte[] bytes = stream.ToArray();
+
+                    for (int i = 0; i < bytes.Length; i++)
+                    {
+                        Console.Write(String.Format("{0:X2}",  bytes[i]));    
+                    }
+
+                    Console.WriteLine();
+
+                    UdpClient udpClient = new UdpClient(4050);
+                    try{
+                        udpClient.Connect("192.168.10.185", 4050);
+
+                        udpClient.Send(bytes, bytes.Length);
+                
+                        udpClient.Close();
+                    }
+                    catch (Exception e ) {
+                        Console.WriteLine(e.ToString());
+                    }
 
                 
+                }
             }
+
          
             
         }

@@ -27,7 +27,7 @@
 Axis xAxis(4, 1, 1, 2);
 Axis yAxis(19, 0, 3, 4);
 WebServer webServer(80);
-const char *udpAddress = "192.168.10.165";
+const char *udpAddress = "192.168.10.199";
 BNOReader bnoReader;
 SSD1306Display display(xAxis, yAxis);
 Joystick joystick;
@@ -35,6 +35,7 @@ AsyncUDP asyncUdp;
 Preferences preferences;
 WiFiUDP udp;
 uint8_t buffer[512];
+JoystickState message = JoystickState_init_zero;
 
 const int udpPort = 4049;
 
@@ -59,8 +60,8 @@ void sendUDPMessage() {
 
     BoardState boardState = BoardState_init_zero;
     boardState.has_orientation=true;
-    boardState.orientation.x =bnoReader.xAngle;
-    boardState.orientation.y = bnoReader.yAngle;
+    boardState.orientation.x =bnoReader.yAngle;
+    boardState.orientation.y = bnoReader.xAngle;
 
     pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
 
@@ -103,7 +104,7 @@ Scheduler runner;
 void setupTasks() {
     runner.init();
     addAndEnableTask(updateDisplayTask);
-    addAndEnableTask(readJoystickTask);
+    // addAndEnableTask(readJoystickTask);
     addAndEnableTask(serveWebRequestsTask);
     addAndEnableTask(sendUDPMessageTask);
 }
@@ -189,6 +190,7 @@ void setupWIFI() {
     }
 
     int timeout = 0;
+
     while (WiFi.status() != WL_CONNECTED) {
         Serial.print(".");
         delay(250);
@@ -199,6 +201,9 @@ void setupWIFI() {
             serve();
         }
     }
+
+
+    // serve();
 
     Serial.print("Connecting to WiFi. IP=");
     Serial.println(WiFi.localIP());
@@ -283,10 +288,13 @@ void setup() {
 
     Serial.println("____SETUP_END______");
 
+
     if (asyncUdp.listen(4050)) {
         Serial.print("UDP Listening on IP: ");
         Serial.println(WiFi.localIP());
         asyncUdp.onPacket([](AsyncUDPPacket packet) {
+
+            /*
             Serial.print("UDP Packet Type: ");
             Serial.print(packet.isBroadcast() ? "Broadcast" : packet.isMulticast() ? "Multicast" : "Unicast");
             Serial.print(", From: ");
@@ -309,27 +317,34 @@ void setup() {
 
             Serial.println();
 
+             */
+
             //Serial.println();
             //String myString = (const char *) packet.data();
 
             pb_istream_t stream = pb_istream_from_buffer(packet.data(), packet.length());
 
-            JoystickState message = JoystickState_init_zero;
+
             if (!pb_decode(&stream, JoystickState_fields, &message)) {
                 Serial.println("Failed to decode");
                 return;
             }
 
-            Serial.println(message.orientation.x);
-            Serial.println(message.orientation.y);
 
-            xAxis.setpointAngle = message.orientation.x;
-            yAxis.setpointAngle = message.orientation.y;
+            Serial.print(".");
+
+            // Serial.println(message.orientation.x);
+            //Serial.println(message.orientation.y);
+
+
+             xAxis.setpointAngle = message.orientation.x;
+             yAxis.setpointAngle = 1- message.orientation.y;
 
         });
     }
 
-    yAxis.calibration = -1.5;
+    yAxis.calibration = 0;
+    xAxis.calibration = -.5;
 }
 
 void addAndEnableTask(Task &task) {
@@ -345,7 +360,7 @@ void loop() {
     xAxis.bnoAngle = bnoReader.xAngle;
     yAxis.bnoAngle = bnoReader.yAngle;
     // xAxis.setpointAngle = (joystick.x * 12) + 6;
-    // yAxis.setpointAngle = (joystick.y * 10) - 5;
+    // yAxis.setpointAngle = (joystick.y * 10) - 5;./scr
     xAxis.update();
     yAxis.update();
 

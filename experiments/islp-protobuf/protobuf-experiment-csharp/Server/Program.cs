@@ -8,7 +8,7 @@ namespace ProtoBufTest
 {
     class Program
     {
-        private const int listenPort = 4049;
+        private const int listenPort = 4050;
 
         private static void StartListener()
         {
@@ -19,7 +19,7 @@ namespace ProtoBufTest
             {
                 while (true)
                 {
-                    Console.WriteLine("Waiting for broadcast");
+                    //Console.WriteLine("Waiting for broadcast");
                     byte[] bytes = listener.Receive(ref groupEP);
 
                     //Console.WriteLine($"Received broadcast from {groupEP} :");
@@ -27,15 +27,16 @@ namespace ProtoBufTest
                     
                     for (int i = 0; i < bytes.Length; i++)
                     {
-                        Console.Write(String.Format("{0:X2}",  bytes[i]));    
+                      //  Console.Write(String.Format("{0:X2}",  bytes[i]));    
                     }
 
-                    Console.WriteLine();
+                    //Console.WriteLine();
 
                     
-                    BoardState boardState = BoardState.Parser.ParseFrom(bytes);
-                    Console.WriteLine(boardState.Orientation.X);
-                    Console.WriteLine(boardState.Orientation.Y);
+                    JoystickState msg = JoystickState.Parser.ParseFrom(bytes);
+                    //Console.WriteLine(msg.Orientation.X);
+                    //Console.WriteLine(msg.Orientation.Y);
+                    Console.Write(".");
                     
                 }
             }
