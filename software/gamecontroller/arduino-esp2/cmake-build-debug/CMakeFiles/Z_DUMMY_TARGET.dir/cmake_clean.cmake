@@ -6,6 +6,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Z_DUMMY_TARGET.dir/src/Util.cpp.obj"
   "CMakeFiles/Z_DUMMY_TARGET.dir/src/main.cpp.obj"
   "CMakeFiles/Z_DUMMY_TARGET.dir/src/pb/GameMessage.pb.c.obj"
+  "CMakeFiles/Z_DUMMY_TARGET.dir/src/pb/test.pb.c.obj"
   "Z_DUMMY_TARGET"
   "Z_DUMMY_TARGET.pdb"
 )

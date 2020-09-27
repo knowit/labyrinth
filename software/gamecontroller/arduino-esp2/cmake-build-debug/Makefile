@@ -338,6 +338,33 @@ src/pb/GameMessage.pb.c.s:
 	$(MAKE) -f CMakeFiles/Z_DUMMY_TARGET.dir/build.make CMakeFiles/Z_DUMMY_TARGET.dir/src/pb/GameMessage.pb.c.s
 .PHONY : src/pb/GameMessage.pb.c.s
 
+src/pb/test.pb.obj: src/pb/test.pb.c.obj
+
+.PHONY : src/pb/test.pb.obj
+
+# target to build an object file
+src/pb/test.pb.c.obj:
+	$(MAKE) -f CMakeFiles/Z_DUMMY_TARGET.dir/build.make CMakeFiles/Z_DUMMY_TARGET.dir/src/pb/test.pb.c.obj
+.PHONY : src/pb/test.pb.c.obj
+
+src/pb/test.pb.i: src/pb/test.pb.c.i
+
+.PHONY : src/pb/test.pb.i
+
+# target to preprocess a source file
+src/pb/test.pb.c.i:
+	$(MAKE) -f CMakeFiles/Z_DUMMY_TARGET.dir/build.make CMakeFiles/Z_DUMMY_TARGET.dir/src/pb/test.pb.c.i
+.PHONY : src/pb/test.pb.c.i
+
+src/pb/test.pb.s: src/pb/test.pb.c.s
+
+.PHONY : src/pb/test.pb.s
+
+# target to generate assembly for a file
+src/pb/test.pb.c.s:
+	$(MAKE) -f CMakeFiles/Z_DUMMY_TARGET.dir/build.make CMakeFiles/Z_DUMMY_TARGET.dir/src/pb/test.pb.c.s
+.PHONY : src/pb/test.pb.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -370,6 +397,9 @@ help:
 	@echo "... src/pb/GameMessage.pb.obj"
 	@echo "... src/pb/GameMessage.pb.i"
 	@echo "... src/pb/GameMessage.pb.s"
+	@echo "... src/pb/test.pb.obj"
+	@echo "... src/pb/test.pb.i"
+	@echo "... src/pb/test.pb.s"
 .PHONY : help
 
 

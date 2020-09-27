@@ -100,6 +100,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/src/.DS_Store">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
 		<Unit filename="/Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/src/Axis.cpp">
 			<Option target="Z_DUMMY_TARGET"/>
 		</Unit>
@@ -140,6 +143,12 @@
 			<Option target="Z_DUMMY_TARGET"/>
 		</Unit>
 		<Unit filename="/Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/src/pb/GameMessage.proto">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="/Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/src/pb/test.pb.c">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
+		<Unit filename="/Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/src/pb/test.pb.h">
 			<Option target="Z_DUMMY_TARGET"/>
 		</Unit>
 		<Unit filename="/Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/src/wificonfigmode.h">

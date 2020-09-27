@@ -1,4 +1,3 @@
-#include <Arduino.h>
 
 #include "pb_common.h"
 #include "pb.h"

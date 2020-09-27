@@ -1,0 +1,5 @@
+/Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/cmake-build-esp32doit-devkit-v1/CMakeFiles/rebuild_cache.dir
+/Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/cmake-build-esp32doit-devkit-v1/CMakeFiles/edit_cache.dir
+/Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/cmake-build-esp32doit-devkit-v1/CMakeFiles/Z_DUMMY_TARGET.dir
+/Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/cmake-build-esp32doit-devkit-v1/CMakeFiles/Debug.dir
+/Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/cmake-build-esp32doit-devkit-v1/CMakeFiles/Production.dir

@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
   "/Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/src/pb/GameMessage.pb.c" "/Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/cmake-build-debug/CMakeFiles/Z_DUMMY_TARGET.dir/src/pb/GameMessage.pb.c.obj"
+  "/Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/src/pb/test.pb.c" "/Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/cmake-build-debug/CMakeFiles/Z_DUMMY_TARGET.dir/src/pb/test.pb.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 

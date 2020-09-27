@@ -47,7 +47,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/cmake-build-esp32doit-devkit-v1
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -78,14 +78,14 @@ preinstall:
 CMakeFiles/Z_DUMMY_TARGET.dir/all:
 	$(MAKE) -f CMakeFiles/Z_DUMMY_TARGET.dir/build.make CMakeFiles/Z_DUMMY_TARGET.dir/depend
 	$(MAKE) -f CMakeFiles/Z_DUMMY_TARGET.dir/build.make CMakeFiles/Z_DUMMY_TARGET.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9 "Built target Z_DUMMY_TARGET"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/cmake-build-esp32doit-devkit-v1/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92 "Built target Z_DUMMY_TARGET"
 .PHONY : CMakeFiles/Z_DUMMY_TARGET.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Z_DUMMY_TARGET.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/cmake-build-debug/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/cmake-build-esp32doit-devkit-v1/CMakeFiles 92
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Z_DUMMY_TARGET.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/cmake-build-esp32doit-devkit-v1/CMakeFiles 0
 .PHONY : CMakeFiles/Z_DUMMY_TARGET.dir/rule
 
 # Convenience name for target.
@@ -105,14 +105,14 @@ CMakeFiles/Z_DUMMY_TARGET.dir/clean:
 CMakeFiles/Debug.dir/all:
 	$(MAKE) -f CMakeFiles/Debug.dir/build.make CMakeFiles/Debug.dir/depend
 	$(MAKE) -f CMakeFiles/Debug.dir/build.make CMakeFiles/Debug.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/cmake-build-debug/CMakeFiles --progress-num= "Built target Debug"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/cmake-build-esp32doit-devkit-v1/CMakeFiles --progress-num= "Built target Debug"
 .PHONY : CMakeFiles/Debug.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Debug.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/cmake-build-esp32doit-devkit-v1/CMakeFiles 0
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Debug.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/cmake-build-esp32doit-devkit-v1/CMakeFiles 0
 .PHONY : CMakeFiles/Debug.dir/rule
 
 # Convenience name for target.
@@ -132,14 +132,14 @@ CMakeFiles/Debug.dir/clean:
 CMakeFiles/Production.dir/all:
 	$(MAKE) -f CMakeFiles/Production.dir/build.make CMakeFiles/Production.dir/depend
 	$(MAKE) -f CMakeFiles/Production.dir/build.make CMakeFiles/Production.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/cmake-build-debug/CMakeFiles --progress-num= "Built target Production"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/cmake-build-esp32doit-devkit-v1/CMakeFiles --progress-num= "Built target Production"
 .PHONY : CMakeFiles/Production.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Production.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/cmake-build-esp32doit-devkit-v1/CMakeFiles 0
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Production.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/cmake-build-esp32doit-devkit-v1/CMakeFiles 0
 .PHONY : CMakeFiles/Production.dir/rule
 
 # Convenience name for target.
