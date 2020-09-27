@@ -1997,6 +1997,9 @@
 		<Unit filename="/Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/src/Joystick.h">
 			<Option target="Z_DUMMY_TARGET"/>
 		</Unit>
+		<Unit filename="/Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/src/Network.h">
+			<Option target="Z_DUMMY_TARGET"/>
+		</Unit>
 		<Unit filename="/Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2/src/SSD1306Display.cpp">
 			<Option target="Z_DUMMY_TARGET"/>
 		</Unit>

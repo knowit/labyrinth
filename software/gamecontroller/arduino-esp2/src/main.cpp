@@ -5,23 +5,19 @@
 #include "pb_decode.h"
 
 #include "./pb/GameMessage.pb.h"
+#include "./Network.h"
 
-#include <SPI.h>
 #include <TaskScheduler.h>
 #include <Wire.h>
-// #include <utility/imumaths.h>
 #include "Axis.h"
 #include "Util.h"
 #include "BNOReader.h"
 #include "SSD1306Display.h"
 #include "Joystick.h"
-#include <ESPmDNS.h>
+
 #include <WiFiUdp.h>
 #include "AsyncUDP.h"
 
-#include <Preferences.h>
-
-#include <wificonfigmode.h>
 
 Axis xAxis(4, 1, 1, 2);
 Axis yAxis(19, 0, 3, 4);
@@ -31,12 +27,12 @@ BNOReader bnoReader;
 SSD1306Display display(xAxis, yAxis);
 Joystick joystick;
 AsyncUDP asyncUdp;
-Preferences preferences;
+
 WiFiUDP udp;
 uint8_t buffer[512];
 JoystickState message = JoystickState_init_zero;
 
-const int udpPort = 4049;
+const int boardStateUDPPort = 4049;
 
 void addAndEnableTask(Task &task);
 
@@ -84,8 +80,7 @@ void sendUDPMessage() {
 */
 
 
-    //send hello world to server
-    udp.beginPacket(udpAddress, udpPort);
+    udp.beginPacket(udpAddress, boardStateUDPPort);
     udp.write(buffer,stream.bytes_written );
     udp.endPacket();
 }
@@ -141,83 +136,9 @@ void setupServer() {
 }
 
 void setupUDP(){
-    udp.begin(udpPort);
+    udp.begin(boardStateUDPPort);
 }
 
-void setupWIFI() {
-
-    delay(1000);
-
-    preferences.begin("dings01", false);
-    String name = preferences.getString("name", String("not set"));
-    String ssid = preferences.getString("ssid", String("not set"));
-    String pwd = preferences.getString("pwd", String("not set"));
-    preferences.end();
-
-    Serial.print("pwd=");
-    Serial.print(pwd);
-
-    Serial.print("name=");
-    Serial.print(name);
-    Serial.print(" , ");
-    Serial.print("ssid=");
-    Serial.print(ssid);
-    Serial.print(" , ");
-    Serial.print("pwd=");
-    Serial.print(pwd);
-    Serial.print(" , ");
-    Serial.print("rport=");
-    Serial.print(preferences.getInt("rport", -1));
-    Serial.print(" , ");
-    Serial.print("sport=");
-    Serial.print(preferences.getInt("sport", -1));
-    Serial.print(" , ");
-
-    Serial.print("Connecting to WiFi. ssid=");
-    Serial.println(ssid);
-
-    if (pwd == "none") {
-        Serial.println("Using no password");
-        WiFi.begin(
-                ssid.c_str(), ""
-        );
-    } else {
-        WiFi.begin(
-                ssid.c_str(),
-                pwd.c_str()
-        );
-    }
-
-    int timeout = 0;
-
-    while (WiFi.status() != WL_CONNECTED) {
-        Serial.print(".");
-        delay(250);
-        delay(250);
-        timeout++;
-        if (timeout > 20) {
-            Serial.println("Unable to connect to network (SSID="+ssid+").");
-            serve();
-        }
-    }
-
-
-    // serve();
-
-    Serial.print("Connecting to WiFi. IP=");
-    Serial.println(WiFi.localIP());
-
-    if (!MDNS.begin(name.c_str())) {
-        Serial.println("Unable to set up MSDN");
-        while (1) {
-            delay(1000);
-        }
-    }
-
-    Serial.print("MSDN setup OK. name=");
-    Serial.print(name);
-    Serial.println(".local");
-}
 
 void setup() {
 

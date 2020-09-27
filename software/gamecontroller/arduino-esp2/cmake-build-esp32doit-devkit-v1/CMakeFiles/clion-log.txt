@@ -1,4 +1,4 @@
-"/Users/badeand/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/193.6015.37/CLion.app/Contents/bin/cmake/mac/bin/cmake" -DCMAKE_BUILD_TYPE=esp32doit-devkit-v1 -G "CodeBlocks - Unix Makefiles" /Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2
+"/Users/badeand/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/202.7319.72/CLion.app/Contents/bin/cmake/mac/bin/cmake" -DCMAKE_BUILD_TYPE=esp32doit-devkit-v1 -G "CodeBlocks - Unix Makefiles" /Users/badeand/dev/labyrinth/software/gamecontroller/arduino-esp2
 -- The C compiler identification is AppleClang 12.0.0.12000032
 -- The CXX compiler identification is AppleClang 12.0.0.12000032
 -- Detecting C compiler ABI info
