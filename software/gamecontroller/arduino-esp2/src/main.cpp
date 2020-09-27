@@ -1,42 +1,52 @@
 
+#include <Wire.h>
+#include "Axis.h"
+Axis xAxis(4, 1, 1, 2);
+Axis yAxis(19, 0, 3, 4);
+
+#include "SSD1306Display.h"
+SSD1306Display display(xAxis, yAxis);
+
 
 #include "./Network.h"
 
 #include <TaskScheduler.h>
-#include <Wire.h>
-#include "Axis.h"
 #include "Util.h"
 #include "BNOReader.h"
-#include "SSD1306Display.h"
 #include "Joystick.h"
 #include "ISLPJoystickReceiver.h"
+#include "ISLPBoardStateSender.h"
 
 
-Axis xAxis(4, 1, 1, 2);
-Axis yAxis(19, 0, 3, 4);
 WebServer webServer(80);
-const char *udpAddress = "192.168.10.199";
+
 BNOReader bnoReader;
-SSD1306Display display(xAxis, yAxis);
+
 Joystick joystick;
 
 ISLPJoystickReceiver islpJoystickReceiver;
-
-WiFiUDP udp;
-uint8_t buffer[512];
-
-
-const int boardStateUDPPort = 4049;
+ISLPBoardStateSender islpBoardStateSender;
 
 void addAndEnableTask(Task &task);
 
+void resetSettings() {
+    if( digitalRead(0) == 0) {
+        resetPreferences();
+        display.task = "Settings reset";
+        Serial.println("Settings reset");
+        display.updateDisplay();
+        sleep(1000);
+        ESP.restart();
+    }
+}
+
+Task resetSettingsTask(1000, TASK_FOREVER, &resetSettings);
 
 void updateDisplay() {
     display.updateDisplay();
 }
 
 Task updateDisplayTask(200, TASK_FOREVER, &updateDisplay);
-
 
 void readJoystick() {
     joystick.update();
@@ -45,38 +55,7 @@ void readJoystick() {
 Task readJoystickTask(10, TASK_FOREVER, &readJoystick);
 
 void sendUDPMessage() {
-    // Serial.println("sendUDPMessage");
-
-    BoardState boardState = BoardState_init_zero;
-    boardState.has_orientation=true;
-    boardState.orientation.x =bnoReader.yAngle;
-    boardState.orientation.y = bnoReader.xAngle;
-
-    pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
-
-    bool status = pb_encode(&stream, BoardState_fields, &boardState);
-
-    if (!status) {
-        Serial.println("Failed to encode");
-        return;
-    }
-
-/*
-    Serial.print("Message Length: ");
-    Serial.println(stream.bytes_written);
-
-    Serial.print("Message: ");
-
-    for(int i = 0; i<stream.bytes_written; i++){
-        Serial.printf("%02X",buffer[i]);
-    }
-    Serial.println();
-*/
-
-
-    udp.beginPacket(udpAddress, boardStateUDPPort);
-    udp.write(buffer,stream.bytes_written );
-    udp.endPacket();
+    islpBoardStateSender.update();
 }
 
 Task sendUDPMessageTask(10, TASK_FOREVER, &sendUDPMessage);
@@ -95,6 +74,7 @@ void setupTasks() {
     // addAndEnableTask(readJoystickTask);
     addAndEnableTask(serveWebRequestsTask);
     addAndEnableTask(sendUDPMessageTask);
+    addAndEnableTask(resetSettingsTask);
 }
 
 
@@ -129,11 +109,6 @@ void setupServer() {
     webServer.begin();
 }
 
-void setupUDP(){
-    udp.begin(boardStateUDPPort);
-}
-
-
 void setup() {
 
     int displaySetupResult = display.setup();
@@ -158,7 +133,7 @@ void setup() {
     Serial.println("setup setup BEGIN");
     display.task = "init UDP/PB";
     updateDisplay();
-    setupUDP();
+
     display.task = "init UDP/PB OK";
     updateDisplay();
     Serial.println("setup UDP - OK");
@@ -203,6 +178,7 @@ void setup() {
     Serial.println("____SETUP_END______");
 
     islpJoystickReceiver.setup(4050);
+    islpBoardStateSender.setup();
 
     yAxis.calibration = 0;
     xAxis.calibration = -.5;
@@ -224,6 +200,8 @@ void loop() {
     // yAxis.setpointAngle = (joystick.y * 10) - 5;./scr
     xAxis.setpointAngle = islpJoystickReceiver.x;
     yAxis.setpointAngle = islpJoystickReceiver.y;
+    islpBoardStateSender.x =bnoReader.yAngle;
+    islpBoardStateSender.y = bnoReader.xAngle;
     xAxis.update();
     yAxis.update();
 

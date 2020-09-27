@@ -40,8 +40,11 @@ void SSD1306Display::updateDisplay() {
         display.println(taskParam);
     }
 
-    displayAxis(8 * 2, xAxis.setpointAngle, xAxis.bnoAngle, xAxis.speedAdjusted);
-    displayAxis(8 * 3, yAxis.setpointAngle, yAxis.bnoAngle, yAxis.speedAdjusted);
+    if( state.equals("Running")) {
+        displayAxis(8 * 2, xAxis.setpointAngle, xAxis.bnoAngle, xAxis.speedAdjusted);
+        displayAxis(8 * 3, yAxis.setpointAngle, yAxis.bnoAngle, yAxis.speedAdjusted);
+
+    }
 
     display.display();
 }

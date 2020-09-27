@@ -1,17 +1,11 @@
+#ifndef ARDUINO_ESP2_NETWORK_H
+#define ARDUINO_ESP2_NETWORK_H
 
 #include <Arduino.h>
 
 #include <Preferences.h>
 #include <wificonfigmode.h>
 #include <ESPmDNS.h>
-//
-// Created by Andreas Rosnes Bade on 27/09/2020.
-//
-
-#ifndef ARDUINO_ESP2_NETWORK_H
-#define ARDUINO_ESP2_NETWORK_H
-
-#endif //ARDUINO_ESP2_NETWORK_H
 
 Preferences preferences;
 
@@ -19,7 +13,7 @@ void setupWIFI() {
 
     delay(1000);
 
-    preferences.begin("dings01", false);
+    preferences.begin(preferences_name, false);
     String name = preferences.getString("name", String("not set"));
     String ssid = preferences.getString("ssid", String("not set"));
     String pwd = preferences.getString("pwd", String("not set"));
@@ -57,12 +51,12 @@ void setupWIFI() {
         timeout++;
         if (timeout > 20) {
             Serial.println("Unable to connect to network (SSID=" + ssid + ").");
+            display.state = "wifi config";
+            display.task = "http://192.168.1.1";
+            display.updateDisplay();
             serve();
         }
     }
-
-
-    // serve();
 
     Serial.print("Connecting to WiFi. IP=");
     Serial.println(WiFi.localIP());
@@ -78,3 +72,5 @@ void setupWIFI() {
     Serial.print(name);
     Serial.println(".local");
 }
+
+#endif //ARDUINO_ESP2_NETWORK_H
