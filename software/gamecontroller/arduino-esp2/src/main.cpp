@@ -91,7 +91,7 @@ void calibrateaxis() {
     xAxis.calibration = xCal;
     yAxis.calibration = yCal;
 
-    webServer.send(200, "text/html", "Hello");
+    webServer.send(200, "text/html", "OK");
 }
 
 void calibratejoystick() {
@@ -175,10 +175,11 @@ void setup() {
     display.state = "Running";
     display.task = "";
 
-    Serial.println("____SETUP_END______");
 
     islpJoystickReceiver.setup(4050);
     islpBoardStateSender.setup();
+
+    Serial.println("____SETUP_END______");
 
     yAxis.calibration = 0;
     xAxis.calibration = -.5;

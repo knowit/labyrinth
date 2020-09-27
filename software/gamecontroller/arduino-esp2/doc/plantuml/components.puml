@@ -1,0 +1,13 @@
+@startuml
+
+package "labyrinth" {
+[motors] <-l- [PID]
+[gyro] -> [PID]
+}
+
+package "VR" {
+[gyro] --> [virtual board] : ISLP port 4049
+[controller joystick] -> PID : ISLP port 4050
+}
+
+@enduml
