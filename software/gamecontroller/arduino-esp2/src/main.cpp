@@ -1,10 +1,5 @@
 
-#include "pb_common.h"
-#include "pb.h"
-#include "pb_encode.h"
-#include "pb_decode.h"
 
-#include "./pb/GameMessage.pb.h"
 #include "./Network.h"
 
 #include <TaskScheduler.h>
@@ -14,9 +9,7 @@
 #include "BNOReader.h"
 #include "SSD1306Display.h"
 #include "Joystick.h"
-
-#include <WiFiUdp.h>
-#include "AsyncUDP.h"
+#include "ISLPJoystickReceiver.h"
 
 
 Axis xAxis(4, 1, 1, 2);
@@ -26,11 +19,12 @@ const char *udpAddress = "192.168.10.199";
 BNOReader bnoReader;
 SSD1306Display display(xAxis, yAxis);
 Joystick joystick;
-AsyncUDP asyncUdp;
+
+ISLPJoystickReceiver islpJoystickReceiver;
 
 WiFiUDP udp;
 uint8_t buffer[512];
-JoystickState message = JoystickState_init_zero;
+
 
 const int boardStateUDPPort = 4049;
 
@@ -208,60 +202,7 @@ void setup() {
 
     Serial.println("____SETUP_END______");
 
-
-    if (asyncUdp.listen(4050)) {
-        Serial.print("UDP Listening on IP: ");
-        Serial.println(WiFi.localIP());
-        asyncUdp.onPacket([](AsyncUDPPacket packet) {
-
-            /*
-            Serial.print("UDP Packet Type: ");
-            Serial.print(packet.isBroadcast() ? "Broadcast" : packet.isMulticast() ? "Multicast" : "Unicast");
-            Serial.print(", From: ");
-            Serial.print(packet.remoteIP());
-            Serial.print(":");
-            Serial.print(packet.remotePort());
-            Serial.print(", To: ");
-            Serial.print(packet.localIP());
-            Serial.print(":");
-            Serial.print(packet.localPort());
-            Serial.print(", Length: ");
-            Serial.print(packet.length()); //dlzka packetu
-            Serial.print(", Data: ");
-            Serial.write(packet.data(), packet.length());
-
-            Serial.print(", Message: ");
-            for(int i = 0; i<sizeof(packet.data()); i++){
-                Serial.printf("%02X",packet.data()[i]);
-            }
-
-            Serial.println();
-
-             */
-
-            //Serial.println();
-            //String myString = (const char *) packet.data();
-
-            pb_istream_t stream = pb_istream_from_buffer(packet.data(), packet.length());
-
-
-            if (!pb_decode(&stream, JoystickState_fields, &message)) {
-                Serial.println("Failed to decode");
-                return;
-            }
-
-
-            Serial.print(".");
-
-            // Serial.println(message.orientation.x);
-            //Serial.println(message.orientation.y);
-
-
-             xAxis.setpointAngle = message.orientation.x;
-             yAxis.setpointAngle = 1- message.orientation.y;
-
-        });
-    }
+    islpJoystickReceiver.setup(4050);
 
     yAxis.calibration = 0;
     xAxis.calibration = -.5;
@@ -281,6 +222,8 @@ void loop() {
     yAxis.bnoAngle = bnoReader.yAngle;
     // xAxis.setpointAngle = (joystick.x * 12) + 6;
     // yAxis.setpointAngle = (joystick.y * 10) - 5;./scr
+    xAxis.setpointAngle = islpJoystickReceiver.x;
+    yAxis.setpointAngle = islpJoystickReceiver.y;
     xAxis.update();
     yAxis.update();
 

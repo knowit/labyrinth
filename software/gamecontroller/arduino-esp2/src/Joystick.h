@@ -5,6 +5,7 @@
 #ifndef GAMECONTROLLER_JOYSTICK_H
 #define GAMECONTROLLER_JOYSTICK_H
 
+#include <WiFi.h>
 
 class Joystick {
 
